@@ -26,8 +26,13 @@ class YangLanguageServerContribution extends BaseLanguageServerContribution {
     }
 
     start(clientConnection: IConnection): void {
-        const args: string[] = []
-        const serverConnection = this.createProcessStreamConnection(EXECUTABLE, args)
+        const command = 'java'
+        const args: string[] = [
+            '-jar',
+            EXECUTABLE,
+            // 'debug'
+        ]
+        const serverConnection = this.createProcessStreamConnection(command, args)
         this.forward(clientConnection, serverConnection)
     }
 
