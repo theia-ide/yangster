@@ -1,7 +1,7 @@
 {
-  "name": "theia-dsl-extension",
+  "name": "theia-yang-extension",
   "version": "1.0.0",
-  "description": "An extension for Theia connection language support for an Xtext DSL",
+  "description": "An extension for Theia connection language support for the Yang DSL",
   "author": "typefox.io",
   "license": "Apache-2.0",
   "keywords": [

@@ -20,17 +20,17 @@ import "theia-core/src/monaco/browser/style/index.css"
 import "theia-core/src/navigator/browser/style/index.css"
 import "theia-core/src/terminal/browser/terminal.css"
 import "sprotty/css/sprotty.css"
-import "../../../theia-dsl-extension/src/browser/css/flow.css"
-import "../../../theia-dsl-extension/src/browser/css/page.css"
-import "../../../theia-dsl-extension/src/browser/css/theia.css"
-import "../../../theia-dsl-extension/src/browser/css/processor.css"
+import "../../../theia-yang-extension/src/browser/css/flow.css"
+import "../../../theia-yang-extension/src/browser/css/page.css"
+import "../../../theia-yang-extension/src/browser/css/theia.css"
+import "../../../theia-yang-extension/src/browser/css/processor.css"
 
 // terminal extension
 import terminalFrontendModule from 'theia-core/lib/terminal/browser/terminal-frontend-module'
 import "xterm/dist/xterm.css"
 
-import multiCoreFrontendExtension from 'theia-dsl-extension/lib/browser/language/frontend-extension'
-import { diagramModule } from 'theia-dsl-extension/lib/browser/diagram/diagram-module'
+import multiCoreFrontendExtension from 'theia-yang-extension/lib/browser/language/frontend-extension'
+import { diagramModule } from 'theia-yang-extension/lib/browser/diagram/diagram-module'
 
 (() => {
 

@@ -15,7 +15,7 @@ import { messagingModule } from "theia-core/lib/messaging/node"
 import { backendLanguagesModule } from 'theia-core/lib/languages/node'
 import terminalBackendModule from 'theia-core/lib/terminal/node/terminal-backend-module'
 
-import multiCoreBackendExtension from 'theia-dsl-extension/lib/node/backend-extension'
+import multiCoreBackendExtension from 'theia-yang-extension/lib/node/backend-extension'
 
 // FIXME introduce default error handler contribution
 process.on('uncaughtException', function (err: any) {

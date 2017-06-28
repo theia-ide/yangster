@@ -8,7 +8,7 @@
 import { injectable, ContainerModule } from "inversify"
 import { BaseLanguageServerContribution, IConnection, LanguageServerContribution } from "theia-core/lib/languages/node"
 
-const EXECUTABLE = './node_modules/theia-dsl-extension/build/yang-language-server.jar'
+const EXECUTABLE = './node_modules/theia-yang-extension/build/yang-language-server.jar'
 
 @injectable()
 class YangLanguageServerContribution extends BaseLanguageServerContribution {
