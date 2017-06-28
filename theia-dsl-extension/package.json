@@ -1,0 +1,41 @@
+{
+  "name": "theia-dsl-extension",
+  "version": "1.0.0",
+  "description": "An extension for Theia connection language support for an Xtext DSL",
+  "author": "typefox.io",
+  "license": "Apache-2.0",
+  "keywords": [
+    "theia-extension"
+  ],
+  "dependencies": {
+    "monaco-editor": "^0.8.3",
+    "monaco-editor-core": "^0.8.2",
+    "monaco-languages": "^0.7.0",
+    "theia-core": "0.0.1-alpha.2",
+    "sprotty": "^0.1.0"
+  },
+  "scripts": {
+    "prepublish": "npm run copy-ls && npm run build",
+    "copy-ls": "rm -rf ./build && mkdir build && cp -r ../../yang-lsp/io.typefox.yang.parent/io.typefox.yang.ide/build/libs/yang-language-server.jar ./build",
+    "clean": "rimraf lib",
+    "lint": "tslint -c ../tslint.json --project ./tsconfig.json",
+    "build": "tsc && npm run lint",
+    "watch": "tsc --watch",
+    "test": "mocha --opts ./mocha.opts"
+  },
+  "devDependencies": {
+    "tslint": "^5.2.0",
+    "ts-node": "^3.0.2",
+    "typescript": "^2.3.2",
+    "@types/chai": "^3.4.35",
+    "@types/mocha": "^2.2.40",
+    "@types/node": "^7.0.10",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "files": [
+    "lib",
+    "src",
+    "build"
+  ]
+}

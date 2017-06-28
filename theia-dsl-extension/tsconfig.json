@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
+    "outDir": "lib",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "typeRoots": [
+      "node_modules/@types", "typings"
+    ],
+    "jsx": "react",
+    "sourceMap": true,
+    "reactNamespace": "JSX"
+  },
+  "include": [
+    "src"
+  ],
+  "files": [
+    "node_modules/monaco-editor/monaco.d.ts"
+  ]
+}

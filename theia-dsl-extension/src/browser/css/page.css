@@ -1,0 +1,53 @@
+.row {
+    margin-top: 25px;
+}
+
+.form-group {
+    margin-right: 25px;
+}
+
+svg {
+    flex:1;
+}
+
+.sprotty {
+    display: flex;
+    height:100%;
+}
+
+#xtext-editor {
+	width: 100%;
+    height: 600px;
+	padding: 4px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #bbb;
+}
+
+.missing {
+    stroke-width: 1;
+    stroke: #f00;
+    fill: #f00;
+    font-size: 14pt;
+    text-anchor: middle;
+}
+
+.sprotty-popup {
+    background: var(--theia-layout-color0);
+    border: var(--theia-border-width) solid var(--theia-border-color1);
+    color: var(--theia-ui-font-color1);
+    font-size: var(--theia-ui-font-size1);
+}
+
+.popup-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.popup-body > p {
+    margin-bottom: 2px;
+}
+
+svg .mouseover, svg .selected {
+    stroke: var(--theia-info-color1);
+}

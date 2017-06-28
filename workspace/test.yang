@@ -1,0 +1,4 @@
+module {
+    action bla; /*trtret*/
+    yang-version  
+}
