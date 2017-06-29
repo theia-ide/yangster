@@ -26,6 +26,10 @@ export default new ContainerModule(bind => {
             {
                 open: '{',
                 close: '}'
+            },
+            {
+                open: '"',
+                close: '"'
             }]
     })
     monaco.languages.setMonarchTokensProvider('yang', <any>{
