@@ -8,6 +8,11 @@
 import { ContainerModule } from "inversify"
 import { LanguageClientContribution } from "theia-core/lib/languages/browser"
 import { YangLanguageClientContribution } from "./language-client-contribution"
+import { DiagramConfiguration } from "../diagram/diagram-configuration"
+import { YangDiagramConfiguration } from "../yangdiagram/di.config"
+import { DiagramManager, DiagramManagerProvider } from "../diagram/diagram-manager"
+import { YangDiagramManager } from "../yangdiagram/yang-diagram-manager"
+import { FrontendApplicationContribution, OpenHandler } from "theia-core/lib/application/browser"
 
 export default new ContainerModule(bind => {
     monaco.languages.register({
@@ -114,4 +119,15 @@ export default new ContainerModule(bind => {
         },
     })
     bind(LanguageClientContribution).to(YangLanguageClientContribution).inSingletonScope()
+    bind(DiagramConfiguration).to(YangDiagramConfiguration).inSingletonScope()
+    bind(DiagramManagerProvider).toProvider<DiagramManager>(context => {
+        return () => {
+            return new Promise<DiagramManager>((resolve) =>
+                resolve(context.container.get(YangDiagramManager))
+            )
+        }
+    }).whenTargetNamed('yang-diagram')
+    bind(YangDiagramManager).toSelf().inSingletonScope()
+    bind(FrontendApplicationContribution).toDynamicValue(context => context.container.get(YangDiagramManager))
+    bind(OpenHandler).toDynamicValue(context => context.container.get(YangDiagramManager))
 })

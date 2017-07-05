@@ -1,0 +1,49 @@
+.edge {
+    fill: none;
+    stroke: #ff7f24;
+    stroke-width: 2px;
+}
+
+.edge.edit path {
+    stroke: #00F;
+}
+
+.edge.mouseover path{
+    stroke-width: 6px;
+}
+
+.edge.edit.mouseover path{
+    stroke-width: 2px;
+}
+
+.edge.edit .routingpoint {
+    fill: #88f;
+    stroke: none;
+}
+
+.edge .routingpoint.selected {
+    fill: #4f4;
+    stroke: none;
+}
+
+.edge .routingpoint.volatile {
+    opacity: 0.5;
+    z-index: 1000;
+}
+
+.edge .routingpoint.mouseover {
+    stroke: #ff7f24;
+}
+
+.edge .composition {
+    fill: #ff7f24;
+}
+
+.edge.dashed {
+    stroke-dasharray: 5 5;
+}
+
+
+
+
+

@@ -7,7 +7,7 @@
 
 import {
     ILogger, SelectCommand, ActionHandlerRegistry, IActionDispatcher, SModelStorage, TYPES,
-    ViewerOptions, DiagramServer
+    ViewerOptions, DiagramServer, ActionMessage
 } from 'sprotty/lib'
 import { TheiaDiagramServerConnector } from './theia-diagram-server-connector'
 import { injectable, inject } from "inversify"
@@ -34,11 +34,11 @@ export class TheiaDiagramServer extends DiagramServer {
         this.connector = connector
     }
 
-    sendMessage(message: string) {
+    sendMessage(message: ActionMessage) {
         this.connector.sendMessage(message)
     }
 
-    messageReceived(message: string) {
+    messageReceived(message: ActionMessage) {
         super.messageReceived(message)
     }
 }

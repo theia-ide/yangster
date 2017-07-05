@@ -5,11 +5,11 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { injectable, inject } from "inversify"
+import { injectable, inject, named } from "inversify"
 import URI from 'theia-core/lib/application/common/uri'
 import { FrontendApplication } from 'theia-core/lib/application/browser'
 import { BaseLanguageClientContribution, Workspace, Languages, LanguageClientFactory } from "theia-core/lib/languages/browser"
-import { DiagramManager } from '../diagram/diagram-manager'
+import { DiagramManager, DiagramManagerProvider } from '../diagram/diagram-manager'
 
 @injectable()
 export class YangLanguageClientContribution extends BaseLanguageClientContribution {
@@ -21,6 +21,7 @@ export class YangLanguageClientContribution extends BaseLanguageClientContributi
         @inject(Workspace) workspace: Workspace,
         @inject(Languages) languages: Languages,
         @inject(LanguageClientFactory) languageClientFactory: LanguageClientFactory,
+        @inject(DiagramManagerProvider)@named('yang-diagram') protected yangDiagramManagerProvider: DiagramManagerProvider
     ) {
         super(workspace, languages, languageClientFactory)
     }
@@ -33,7 +34,8 @@ export class YangLanguageClientContribution extends BaseLanguageClientContributi
 
     waitForActivation(app: FrontendApplication): Promise<any> {
         return Promise.race([
-            super.waitForActivation(app)
+            super.waitForActivation(app),
+            this.waitForOpenDiagrams(this.yangDiagramManagerProvider())
         ])
     }
 

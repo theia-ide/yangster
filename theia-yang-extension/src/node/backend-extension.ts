@@ -8,7 +8,7 @@
 import { injectable, ContainerModule } from "inversify"
 import { BaseLanguageServerContribution, IConnection, LanguageServerContribution } from "theia-core/lib/languages/node"
 
-const EXECUTABLE = './node_modules/theia-yang-extension/build/yang-language-server.jar'
+const EXECUTABLE = './node_modules/theia-yang-extension/build/yang-language-server/bin/yang-language-server'
 
 @injectable()
 class YangLanguageServerContribution extends BaseLanguageServerContribution {
@@ -26,13 +26,8 @@ class YangLanguageServerContribution extends BaseLanguageServerContribution {
     }
 
     start(clientConnection: IConnection): void {
-        const command = 'java'
-        const args: string[] = [
-            '-jar',
-            EXECUTABLE,
-            // 'debug'
-        ]
-        const serverConnection = this.createProcessStreamConnection(command, args)
+        const args: string[] = []
+        const serverConnection = this.createProcessStreamConnection(EXECUTABLE, args)
         this.forward(clientConnection, serverConnection)
     }
 

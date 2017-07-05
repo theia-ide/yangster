@@ -5,8 +5,6 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { TextDocumentPositionParams } from 'vscode-base-languageclient/lib/services'
-import { TextEditorSelection } from 'theia-core/lib/editor/browser'
 import { TheiaDiagramServerConnector } from './theia-diagram-server-connector'
 import { injectable, inject } from "inversify"
 import { OpenerOptions, OpenHandler, FrontendApplication, FrontendApplicationContribution } from "theia-core/lib/application/browser"
@@ -52,19 +50,6 @@ export abstract class DiagramManagerImpl implements DiagramManager {
 
     onStart(app: FrontendApplication): void {
         this._resolveApp(app)
-        this.selectionService.onSelectionChanged((e: any) => this.onSelectionChanged(e))
-    }
-
-    onSelectionChanged(e: any) {
-        if (TextEditorSelection.is(e) && e.cursor !== undefined) {
-            const params: TextDocumentPositionParams = {
-                textDocument: {
-                    uri: e.uri.toString()
-                },
-                position: e.cursor
-            }
-            this.diagramConnector.sendTextPosition(params)
-        }
     }
 
     canHandle(uri: URI, options?: OpenerOptions | undefined): number {

@@ -14,23 +14,32 @@ module example-4-a {
   container bag {
     description "Top-level container.";
     presence "true";
-    leaf foo {
-      type uint8;
-      mandatory "true";
-      nacm:default-deny-write;
-    }
-    leaf bar {
-      type boolean;
-      default "true";
-      config "false";
-    }
-    choice opts {
-      default "a";
-      case a {
-        leaf baz {
-          type empty;
+    container innerBag {
+        leaf foo {
+          type uint8;  
+          mandatory "true";
+          nacm:default-deny-write;
         }
-      }
+        leaf bar {
+          type boolean;
+          default "true";
+          config "false";
+        }
+        leaf-list cipher {
+          type string;
+          ordered-by user;
+          description
+            "A list of ciphers.";
+        }
+        choice opts {
+          default "a";
+          case a {
+            leaf baz {
+              type empty;
+            }
+          }
+        }
     }
   }
+
 }

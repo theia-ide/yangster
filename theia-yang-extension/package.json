@@ -12,11 +12,11 @@
     "monaco-editor-core": "^0.8.2",
     "monaco-languages": "^0.7.0",
     "theia-core": "0.0.1-alpha.2",
-    "sprotty": "^0.1.0"
+    "sprotty": "file:../../sprotty/client"
   },
   "scripts": {
     "prepublish": "npm run copy-ls && npm run build",
-    "copy-ls": "rm -rf ./build && mkdir build && cp -r ../../yang-lsp/io.typefox.yang.parent/io.typefox.yang.ide/build/libs/yang-language-server.jar ./build",
+    "copy-ls": "rm -rf ./build && mkdir build && cp -r ../../yang-lsp/io.typefox.yang.parent/io.typefox.yang.diagram/build/install/yang-language-server ./build",
     "clean": "rimraf lib",
     "lint": "tslint -c ../tslint.json --project ./tsconfig.json",
     "build": "tsc && npm run lint",
