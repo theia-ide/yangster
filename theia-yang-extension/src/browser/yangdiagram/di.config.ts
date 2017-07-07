@@ -11,24 +11,9 @@ import { ClassNodeView, CompositionEdgeView, DashedEdgeView, ImportEdgeView, Mod
 import { YangDiagramFactory } from "./model-factory"
 import { popupModelFactory } from "./popup"
 import {
-    ConsoleLogger,
-    LogLevel,
-    TYPES,
-    defaultModule,
-    selectModule,
-    moveModule,
-    boundsModule,
-    undoRedoModule,
-    viewportModule,
-    hoverModule,
-    overrideViewerOptions,
-    ViewRegistry,
-    SGraphView,
-    SLabelView,
-    SCompartmentView,
-    PolylineEdgeView,
-    HtmlRootView,
-    PreRenderedView
+    ConsoleLogger, LogLevel, TYPES, defaultModule, selectModule, moveModule, boundsModule, undoRedoModule, viewportModule,
+    hoverModule, overrideViewerOptions, ViewRegistry, SGraphView, SLabelView, SCompartmentView, PolylineEdgeView,
+    HtmlRootView, PreRenderedView
 } from "sprotty/lib"
 import { DiagramConfiguration } from "../diagram/diagram-configuration"
 import { TheiaDiagramServer } from "../diagram/theia-diagram-server"
@@ -51,6 +36,7 @@ export class YangDiagramConfiguration implements DiagramConfiguration {
         container.bind(TYPES.ModelSource).to(TheiaDiagramServer).inSingletonScope()
         overrideViewerOptions(container, {
             needsClientLayout: true,
+            needsServerLayout: true,
             baseDiv: widgetId
         })
 
