@@ -16,7 +16,7 @@
   },
   "scripts": {
     "prepublish": "npm run copy-ls && npm run build",
-    "copy-ls": "rm -rf ./build && mkdir build && cp -r ../../yang-lsp/io.typefox.yang.parent/io.typefox.yang.diagram/build/install/yang-language-server ./build",
+    "copy-ls": "rm -rf ./build && mkdir build && cp -r ../../yang-lsp/yang-lsp/io.typefox.yang.diagram/build/install/yang-language-server ./build",
     "clean": "rimraf lib",
     "lint": "tslint -c ../tslint.json --project ./tsconfig.json",
     "build": "tsc && npm run lint",
