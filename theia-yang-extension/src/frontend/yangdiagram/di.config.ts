@@ -5,12 +5,17 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { Container, ContainerModule, injectable } from 'inversify'
+import { Container, ContainerModule, injectable } from "inversify"
+import {
+    ClassNodeView, CompositionEdgeView, DashedEdgeView, ImportEdgeView, ModuleNodeView, NoteView,
+    UsesEdgeView
+} from "./views"
+import { YangDiagramFactory } from "./model-factory"
+import { popupModelFactory } from "./popup"
 import {
     boundsModule,
     ConsoleLogger,
     defaultModule,
-    exportModule,
     hoverModule,
     HtmlRootView,
     LogLevel,
@@ -29,9 +34,6 @@ import {
 } from 'sprotty/lib'
 import { DiagramConfiguration } from "../diagram/diagram-configuration"
 import { TheiaDiagramServer } from "../diagram/theia-diagram-server"
-import { YangDiagramFactory } from "./model-factory"
-import { popupModelFactory } from "./popup"
-import { ClassNodeView, ModuleNodeView, NoteView, CompositionEdgeView, DashedEdgeView, ImportEdgeView } from "./views"
 
 const yangDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
     rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope()
@@ -47,7 +49,7 @@ export class YangDiagramConfiguration implements DiagramConfiguration {
     createContainer(widgetId: string): Container {
         const container = new Container()
         container.load(defaultModule, selectModule, moveModule, boundsModule, undoRedoModule, viewportModule,
-            hoverModule, exportModule, yangDiagramModule)
+            hoverModule, yangDiagramModule)
         container.bind(TYPES.ModelSource).to(TheiaDiagramServer).inSingletonScope()
         overrideViewerOptions(container, {
             needsClientLayout: true,
@@ -68,6 +70,7 @@ export class YangDiagramConfiguration implements DiagramConfiguration {
         viewRegistry.register('edge:composition', CompositionEdgeView)
         viewRegistry.register('edge:dashed', DashedEdgeView)
         viewRegistry.register('edge:import', ImportEdgeView)
+        viewRegistry.register('edge:uses', UsesEdgeView)
         viewRegistry.register('html', HtmlRootView)
         viewRegistry.register('pre-rendered', PreRenderedView)
 
