@@ -10,7 +10,9 @@
   "dependencies": {
     "monaco-editor": "^0.8.3",
     "monaco-editor-core": "^0.8.2",
-    "monaco-languages": "^0.7.0"
+    "monaco-languages": "^0.7.0",
+    "theia-core": "latest",
+    "sprotty": "latest"
   },
   "localDependencies": {
     "theia-core": "../../theia",

@@ -5,3 +5,6 @@ bin
 lib
 .DS_Store
 yang-server.log
+yangster-app/package.json
+yangster-app/webpack.config.js
+yangster-app/src-gen

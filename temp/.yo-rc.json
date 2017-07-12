@@ -1,7 +1,0 @@
-{
-  "generator-theia": {
-    "port": 3000,
-    "host": "localhost",
-    "copyright": ""
-  }
-}

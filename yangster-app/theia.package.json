@@ -11,7 +11,8 @@
         "monaco-html": "^1.2.1",
         "monaco-json": "^1.2.2",
         "monaco-languages": "^0.7.0",
-        "monaco-typescript": "^2.1.2"
+        "monaco-typescript": "^2.1.2",
+        "theia-yang-extension": "latest"
     },
     "localDependencies": {
         "theia-core": "../../theia",
