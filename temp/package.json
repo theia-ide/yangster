@@ -1,0 +1,33 @@
+{
+  "dependencies": {},
+  "scripts": {
+    "bootstrap": "npm install",
+    "build": "run build:frontend",
+    "build:frontend": "webpack --target web && cp src-gen/frontend/index.html lib",
+    "clean": "rimraf lib",
+    "cold:start": "npm run clean && npm run build && npm start",
+    "prepare": "npm run clean && npm run build",
+    "start": "concurrently --names backend,webpack-server --prefix \"[{name}]\" \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:backend": "node ./src-gen/backend/main.js | bunyan",
+    "start:backend:debug": "node ./src-gen/backend/main.js --loglevel=debug | bunyan",
+    "start:frontend": "webpack-dev-server --open",
+    "watch": "npm run watch:frontend",
+    "watch:frontend": "npm run build:frontend && webpack --target web --watch"
+  },
+  "devDependencies": {
+    "bunyan": "^1.8.10",
+    "circular-dependency-plugin": "^2.0.0",
+    "concurrently": "^3.4.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.1",
+    "file-loader": "^0.11.1",
+    "font-awesome-webpack": "0.0.5-beta.2",
+    "less": "^2.7.2",
+    "rimraf": "^2.6.1",
+    "source-map-loader": "^0.2.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.5.0",
+    "webpack-merge": "^4.1.0"
+  }
+}

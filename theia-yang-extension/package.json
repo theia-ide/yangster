@@ -10,17 +10,25 @@
   "dependencies": {
     "monaco-editor": "^0.8.3",
     "monaco-editor-core": "^0.8.2",
-    "monaco-languages": "^0.7.0",
-    "theia-core": "0.0.1-alpha.2",
-    "sprotty": "file:../../sprotty/client"
+    "monaco-languages": "^0.7.0"
+  },
+  "localDependencies": {
+    "theia-core": "../../theia",
+    "sprotty": "../../sprotty/client"
   },
   "scripts": {
+    "bootstrap": "npm install ../../theia/config/local-dependency-manager && npm run localinstall",
     "prepublish": "npm run copy-ls && npm run build",
     "copy-ls": "rm -rf ./build && mkdir build && cp -r ../../yang-lsp/yang-lsp/io.typefox.yang.diagram/build/install/yang-language-server ./build",
     "clean": "rimraf lib",
     "lint": "tslint -c ../tslint.json --project ./tsconfig.json",
-    "build": "tsc && npm run lint",
-    "watch": "tsc --watch",
+    "localinstall": "ldm install --dev --original-sources",
+    "build": "npm run build:localdeps && npm run build:yang",
+    "build:localdeps": "ldm run build && ldm sync --original-sources",
+    "build:yang": "tsc && npm run lint",
+    "watch": "concurrently --names watch-deps,watch-frontend --prefix \"[{name}]\" \"npm run watch:localdeps\" \"npm run watch:yang\"",
+    "watch:yang": "tsc -w",
+    "watch:localdeps": "ldm watch --sync --run=watch --original-sources",
     "test": "mocha --opts ./mocha.opts"
   },
   "devDependencies": {
@@ -33,9 +41,19 @@
     "chai": "^3.5.0",
     "mocha": "^3.2.0"
   },
+  "localDevDependencies": {
+    "local-dependency-manager": "../../theia/config/local-dependency-manager"
+  },
   "files": [
     "lib",
     "src",
     "build"
+  ],
+  "theiaExtensions": [{
+      "frontend": "lib/frontend/diagram/diagram-module"
+    }, {
+      "frontend": "lib/frontend/language/frontend-extension",
+      "backend": "lib/backend/backend-extension"
+    }
   ]
 }
