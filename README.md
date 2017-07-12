@@ -55,3 +55,13 @@ cd ../yangster-app
 yo theia:browser
 npm run start
 ```
+
+## Connecting the LSP through a Socket
+For development it is better to connect to the running LSP through a socket.
+For that you need to start the yangster-app using
+```bash
+npm run start:backend:socket
+```
+And connect to it through http://localhost:3000.
+
+It will try to connect to the language server that you now need to start from within Eclipse by launching `RunSocketServer`.
