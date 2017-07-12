@@ -15,7 +15,7 @@ git clone https://github.com:yang-tools/yang-lsp.git
 2a) Build the sprotty server part
 ```
 cd sprotty/server
-./gradlew installg
+./gradlew install
 ```
 2b) Build the sprotty client part
 ```
