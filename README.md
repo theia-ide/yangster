@@ -12,19 +12,41 @@ git clone https://github.com/theia-ide/sprotty.git
 git clone https://github.com:yang-tools/yangster.git
 git clone https://github.com:yang-tools/yang-lsp.git
 ```
-2) Build the sprotty server part
+2a) Build the sprotty server part
 ```
 cd sprotty/server
+./gradlew installg
+```
+2b) Build the sprotty client part
+```
+cd ../client
+npm install
+```
+3a) Built Theia
+```
+cd ../../theia
+npm install 
+```
+3b) Built the Theia generator
+```
+cd config/generator-theia
+npm install
+npm link
+npm install -g yo
+```
+4a) Build the YANG language server
+```
+cd ../../../yang-lsp
 ./gradlew installDist
 ```
-3) Build the YANG language server
+4b) Build the YANG theia extension
 ```
-cd ../../yang-lsp
-./gradlew installDist
+cd ../yangster/theia-yang-extension
+npm run bootstrap
 ```
-4) Build the YANG browser app
+4c) Build the YANG browser app
 ```
 cd ../yangster/yangster-app
-npm run bootstrap
+yo theia:browser
 npm run start
 ```
