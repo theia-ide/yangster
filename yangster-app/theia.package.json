@@ -12,6 +12,8 @@
         "monaco-json": "^1.2.2",
         "monaco-languages": "^0.7.0",
         "monaco-typescript": "^2.1.2",
+        "theia-core": "latest",
+        "sprotty": "latest",
         "theia-yang-extension": "latest"
     },
     "localDependencies": {
@@ -33,6 +35,7 @@
         "watch:localdeps": "ldm watch --sync --run=watch --original-sources",
         "test:ui": "npm run start& wdio --waitforTimeout 300000 wdio.conf.js",
         "start:backend": "node ./src-gen/backend/main.js --root-dir=../workspace | bunyan",
-        "start:backend:debug": "node ./src-gen/backend/main.js --root-dir=../workspace --loglevel=debug | bunyan"
+        "start:backend:debug": "node ./src-gen/backend/main.js --root-dir=../workspace --loglevel=debug | bunyan",
+        "start:backend:socket": "node ./src-gen/backend/main.js --root-dir=../../yang-lsp/yang-lsp/io.typefox.yang.ide/src/test/resources --YANG_LSP=5007 | bunyan"
     }
 }

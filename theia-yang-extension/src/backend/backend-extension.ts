@@ -8,7 +8,19 @@
 import { injectable, ContainerModule } from "inversify"
 import { BaseLanguageServerContribution, IConnection, LanguageServerContribution } from "theia-core/lib/languages/node"
 
+import { createSocketConnection } from 'vscode-ws-jsonrpc/lib/server'
+import * as net from 'net'
+
 const EXECUTABLE = './node_modules/theia-yang-extension/build/yang-language-server/bin/yang-language-server'
+
+function getPort(): number|undefined {
+    let arg = process.argv.filter(arg => arg.startsWith("--YANG_LSP="))[0]
+    if (!arg) {
+        return undefined
+    } else {
+        return Number.parseInt(arg.substring("--YANG_LSP=".length))
+    }
+}
 
 @injectable()
 class YangLanguageServerContribution extends BaseLanguageServerContribution {
@@ -26,9 +38,19 @@ class YangLanguageServerContribution extends BaseLanguageServerContribution {
     }
 
     start(clientConnection: IConnection): void {
-        const args: string[] = []
-        const serverConnection = this.createProcessStreamConnection(EXECUTABLE, args)
-        this.forward(clientConnection, serverConnection)
+        let socketPort = getPort();
+        if (socketPort) {
+            const socket = new net.Socket()
+            const serverConnection = createSocketConnection(socket, socket, () => {
+                socket.destroy()
+            });
+            this.forward(clientConnection, serverConnection)
+            socket.connect(socketPort)
+        } else {
+            const args: string[] = []
+            const serverConnection = this.createProcessStreamConnection(EXECUTABLE, args)
+            this.forward(clientConnection, serverConnection)
+        }
     }
 
 }
