@@ -16,6 +16,7 @@ import {
     boundsModule,
     ConsoleLogger,
     defaultModule,
+    exportModule,
     hoverModule,
     HtmlRootView,
     LogLevel,
@@ -49,7 +50,7 @@ export class YangDiagramConfiguration implements DiagramConfiguration {
     createContainer(widgetId: string): Container {
         const container = new Container()
         container.load(defaultModule, selectModule, moveModule, boundsModule, undoRedoModule, viewportModule,
-            hoverModule, yangDiagramModule)
+            hoverModule, exportModule, yangDiagramModule)
         container.bind(TYPES.ModelSource).to(TheiaDiagramServer).inSingletonScope()
         overrideViewerOptions(container, {
             needsClientLayout: true,

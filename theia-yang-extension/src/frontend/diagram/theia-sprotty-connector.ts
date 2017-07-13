@@ -5,8 +5,7 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { DiagramConfigurationRegistry } from './diagram-configuration'
-import { ActionMessage, TYPES, ExportSvgAction } from 'sprotty/lib'
+import { ActionMessage, ExportSvgAction } from 'sprotty/lib'
 import { TheiaDiagramServer } from './theia-diagram-server'
 import { NotificationType } from 'vscode-jsonrpc/lib/messages'
 import { LanguageClientContribution } from 'theia-core/lib/languages/browser'
@@ -14,42 +13,54 @@ import { TheiaFileSaver } from './theia-file-saver'
 
 const actionMessageType = new NotificationType<ActionMessage, void>('diagram/accept')
 
-export class TheiaDiagramServerConnector {
+/**
+ * Connects sprotty DiagramServers to a Theia LanguageClientContribution.
+ *
+ * Used to tunnel sprotty actions to and from the sprotty server through
+ * the LSP.
+ *
+ * Instances bridge the gap between the sprotty DI containers (one per
+ * diagram) and a specific language client from the Theia DI container
+ * (one per application).
+ */
+export class TheiaSprottyConnector {
 
     private servers: TheiaDiagramServer[] = []
 
     constructor(private languageClientContribution: LanguageClientContribution,
-                private diagramConfigurationRegistry: DiagramConfigurationRegistry,
                 private fileSaver: TheiaFileSaver) {
         this.languageClientContribution.languageClient.then(
             lc => {
-                lc.onNotification(actionMessageType, this.actionMessageReceived.bind(this))
+                lc.onNotification(actionMessageType, this.receivedThroughLsp.bind(this))
             }
         ).catch(
             err => console.error(err)
         )
     }
 
-    createDiagramServer(widgetId: string, diagramType: string): TheiaDiagramServer {
-        const diagramConfiguration = this.diagramConfigurationRegistry.get(diagramType)
-        const newServer = diagramConfiguration.createContainer(widgetId).get<TheiaDiagramServer>(TYPES.ModelSource)
-        newServer.connect(this)
-        this.servers.push(newServer)
-        return newServer
+    connect(diagramServer: TheiaDiagramServer) {
+        this.servers.push(diagramServer)
+        diagramServer.connect(this)
     }
 
-    save(action: ExportSvgAction) {
-        this.fileSaver.save(action)
+    disconnect(diagramServer: TheiaDiagramServer) {
+        const index = this.servers.indexOf(diagramServer)
+        if (index >= 0)
+            this.servers.splice(index, 0)
+        diagramServer.disconnect()
     }
 
-    sendMessage(message: ActionMessage) {
+    save(uri: string, action: ExportSvgAction) {
+        this.fileSaver.save(uri, action)
+    }
+
+    sendThroughLsp(message: ActionMessage) {
         this.languageClientContribution.languageClient.then(lc => lc.sendNotification(actionMessageType, message))
     }
 
-    actionMessageReceived(message: ActionMessage) {
+    receivedThroughLsp(message: ActionMessage) {
         this.servers.forEach(element => {
             element.messageReceived(message)
         })
     }
 }
-

@@ -9,8 +9,7 @@ import { DiagramManagerImpl } from "../diagram/diagram-manager"
 import { inject, injectable } from 'inversify'
 import { LanguageClientContribution } from 'theia-core/lib/languages/browser'
 import { YangLanguageClientContribution } from '../language/yang-language-client-contribution'
-import { TheiaDiagramServerConnector } from "../diagram/theia-diagram-server-connector"
-import { DiagramConfigurationRegistry } from "../diagram/diagram-configuration"
+import { TheiaSprottyConnector } from '../diagram/theia-sprotty-connector'
 import { TheiaFileSaver } from "../diagram/theia-file-saver"
 
 @injectable()
@@ -19,13 +18,12 @@ export class YangDiagramManager extends DiagramManagerImpl {
     readonly diagramType = 'yang-diagram'
     readonly iconClass = 'fa fa-microchip'
 
-    readonly diagramConnector: TheiaDiagramServerConnector
+    readonly diagramConnector: TheiaSprottyConnector
 
-    constructor(@inject(DiagramConfigurationRegistry) diagramConfigurationRegistry: DiagramConfigurationRegistry,
-                @inject(YangLanguageClientContribution) languageClientContribution: LanguageClientContribution,
+    constructor(@inject(YangLanguageClientContribution) languageClientContribution: LanguageClientContribution,
                 @inject(TheiaFileSaver) theiaFileSaver: TheiaFileSaver) {
         super()
-        this.diagramConnector = new TheiaDiagramServerConnector(languageClientContribution, diagramConfigurationRegistry, theiaFileSaver)
+        this.diagramConnector = new TheiaSprottyConnector(languageClientContribution, theiaFileSaver)
     }
 
     get label() {

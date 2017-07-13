@@ -37,7 +37,8 @@ export class DiagramWidgetRegistry {
     }
 
     addWidget(uri: URI, diagramType: string, widget: Widget): void {
-        widget.id = this.nextId()
+        if (widget.id === undefined)
+            widget.id = this.nextId()
         this.widgets.set(this.getKey(uri, diagramType), widget)
         this.onWidgetsChangedEmitter.fire(undefined)
     }
@@ -52,7 +53,7 @@ export class DiagramWidgetRegistry {
         return uri.toString() + '#' + diagramType
     }
 
-    protected nextId(): string {
+    public nextId(): string {
         return `widget-${this.idSequence++}`
     }
 }

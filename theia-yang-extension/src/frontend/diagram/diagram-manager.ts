@@ -5,13 +5,16 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { TheiaDiagramServerConnector } from './theia-diagram-server-connector'
+import { TheiaDiagramServer } from './theia-diagram-server'
+import { TheiaSprottyConnector } from './theia-sprotty-connector'
+import { DiagramConfigurationRegistry } from './diagram-configuration'
 import { injectable, inject } from "inversify"
 import { OpenerOptions, OpenHandler, FrontendApplication, FrontendApplicationContribution } from "theia-core/lib/application/browser"
 import URI from "theia-core/lib/application/common/uri"
 import { DiagramWidget } from "./diagram-widget"
 import { DiagramWidgetRegistry } from "./diagram-widget-registry"
 import { Emitter, Event, SelectionService } from 'theia-core/lib/application/common'
+import { TYPES } from 'sprotty/lib'
 
 export const DiagramManagerProvider = Symbol('DiagramManagerProvider')
 
@@ -27,11 +30,12 @@ export abstract class DiagramManagerImpl implements DiagramManager {
 
     @inject(DiagramWidgetRegistry) protected readonly widgetRegistry: DiagramWidgetRegistry
     @inject(SelectionService) protected readonly selectionService: SelectionService
+    @inject(DiagramConfigurationRegistry) protected diagramConfigurationRegistry: DiagramConfigurationRegistry
 
     protected readonly onDiagramOpenedEmitter = new Emitter<URI>()
 
     abstract get diagramType(): string
-    abstract get diagramConnector(): TheiaDiagramServerConnector
+    abstract get diagramConnector(): TheiaSprottyConnector
     abstract iconClass: string
 
     get id() {
@@ -70,20 +74,31 @@ export abstract class DiagramManagerImpl implements DiagramManager {
     protected getOrCreateDiagramWidget(uri: URI): Promise<DiagramWidget> {
         return this.resolveApp.then(app => {
             const widget = this.widgetRegistry.getWidget(uri, this.diagramType)
-            if (widget !== undefined) {
+            if (widget !== undefined)
                 return widget as Promise<DiagramWidget>
-            }
-            const newWidget = new DiagramWidget(uri, this.diagramType, this.diagramConnector)
+            const widgetId = this.widgetRegistry.nextId()
+            const svgContainerId = widgetId + '_sprotty'
+            const newServer = this.createDiagramServer(uri, svgContainerId)
+            const newWidget = new DiagramWidget(widgetId, svgContainerId, uri, this.diagramType, newServer)
             newWidget.title.closable = true
             newWidget.title.label = uri.path.base
             newWidget.title.icon = this.iconClass
             this.widgetRegistry.addWidget(uri, this.diagramType, newWidget)
-            newWidget.disposed.connect(() =>
+            newWidget.disposed.connect(() => {
                 this.widgetRegistry.removeWidget(uri, this.diagramType)
-            )
+                this.diagramConnector.disconnect(newServer)
+            })
             app.shell.addToMainArea(newWidget)
             return newWidget
         })
+    }
+
+    protected createDiagramServer(uri: URI, svgContainerId: string): TheiaDiagramServer {
+        const diagramConfiguration = this.diagramConfigurationRegistry.get(this.diagramType)
+        const newServer = diagramConfiguration.createContainer(svgContainerId).get<TheiaDiagramServer>(TYPES.ModelSource)
+        newServer.clientId = uri.toString()
+        this.diagramConnector.connect(newServer)
+        return newServer
     }
 }
 

@@ -9,13 +9,22 @@ import {
     ILogger, SelectCommand, ActionHandlerRegistry, IActionDispatcher, SModelStorage, TYPES,
     ViewerOptions, DiagramServer, ActionMessage, ExportSvgAction
 } from 'sprotty/lib'
-import { TheiaDiagramServerConnector } from './theia-diagram-server-connector'
+import { TheiaSprottyConnector } from './theia-sprotty-connector'
 import { injectable, inject } from "inversify"
 
+/**
+ * A sprotty DiagramServer that can be connected to a Theia language
+ * server.
+ * 
+ * This class is the sprotty side of the Theia/sprotty integration. It
+ * is instantiated with the DI container of the sprotty diagram. Theia
+ * services are available via the TheiaDiagramServerConnector.
+ */
 @injectable()
 export class TheiaDiagramServer extends DiagramServer {
 
-    protected connector: TheiaDiagramServerConnector
+    protected connector: Promise<TheiaSprottyConnector>
+    private resolveConnector: (server: TheiaSprottyConnector) => void
 
     constructor(@inject(TYPES.IActionDispatcher) public actionDispatcher: IActionDispatcher,
                 @inject(TYPES.ActionHandlerRegistry) actionHandlerRegistry: ActionHandlerRegistry,
@@ -23,6 +32,20 @@ export class TheiaDiagramServer extends DiagramServer {
                 @inject(TYPES.SModelStorage) storage: SModelStorage,
                 @inject(TYPES.ILogger) logger: ILogger) {
         super(actionDispatcher, actionHandlerRegistry, viewerOptions, storage, logger)
+        this.waitForConnector()
+    }
+
+    connect(connector: TheiaSprottyConnector): void {
+        this.resolveConnector(connector)
+    }
+
+    disconnect(): void {
+        this.waitForConnector()
+    }
+
+    private waitForConnector(): void {
+        this.connector = new Promise<TheiaSprottyConnector>(resolve =>
+            this.resolveConnector = resolve)
     }
 
     initialize(registry: ActionHandlerRegistry): void {
@@ -30,18 +53,17 @@ export class TheiaDiagramServer extends DiagramServer {
         registry.register(SelectCommand.KIND, this)
     }
 
-    connect(connector: TheiaDiagramServerConnector)  {
-        this.connector = connector
-    }
-
     handleExportSvgAction(action: ExportSvgAction): void {
-        this.connector.save(action)
+        this.connector.then(c => c.save(this.clientId, action))
     }
 
     sendMessage(message: ActionMessage) {
-        this.connector.sendMessage(message)
+        this.connector.then(c => c.sendThroughLsp(message))
     }
 
+    /**
+     * made public
+     */
     messageReceived(message: ActionMessage) {
         super.messageReceived(message)
     }

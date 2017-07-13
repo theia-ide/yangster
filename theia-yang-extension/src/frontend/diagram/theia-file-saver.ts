@@ -8,30 +8,30 @@
 import { inject, injectable } from 'inversify'
 import { ExportSvgAction } from 'sprotty/lib'
 import { FileSystem } from 'theia-core/lib/filesystem/common'
-import { WorkspaceService } from 'theia-core/lib/workspace/browser'
-import { FileDialogFactory } from 'theia-core/lib/filesystem/browser/file-dialog'
-import { DirNode } from "theia-core/lib/filesystem/browser"
 
 @injectable()
 export class TheiaFileSaver {
-    constructor(
-        @inject(FileSystem) protected readonly fileSystem: FileSystem,
-        @inject(FileDialogFactory) protected readonly fileDialogFactory: FileDialogFactory,
-        @inject(WorkspaceService) protected readonly workspaceService: WorkspaceService
-    ) {
+    constructor(@inject(FileSystem) protected readonly fileSystem: FileSystem) {
     }
 
-    save(action: ExportSvgAction) {
-        this.fileSystem.getRoots().then(roots => {
-            const node = DirNode.createRoot(roots[0])
-            const fileDialog = this.fileDialogFactory({
-                title: 'Save as...'
-            })
-            fileDialog.model.navigateTo(node)
-            fileDialog.open().then(node => {
-                if (node !== undefined)
-                    this.fileSystem.createFile(node.fileStat.uri, { content: action.svg })
-            })
+    save(sourceUri: string, action: ExportSvgAction) {
+        this.getNextFileName(sourceUri).then(fileName => 
+            this.fileSystem.createFile(fileName, { content: action.svg })
+        )
+    }
+
+    getNextFileName(sourceUri: string): Promise<string> {
+        return new Promise<string>(resolve => this.tryNextFileName(sourceUri, 0, resolve))
+    }
+
+    tryNextFileName(sourceURI: string, count: number, resolve: (fileName: string) => void) {
+        const currentName = sourceURI + (count === 0 ? '' : count) + '.svg'
+        console.log(currentName)
+        this.fileSystem.exists(currentName).then(exists => {
+            if (!exists)
+                resolve(currentName) 
+            else
+                this.tryNextFileName(sourceURI, ++count, resolve)
         })
     }
 }
