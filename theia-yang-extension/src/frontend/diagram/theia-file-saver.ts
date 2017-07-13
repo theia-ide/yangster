@@ -15,7 +15,7 @@ export class TheiaFileSaver {
     }
 
     save(sourceUri: string, action: ExportSvgAction) {
-        this.getNextFileName(sourceUri).then(fileName => 
+        this.getNextFileName(sourceUri).then(fileName =>
             this.fileSystem.createFile(fileName, { content: action.svg })
         )
     }
@@ -26,10 +26,9 @@ export class TheiaFileSaver {
 
     tryNextFileName(sourceURI: string, count: number, resolve: (fileName: string) => void) {
         const currentName = sourceURI + (count === 0 ? '' : count) + '.svg'
-        console.log(currentName)
         this.fileSystem.exists(currentName).then(exists => {
             if (!exists)
-                resolve(currentName) 
+                resolve(currentName)
             else
                 this.tryNextFileName(sourceURI, ++count, resolve)
         })

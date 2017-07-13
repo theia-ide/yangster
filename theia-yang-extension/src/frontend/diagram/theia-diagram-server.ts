@@ -15,7 +15,7 @@ import { injectable, inject } from "inversify"
 /**
  * A sprotty DiagramServer that can be connected to a Theia language
  * server.
- * 
+ *
  * This class is the sprotty side of the Theia/sprotty integration. It
  * is instantiated with the DI container of the sprotty diagram. Theia
  * services are available via the TheiaDiagramServerConnector.
