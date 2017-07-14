@@ -7,7 +7,8 @@
 
 import {
     ILogger, SelectCommand, ActionHandlerRegistry, IActionDispatcher, SModelStorage, TYPES,
-    ViewerOptions, DiagramServer, ActionMessage, ExportSvgAction
+    ViewerOptions, DiagramServer, ActionMessage, ExportSvgAction, RequestModelAction, Action,
+    ICommand
 } from 'sprotty/lib'
 import { TheiaSprottyConnector } from './theia-sprotty-connector'
 import { injectable, inject } from "inversify"
@@ -25,6 +26,7 @@ export class TheiaDiagramServer extends DiagramServer {
 
     protected connector: Promise<TheiaSprottyConnector>
     private resolveConnector: (server: TheiaSprottyConnector) => void
+    private sourceUri: string
 
     constructor(@inject(TYPES.IActionDispatcher) public actionDispatcher: IActionDispatcher,
                 @inject(TYPES.ActionHandlerRegistry) actionHandlerRegistry: ActionHandlerRegistry,
@@ -53,8 +55,14 @@ export class TheiaDiagramServer extends DiagramServer {
         registry.register(SelectCommand.KIND, this)
     }
 
+    handle(action: Action): void | ICommand {
+        if (action instanceof RequestModelAction)
+            this.sourceUri = action.options.sourceUri
+        return super.handle(action)
+    }
+
     handleExportSvgAction(action: ExportSvgAction): void {
-        this.connector.then(c => c.save(this.clientId, action))
+        this.connector.then(c => c.save(this.sourceUri, action))
     }
 
     sendMessage(message: ActionMessage) {
