@@ -12,6 +12,7 @@ import { LanguageClientContribution } from 'theia-core/lib/languages/browser'
 import { TheiaFileSaver } from './theia-file-saver'
 
 const actionMessageType = new NotificationType<ActionMessage, void>('diagram/accept')
+const didCloseMessageType = new NotificationType<string, void>('diagram/didClose')
 
 /**
  * Connects sprotty DiagramServers to a Theia LanguageClientContribution.
@@ -48,6 +49,7 @@ export class TheiaSprottyConnector {
         if (index >= 0)
             this.servers.splice(index, 0)
         diagramServer.disconnect()
+        this.languageClientContribution.languageClient.then(lc => lc.sendNotification(didCloseMessageType, diagramServer.clientId))
     }
 
     save(uri: string, action: ExportSvgAction) {

@@ -30,7 +30,7 @@ export class DiagramWidget extends Widget {
         svgContainer.id = this.svgContainerId
         this.node.appendChild(svgContainer)
         this.diagramServer.handle(new RequestModelAction({
-            resourceId: this.uri.toString(),
+            sourceUri: this.uri.toString(),
             diagramType: this.diagramType
         }))
     }

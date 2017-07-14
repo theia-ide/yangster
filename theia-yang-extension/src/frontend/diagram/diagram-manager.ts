@@ -78,7 +78,7 @@ export abstract class DiagramManagerImpl implements DiagramManager {
                 return widget as Promise<DiagramWidget>
             const widgetId = this.widgetRegistry.nextId()
             const svgContainerId = widgetId + '_sprotty'
-            const newServer = this.createDiagramServer(uri, svgContainerId)
+            const newServer = this.createDiagramServer(widgetId, svgContainerId)
             const newWidget = new DiagramWidget(widgetId, svgContainerId, uri, this.diagramType, newServer)
             newWidget.title.closable = true
             newWidget.title.label = uri.path.base
@@ -93,10 +93,10 @@ export abstract class DiagramManagerImpl implements DiagramManager {
         })
     }
 
-    protected createDiagramServer(uri: URI, svgContainerId: string): TheiaDiagramServer {
+    protected createDiagramServer(widgetId: string, svgContainerId: string): TheiaDiagramServer {
         const diagramConfiguration = this.diagramConfigurationRegistry.get(this.diagramType)
         const newServer = diagramConfiguration.createContainer(svgContainerId).get<TheiaDiagramServer>(TYPES.ModelSource)
-        newServer.clientId = uri.toString()
+        newServer.clientId = widgetId
         this.diagramConnector.connect(newServer)
         return newServer
     }
