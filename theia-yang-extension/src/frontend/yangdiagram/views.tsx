@@ -63,8 +63,8 @@ export class NoteView extends RectangularNodeView {
 
 export class CompositionEdgeView extends PolylineEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
-        const p1 = segments[segments.length - 2]
-        const p2 = segments[segments.length - 1]
+        const p1 = segments[0]
+        const p2 = segments[1]
         const r = 10
         const rhombStr = "M 0,0 l" + r + "," + (r / 2) + " l" + r + ",-" + (r / 2) + " l-" + r + ",-" + (r / 2) + " l-" + r + "," + (r / 2) + " Z"
         return [
@@ -97,7 +97,7 @@ export class ImportEdgeView extends DashedEdgeView {
     }
 }
 
-export class UsesEdgeView extends PolylineEdgeView {
+export class ArrowEdgeView extends PolylineEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
         const p1 = segments[segments.length - 2]
         const p2 = segments[segments.length - 1]
