@@ -13,10 +13,13 @@ import { YangDiagramConfiguration } from "../yangdiagram/di.config"
 import { DiagramManager, DiagramManagerProvider } from "../diagram/diagram-manager"
 import { YangDiagramManager } from "../yangdiagram/yang-diagram-manager"
 import { FrontendApplicationContribution, OpenHandler } from "theia-core/lib/application/browser"
+import {configuration, monarchLanguage} from "./yang-monaco-language"
 import "sprotty/css/sprotty.css"
 import "../../../src/frontend/css/page.css"
 import "../../../src/frontend/css/theia.css"
 import "../../../src/frontend/css/diagram.css"
+
+
 
 export default new ContainerModule(bind => {
     monaco.languages.register({
@@ -25,103 +28,11 @@ export default new ContainerModule(bind => {
         extensions: ['.yang'],
         mimetypes: ['text/yang']
     })
-    monaco.languages.setLanguageConfiguration('yang', {
-        comments: {
-            lineComment: "//",
-            blockComment: ['/*', '*/']
-        },
-        brackets: [['{', '}']],
-        autoClosingPairs: [
-            {
-                open: '{',
-                close: '}'
-            },
-            {
-                open: '"',
-                close: '"'
-            }]
-    })
-    monaco.languages.setMonarchTokensProvider('yang', <any>{
-        // Set defaultToken to invalid to see what you do not tokenize yet
-        // defaultToken: 'invalid',
+    monaco.languages.onLanguage('yang', () => {
+        monaco.languages.setLanguageConfiguration('yang', configuration);
+        monaco.languages.setMonarchTokensProvider('yang', monarchLanguage);
+    });
 
-        keywords: [
-            'action', 'anydata', 'anyxml', 'argument', 'augment',
-            'base', 'belongs-to', 'bit',
-            'case', 'choice', 'config', 'contact', 'container',
-            'default', 'description', 'deviate', 'deviation',
-            'enum', 'error-app-tag', 'error-message', 'extension',
-            'feature', 'fraction-digits',
-            'grouping',
-            'identity', 'if-feature', 'import', 'include', 'input',
-            'key',
-            'leaf', 'leaf-list', 'length', 'list',
-            'mandatory', 'max-elements', 'min-elements', 'module', 'must',
-            'namespace', 'notification',
-            'ordered-by', 'organization', 'output',
-            'path', 'pattern', 'prefix', 'presence',
-            'range', 'reference', 'refine', 'require-instance', 'revision', 'revision-date', 'rpc',
-            'status', 'submodule',
-            'type', 'typedef',
-            'units', 'unique', 'uses',
-            'when',
-            'yang-version', 'yin-element'
-        ],
-
-        // we include these common regular expressions
-        symbols: /[=><!~?:&|+\-*\/\^%]+/,
-        escapes: /\\(?:[nt\\"])/,
-
-        // The main tokenizer for our languages
-        tokenizer: {
-            root: [
-                // identifiers and keywords
-                [/[a-z][\w\-]*/, {
-                    cases: {
-                        '@keywords': 'keyword',
-                        '@default': 'identifier'
-                    }
-                }],  // to show class names nicely
-
-                // whitespace
-                {include: '@whitespace'},
-
-                // delimiters and operators
-                [/[{}]/, '@brackets'],
-                [/@symbols/, {
-                    cases: {
-                        '@default': ''
-                    }
-                }],
-
-                // strings: recover on non-terminated strings
-                [/"([^"\\]|\\.)*$/, 'string.invalid'],  // non-teminated string
-                [/'([^'\\]|\\.)*$/, 'string.invalid'],  // non-teminated string
-                [/"/, 'string', '@string."'],
-                [/'/, 'string', '@string.\'']
-            ],
-
-            whitespace: [
-                [/[ \t\r\n]+/, 'white'],
-                [/\/\*/, 'comment', '@comment'],
-                [/\/\/.*$/, 'comment'],
-            ],
-
-            comment: [
-                [/[^\/*]+/, 'comment'],
-                [/\/\*/, 'comment.invalid'],
-                ["\\*/", 'comment', '@pop'],
-                [/[\/*]/, 'comment']
-            ],
-
-            string: [
-                [/[^\\"]+/, 'string'],
-                [/@escapes/, 'string.escape'],
-                [/\\./, 'string.escape.invalid'],
-                [/"/, 'string', '@pop']
-            ],
-        },
-    })
     bind(YangLanguageClientContribution).toSelf().inSingletonScope()
     bind(LanguageClientContribution).toDynamicValue(ctx => ctx.container.get(YangLanguageClientContribution))
     bind(DiagramConfiguration).to(YangDiagramConfiguration).inSingletonScope()

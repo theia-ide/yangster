@@ -1,0 +1,45 @@
+/*
+ * Copyright (C) 2017 TypeFox and others.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+import { inject, injectable } from "inversify";
+import { CommandContribution, CommandRegistry, Command } from 'theia-core/lib/application/common';
+import { SHOW_REFERENCES } from "theia-core/lib/editor/browser";
+import { WorkspaceEdit, Workspace } from "theia-core/lib/languages/common";
+
+/**
+ * Show YANG references
+ */
+export const SHOW_YANG_REFERENCES: Command = {
+    id: 'yang.show.references'
+};
+
+/**
+ * Apply Workspace Edit
+ */
+export const APPLY_WORKSPACE_EDIT: Command = {
+    id: 'yang.apply.workspaceEdit'
+};
+
+@injectable()
+export class YangCommandContribution implements CommandContribution {
+
+    constructor(
+        @inject(Workspace) protected readonly workspace: Workspace
+    ) { }
+
+    registerCommands(commands: CommandRegistry): void {
+        commands.registerCommand(SHOW_YANG_REFERENCES, {
+            execute: (uri: string, position: Position, locations: Location[]) =>
+                commands.executeCommand(SHOW_REFERENCES.id, uri, position, locations)
+        });
+        commands.registerCommand(APPLY_WORKSPACE_EDIT, {
+            execute: (changes: WorkspaceEdit) =>
+                !!this.workspace.applyEdit && this.workspace.applyEdit(changes)
+        });
+    }
+
+}
