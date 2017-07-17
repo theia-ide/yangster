@@ -6,6 +6,7 @@
  */
 
 import { ContainerModule } from "inversify"
+import { CommandContribution } from 'theia-core/lib/application/common';
 import { LanguageClientContribution } from "theia-core/lib/languages/browser"
 import { YangLanguageClientContribution } from "./yang-language-client-contribution"
 import { DiagramConfiguration } from "../diagram/diagram-configuration"
@@ -18,6 +19,7 @@ import "sprotty/css/sprotty.css"
 import "../../../src/frontend/css/page.css"
 import "../../../src/frontend/css/theia.css"
 import "../../../src/frontend/css/diagram.css"
+import { YangCommandContribution } from "./yang-commands";
 
 
 
@@ -32,7 +34,7 @@ export default new ContainerModule(bind => {
         monaco.languages.setLanguageConfiguration('yang', configuration);
         monaco.languages.setMonarchTokensProvider('yang', monarchLanguage);
     });
-
+    bind(CommandContribution).to(YangCommandContribution).inSingletonScope();
     bind(YangLanguageClientContribution).toSelf().inSingletonScope()
     bind(LanguageClientContribution).toDynamicValue(ctx => ctx.container.get(YangLanguageClientContribution))
     bind(DiagramConfiguration).to(YangDiagramConfiguration).inSingletonScope()
