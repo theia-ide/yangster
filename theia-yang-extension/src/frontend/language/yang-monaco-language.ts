@@ -67,7 +67,7 @@ export const monarchLanguage = <monaco.languages.IMonarchLanguage>{
     tokenizer: {
         root: [
             // identifiers and keywords
-            [/[a-zA-Z_$][\w$]*/, {
+            [/[a-zA-Z_][a-zA-Z_0-9\-\.]*/, {
                 cases: {
                     '@keywords': { token: 'keyword.$0' },
                     '@default': 'identifier'
