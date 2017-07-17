@@ -9,9 +9,17 @@ import { ContainerModule } from 'inversify'
 import { DiagramWidgetRegistry } from "./diagram-widget-registry"
 import { DiagramConfigurationRegistry } from "./diagram-configuration"
 import { TheiaFileSaver } from "./theia-file-saver"
+import { DiagramCommandContribution, DiagramMenuContribution } from './diagram-commands'
+import { CommandContribution, MenuContribution, KeybindingContext, KeybindingContribution } from 'theia-core/lib/application/common'
+import { DiagramKeybindingContext, DiagramKeybindingContribution } from './diagram-keybinding'
 
 export default new ContainerModule(bind => {
     bind(DiagramWidgetRegistry).toSelf().inSingletonScope()
     bind(DiagramConfigurationRegistry).toSelf().inSingletonScope()
     bind(TheiaFileSaver).toSelf().inSingletonScope()
+    bind(CommandContribution).to(DiagramCommandContribution).inSingletonScope()
+    bind(MenuContribution).to(DiagramMenuContribution).inSingletonScope()
+    bind(DiagramKeybindingContext).toSelf().inSingletonScope()
+    bind(KeybindingContext).to(DiagramKeybindingContext).inSingletonScope()
+    bind(KeybindingContribution).to(DiagramKeybindingContribution).inSingletonScope()
 })

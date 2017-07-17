@@ -19,6 +19,7 @@ import {
     exportModule,
     hoverModule,
     HtmlRootView,
+    KeyTool,
     LogLevel,
     moveModule,
     overrideViewerOptions,
@@ -35,11 +36,13 @@ import {
 } from 'sprotty/lib'
 import { DiagramConfiguration } from "../diagram/diagram-configuration"
 import { TheiaDiagramServer } from "../diagram/theia-diagram-server"
+import { TheiaKeyTool } from '../diagram/theia-key-tool'
 
 const yangDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
     rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope()
     rebind(TYPES.LogLevel).toConstantValue(LogLevel.log)
     rebind(TYPES.IModelFactory).to(YangDiagramFactory).inSingletonScope()
+    rebind(KeyTool).to(TheiaKeyTool).inSingletonScope()
     bind(TYPES.PopupModelFactory).toConstantValue(popupModelFactory)
 })
 
