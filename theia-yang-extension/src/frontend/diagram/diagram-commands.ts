@@ -7,17 +7,19 @@
 
 import { CenterAction, FitToScreenAction, RequestExportSvgAction, UndoAction, RedoAction, SelectAction } from 'sprotty/lib'
 import { DiagramWidget } from './diagram-widget'
+import { DiagramManagerImpl } from './diagram-manager'
 import { injectable, inject } from 'inversify'
 import { MAIN_MENU_BAR, MenuContribution, MenuModelRegistry, CommandContribution,
          CommandHandler, CommandRegistry, CommonCommands } from 'theia-core/lib/application/common'
-import { ApplicationShell } from 'theia-core/lib/application/browser/shell'
-import { FrontendApplication } from 'theia-core/lib/application/browser/frontend-application'
+import { ApplicationShell, FrontendApplication, OpenerService } from 'theia-core/lib/application/browser'
+import { EDITOR_CONTEXT_MENU_ID, EditorManager } from "theia-core/lib/editor/browser"
 
 export namespace DiagramCommands {
     export const CENTER = 'diagram:center'
     export const FIT = 'diagram:fit'
     export const EXPORT = 'diagram:export'
     export const SELECT_ALL = 'diagram.selectAll'
+    export const OPEN_IN_DIAGRAM = 'diagram.open'
 }
 
 export namespace DiagramMenus {
@@ -39,6 +41,9 @@ export class DiagramMenuContribution implements MenuContribution {
         registry.registerMenuAction(DiagramMenus.DIAGRAM, {
             commandId: DiagramCommands.EXPORT
         })
+        registry.registerMenuAction([EDITOR_CONTEXT_MENU_ID], {
+            commandId: DiagramCommands.OPEN_IN_DIAGRAM
+        })
     }
 }
 
@@ -59,9 +64,31 @@ export class DiagramCommandHandler implements CommandHandler {
     }
 }
 
+export class OpenInDiagramHandler implements CommandHandler {
+
+    constructor(protected readonly editorManager: EditorManager,
+                protected readonly openerService: OpenerService) {
+    }
+
+    execute(...args: any[]) {
+        const editor = this.editorManager.currentEditor  
+        if (editor !== undefined) {
+            const uri = editor.editor.uri
+            const openers = this.openerService.getOpeners(uri)
+            openers.then(openers => {
+                const opener = openers.find(opener => opener instanceof DiagramManagerImpl)
+                if (opener !== undefined)
+                    opener.open(uri)
+            })
+        }
+    }
+}
+
 @injectable()
 export class DiagramCommandContribution implements CommandContribution {
-    constructor(@inject(FrontendApplication) protected readonly application: FrontendApplication) {
+    constructor(@inject(FrontendApplication) protected readonly application: FrontendApplication,
+                @inject(EditorManager) protected readonly editorManager: EditorManager,
+                @inject(OpenerService) protected readonly openerService: OpenerService) {
     }
 
     registerCommands(registry: CommandRegistry): void {
@@ -80,6 +107,10 @@ export class DiagramCommandContribution implements CommandContribution {
         registry.registerCommand({
             id: DiagramCommands.SELECT_ALL,
             label: 'Select all'
+        })
+        registry.registerCommand({
+            id: DiagramCommands.OPEN_IN_DIAGRAM,
+            label: 'Open in diagram'
         })
 
         registry.registerHandler(
@@ -107,6 +138,10 @@ export class DiagramCommandContribution implements CommandContribution {
                 action.selectAll = true
                 widget.diagramServer.actionDispatcher.dispatch(action)
             })
+        )
+        registry.registerHandler(
+            DiagramCommands.OPEN_IN_DIAGRAM,
+            new OpenInDiagramHandler(this.editorManager, this.openerService)
         )
         registry.registerHandler(
             CommonCommands.EDIT_UNDO,
