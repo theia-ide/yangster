@@ -1,0 +1,60 @@
+.list,
+.list .header .label,
+.list .header .tagBg,
+.container,
+.container .header .label,
+.container .header .tagBg{
+    fill: #9AB6B6;
+}
+
+.moduleNode {
+    fill: #578B8B;
+}
+
+.augment,
+.augment .header .label,
+.augment .header .tagBg,
+.grouping,
+.grouping .header .label,
+.grouping .header .tagBg {
+    fill: #578B8B;
+}
+
+.choice,
+.case,
+.case .header .label,
+.case .header .tagBg {
+    fill: #E79292;
+}
+
+.identity,
+.identity .header .label,
+.identity .header .tagBg {
+    fill: #AD976B;
+}
+
+.typedef,
+.typedef .header .label {
+    fill: #725A29;
+}
+
+.header .label{
+    font-size: 0.8em;
+}
+
+.label {
+    font-size: 0.6em;
+}
+
+.label, .headerBg, .header .tagLabel {
+    fill: #000000;
+}
+
+.tagBg, .tagLabel {
+    stroke: none;
+}
+
+.tagLabel {
+    font-weight: bold;
+}
+

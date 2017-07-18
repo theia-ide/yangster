@@ -13,41 +13,85 @@ import {
     PolylineEdgeView,
     angle,
     Point,
-    toDegrees
+    toDegrees, IView
 } from "sprotty/lib"
 import { VNode } from "snabbdom/vnode"
 import * as snabbdom from "snabbdom-jsx"
+import { YangHeaderNode, YangNode } from "./yang-models"
 
 const JSX = {createElement: snabbdom.svg}
 
-/**
- * A very simple example node consisting of a plain circle.
- */
 export class ClassNodeView extends RectangularNodeView {
-    render(node: SNode, context: RenderingContext): VNode {
-        return <g class-node={true}>
-            <rect class-node={true} class-selected={node.selected} class-mouseover={node.hoverFeedback}
+    render(node: YangNode, context: RenderingContext): VNode {
+        let n = <g class-node={true}
+                   class-choice={node.cssClass === 'choice'}
+                   class-case={node.cssClass === 'case'}
+                   class-augment={node.cssClass === 'augment'}
+                   class-list={node.cssClass === 'list'}
+                   class-container={node.cssClass === 'container'}
+                   class-moduleNode={node.cssClass === 'moduleNode'}
+                   class-submodule={node.cssClass === 'submodule'}
+                   class-grouping={node.cssClass === 'grouping'}
+                   class-identity={node.cssClass === 'identity'}
+                   class-typedef={node.cssClass === 'typedef'}>
+            <rect class-selected={node.selected} class-mouseover={node.hoverFeedback}
                   x={0} y={0}
                   width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}/>
+            {/*<rect x={0} y={0}  class-headerBg={true}*/}
+            {/*width={Math.max(0, node.bounds.width)} height='41'/>*/}
             {context.renderChildren(node)}
+        </g>
+
+        return n
+    }
+}
+
+export class YangClassHeaderView implements IView {
+    render(model: YangHeaderNode, context: RenderingContext): VNode {
+        const translate = `translate(${model.bounds.x}, ${model.bounds.y})`
+        const radius = 13
+        const headerHeight = radius * 3
+        const headerPosOffset = 10
+        const circlePosOffset = (headerHeight/2 - radius) + headerPosOffset/2 - 2
+
+        return <g transform={translate} class-comp="{true}" class-header={true}>
+            <rect x={-(headerPosOffset)} y={-(headerPosOffset)} width={(model.parent as SNode).size.width}
+                  height={headerHeight}
+                  class-headerBg={true}></rect>
+            <circle class-tagBg={true} r={radius} cx={circlePosOffset} cy={circlePosOffset}></circle>
+            <text class-tagLabel={true} x={headerPosOffset/2 - 3} y={radius - 1 + headerPosOffset/2}>{model.tag}</text>
+            <text class-label={true} x="32" y="16">{model.label}</text>
         </g>
     }
 }
 
 export class ModuleNodeView extends RectangularNodeView {
     render(node: SNode, context: RenderingContext): VNode {
-        const titleHeight = 30
-        const titleWidth = node.bounds.width * 0.4
+        // const titleHeight = 30
+        // const titleWidth = node.bounds.width * 0.4
 
         return <g class-node={true} class-module={true} class-mouseover={node.hoverFeedback}>
-            <path class-title={true} stroke-miterlimit="3"
-                  d={"m0,-" + titleHeight + " l" + titleWidth + ",0 " +
-                  "l" + titleHeight + "," + titleHeight + " l-" + (titleHeight + titleWidth) + ",0 Z"}/>
-            {/*<text class-heading={true} class-label={true} y="-5" x="5">{node.title}</text>*/}
+            {/*<path class-title={true} stroke-miterlimit="3"*/}
+            {/*d={"m0,-" + titleHeight + " l" + titleWidth + ",0 " +*/}
+            {/*"l" + titleHeight + "," + titleHeight + " l-" + (titleHeight + titleWidth) + ",0 Z"}/>*/}
             <rect class-body={true} class-selected={node.selected}
-                  x={0} y={0}
+                  x={0} y={0} rx="5" ry="5"
                   width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}/>
             {context.renderChildren(node)}
+        </g>
+    }
+}
+
+export class ChoiceNodeView extends RectangularNodeView {
+    render(model: SNode, context: RenderingContext): VNode {
+
+        const width = model.size.width === -1 ? 0 : model.size.width
+        const height = model.size.height === -1 ? 0 : model.size.height
+        const rhombStr = "M -" + width/2 + "," + height/2 + " l " + width + "," + height + " l " + width + ",-" + height + " l -" + width + ",-" + height + "l -" + width + "," + height
+
+        return <g class-comp="{true}" class-choice={true}>
+            <path d={rhombStr} class-choice={true}></path>
+            {context.renderChildren(model)}
         </g>
     }
 }
@@ -65,7 +109,7 @@ export class CompositionEdgeView extends PolylineEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
         const p1 = segments[0]
         const p2 = segments[1]
-        const r = 10
+        const r = 6
         const rhombStr = "M 0,0 l" + r + "," + (r / 2) + " l" + r + ",-" + (r / 2) + " l-" + r + ",-" + (r / 2) + " l-" + r + "," + (r / 2) + " Z"
         return [
             <path class-edge={true} class-composition={true} d={rhombStr}

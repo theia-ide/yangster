@@ -8,22 +8,16 @@
 /* sprotty SVG export */
  
 .module {
-    fill: #FFFFFF;
-    stroke: #000;
-    stroke-width: 1;
+    fill: #333;
+    stroke: #fff;
+    stroke-width: 2;
 }
 
 .module > .label {
     font-weight: normal;
-    display: inline;
-    padding: .2em .6em .3em;
-    font-size: 75%;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
+    fill: #fff;
     white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .25em;
+    font-size: medium;
 }
 
 .module .note, .module .note.mouseover {

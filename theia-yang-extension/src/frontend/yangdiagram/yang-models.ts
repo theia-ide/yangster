@@ -5,8 +5,17 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { SNode } from "sprotty/lib"
+import { SCompartment, SNode } from "sprotty/lib"
 
 export class ModuleNodeModel extends SNode {
      title: string
+}
+
+export class YangNode extends SNode {
+    cssClass: string
+}
+
+export class YangHeaderNode extends SCompartment {
+    tag: string
+    label: string
 }

@@ -9,8 +9,8 @@
  
 .node {
     fill: #cdc;
-    stroke: #152;
-    stroke-width: 0;
+    stroke: #fff;
+    stroke-width: 1;
     font-weight: bold;
 
     /* properties for vbox */
@@ -36,22 +36,12 @@
     text-align: inherit;
 }
 
-.node.selected {
-    stroke: #152;
-    stroke-width: 5;
-}
-
 .missing {
     stroke-width: 1;
     stroke: #f00;
     fill: #f00;
     font-size: 14pt;
     text-anchor: middle;
-}
-
-.mouseover {
-    stroke: #152;
-    stroke-width: 3;
 }
 
 .popup-title {
