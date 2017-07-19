@@ -7,13 +7,12 @@
 
 import {
     RenderingContext,
-    SNode,
     RectangularNodeView,
     SEdge,
     PolylineEdgeView,
     angle,
     Point,
-    toDegrees, IView
+    toDegrees, IView, setAttr
 } from "sprotty/lib"
 import { VNode } from "snabbdom/vnode"
 import * as snabbdom from "snabbdom-jsx"
@@ -23,17 +22,7 @@ const JSX = {createElement: snabbdom.svg}
 
 export class ClassNodeView extends RectangularNodeView {
     render(node: YangNode, context: RenderingContext): VNode {
-        let n = <g class-node={true}
-                   class-choice={node.cssClass === 'choice'}
-                   class-case={node.cssClass === 'case'}
-                   class-augment={node.cssClass === 'augment'}
-                   class-list={node.cssClass === 'list'}
-                   class-container={node.cssClass === 'container'}
-                   class-moduleNode={node.cssClass === 'moduleNode'}
-                   class-submodule={node.cssClass === 'submodule'}
-                   class-grouping={node.cssClass === 'grouping'}
-                   class-identity={node.cssClass === 'identity'}
-                   class-typedef={node.cssClass === 'typedef'}>
+        let vnode = <g class-node={true}>
             <rect class-selected={node.selected} class-mouseover={node.hoverFeedback}
                   x={0} y={0}
                   width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}/>
@@ -42,7 +31,9 @@ export class ClassNodeView extends RectangularNodeView {
             {context.renderChildren(node)}
         </g>
 
-        return n
+        setAttr(vnode, 'class', node.cssClass)
+
+        return vnode
     }
 }
 
@@ -51,22 +42,23 @@ export class YangClassHeaderView implements IView {
         const translate = `translate(${model.bounds.x}, ${model.bounds.y})`
         const radius = 13
         const headerHeight = radius * 3
-        const headerPosOffset = 10
-        const circlePosOffset = (headerHeight/2 - radius) + headerPosOffset/2 - 2
+        const headerPosOffset = 30
+        const circlePosOffset = (headerHeight / 2 - radius) + headerPosOffset / 2 - 2
 
         return <g transform={translate} class-comp="{true}" class-header={true}>
-            <rect x={-(headerPosOffset)} y={-(headerPosOffset)} width={(model.parent as SNode).size.width}
+            <rect width={model.size.width}
                   height={headerHeight}
                   class-headerBg={true}></rect>
             <circle class-tagBg={true} r={radius} cx={circlePosOffset} cy={circlePosOffset}></circle>
-            <text class-tagLabel={true} x={headerPosOffset/2 - 3} y={radius - 1 + headerPosOffset/2}>{model.tag}</text>
-            <text class-label={true} x="32" y="16">{model.label}</text>
+            <text class-tagLabel={true} x={headerPosOffset / 2 - 3}
+                  y={radius - 1 + headerPosOffset / 2}>{model.tag}</text>
+            <text class-label={true} x="42" y="26">{model.label}</text>
         </g>
     }
 }
 
 export class ModuleNodeView extends RectangularNodeView {
-    render(node: SNode, context: RenderingContext): VNode {
+    render(node: YangNode, context: RenderingContext): VNode {
         // const titleHeight = 30
         // const titleWidth = node.bounds.width * 0.4
 
@@ -83,11 +75,11 @@ export class ModuleNodeView extends RectangularNodeView {
 }
 
 export class ChoiceNodeView extends RectangularNodeView {
-    render(model: SNode, context: RenderingContext): VNode {
+    render(model: YangNode, context: RenderingContext): VNode {
 
         const width = model.size.width === -1 ? 0 : model.size.width
         const height = model.size.height === -1 ? 0 : model.size.height
-        const rhombStr = "M -" + width/2 + "," + height/2 + " l " + width + "," + height + " l " + width + ",-" + height + " l -" + width + ",-" + height + "l -" + width + "," + height
+        const rhombStr = "M -" + width / 2 + "," + height / 2 + " l " + width + "," + height + " l " + width + ",-" + height + " l -" + width + ",-" + height + "l -" + width + "," + height
 
         return <g class-comp="{true}" class-choice={true}>
             <path d={rhombStr} class-choice={true}></path>
@@ -97,7 +89,7 @@ export class ChoiceNodeView extends RectangularNodeView {
 }
 
 export class NoteView extends RectangularNodeView {
-    render(node: SNode, context: RenderingContext): VNode {
+    render(node: YangNode, context: RenderingContext): VNode {
         return <g class-note={true} class-mouseover={node.hoverFeedback}>
             <path class-front={true} d="M 0,0 l 15,0 l 0,10 l 10,0 l 0,25 l -25,0 Z" fill="#FFEB8A"/>
             <path class-noteEdge={true} d="M 15,0 l 0,10 l 10,0 Z" fill="#FFCC40"/>

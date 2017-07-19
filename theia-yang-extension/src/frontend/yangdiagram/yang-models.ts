@@ -5,15 +5,26 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { SCompartment, SNode } from "sprotty/lib"
-
-export class ModuleNodeModel extends SNode {
-     title: string
-}
+import {
+    boundsFeature, fadeFeature, hoverFeedbackFeature, popupFeature, SCompartment, selectFeature,layoutFeature,
+    SNode
+} from "sprotty/lib"
 
 export class YangNode extends SNode {
     cssClass: string
+
+    hasFeature(feature: symbol): boolean {
+        return feature === selectFeature || feature === boundsFeature
+            || feature === layoutFeature || feature === fadeFeature || feature === hoverFeedbackFeature
+            || feature === popupFeature
+    }
+
 }
+
+export class ModuleNodeModel extends YangNode {
+title: string
+}
+
 
 export class YangHeaderNode extends SCompartment {
     tag: string

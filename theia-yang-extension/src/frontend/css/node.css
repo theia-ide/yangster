@@ -15,11 +15,11 @@
 
     /* properties for vbox */
     line-height: 10px;
-    padding: 10px;
     text-align: center;
 }
 
 .comp {
+    padding: 10px;
     line-height: 3px;
     font-weight: normal;
     text-align: left;

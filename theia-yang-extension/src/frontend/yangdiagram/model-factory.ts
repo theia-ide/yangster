@@ -9,12 +9,15 @@ import {
     SGraphFactory, SModelElementSchema, SModelRoot, SModelRootSchema, SParentElement, SChildElement,
     getBasicType, HtmlRoot, HtmlRootSchema, PreRenderedElement, PreRenderedElementSchema
 } from "sprotty/lib"
+import { YangNode } from "./yang-models"
 
 export class YangDiagramFactory extends SGraphFactory {
 
     createElement(schema: SModelElementSchema, parent?: SParentElement): SChildElement {
         if (this.isPreRenderedSchema(schema))
             return this.initializeChild(new PreRenderedElement(), schema, parent)
+        else if (this.isNode(schema))
+            return this.initializeChild(new YangNode(), schema, parent)
         else
             return super.createElement(schema, parent)
     }
@@ -33,5 +36,10 @@ export class YangDiagramFactory extends SGraphFactory {
     isPreRenderedSchema(schema: SModelElementSchema): schema is PreRenderedElementSchema {
         return getBasicType(schema) === 'pre-rendered'
     }
+
+    isNode(schema: SModelElementSchema): schema is YangNode {
+        return getBasicType(schema) === 'node'
+    }
+
 
 }
