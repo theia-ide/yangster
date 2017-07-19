@@ -9,7 +9,7 @@ import { TheiaDiagramServer } from './theia-diagram-server'
 import { RequestModelAction, CenterAction, InitializeCanvasBoundsAction } from 'sprotty/lib'
 import { Widget } from "@phosphor/widgets"
 import { Message } from "@phosphor/messaging/lib"
-import URI from "theia-core/lib/application/common/uri"
+import URI from "@theia/core/lib/common/uri"
 
 export class DiagramWidget extends Widget {
 

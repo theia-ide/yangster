@@ -6,14 +6,14 @@
  */
 
 import { inject, injectable, named } from 'inversify'
-import { FrontendApplication } from 'theia-core/lib/application/browser'
-import URI from 'theia-core/lib/application/common/uri'
+import { FrontendApplication } from '@theia/core/lib/browser'
+import URI from '@theia/core/lib/common/uri'
 import {
     BaseLanguageClientContribution,
     LanguageClientFactory,
     Languages,
     Workspace,
-} from 'theia-core/lib/languages/browser'
+} from '@theia/languages/lib/browser'
 import { DiagramManagerProvider, DiagramManager } from '../diagram/diagram-manager'
 
 @injectable()

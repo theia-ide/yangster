@@ -6,8 +6,8 @@
  */
 
 import { injectable } from "inversify"
-import URI from "theia-core/lib/application/common/uri"
-import { Emitter, Event, MaybePromise } from "theia-core/lib/application/common"
+import URI from "@theia/core/lib/common/uri"
+import { Emitter, Event, MaybePromise } from "@theia/core/lib/common"
 import { Widget } from "@phosphor/widgets"
 
 @injectable()

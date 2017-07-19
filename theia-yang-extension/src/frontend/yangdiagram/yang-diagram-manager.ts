@@ -7,7 +7,7 @@
 
 import { DiagramManagerImpl } from "../diagram/diagram-manager"
 import { inject, injectable } from 'inversify'
-import { LanguageClientContribution } from 'theia-core/lib/languages/browser'
+import { LanguageClientContribution } from '@theia/languages/lib/browser'
 import { YangLanguageClientContribution } from '../language/yang-language-client-contribution'
 import { TheiaSprottyConnector } from '../diagram/theia-sprotty-connector'
 import { TheiaFileSaver } from "../diagram/theia-file-saver"

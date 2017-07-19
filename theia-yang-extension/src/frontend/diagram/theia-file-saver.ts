@@ -7,7 +7,7 @@
 
 import { inject, injectable } from 'inversify'
 import { ExportSvgAction } from 'sprotty/lib'
-import { FileSystem } from 'theia-core/lib/filesystem/common'
+import { FileSystem } from '@theia/filesystem/lib/common'
 
 @injectable()
 export class TheiaFileSaver {

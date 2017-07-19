@@ -6,14 +6,14 @@
  */
 
 import { ContainerModule } from "inversify"
-import { CommandContribution } from 'theia-core/lib/application/common';
-import { LanguageClientContribution } from "theia-core/lib/languages/browser"
+import { CommandContribution } from '@theia/core/lib/common';
+import { LanguageClientContribution } from "@theia/languages/lib/browser"
 import { YangLanguageClientContribution } from "./yang-language-client-contribution"
 import { DiagramConfiguration } from "../diagram/diagram-configuration"
 import { YangDiagramConfiguration } from "../yangdiagram/di.config"
 import { DiagramManager, DiagramManagerProvider } from "../diagram/diagram-manager"
 import { YangDiagramManager } from "../yangdiagram/yang-diagram-manager"
-import { FrontendApplicationContribution, OpenHandler } from "theia-core/lib/application/browser"
+import { FrontendApplicationContribution, OpenHandler } from "@theia/core/lib/browser"
 import {configuration, monarchLanguage} from "./yang-monaco-language"
 import "sprotty/css/sprotty.css"
 import "../../../src/frontend/css/page.css"

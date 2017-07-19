@@ -10,7 +10,7 @@ import { DiagramWidgetRegistry } from "./diagram-widget-registry"
 import { DiagramConfigurationRegistry } from "./diagram-configuration"
 import { TheiaFileSaver } from "./theia-file-saver"
 import { DiagramCommandContribution, DiagramMenuContribution } from './diagram-commands'
-import { CommandContribution, MenuContribution, KeybindingContext, KeybindingContribution } from 'theia-core/lib/application/common'
+import { CommandContribution, MenuContribution, KeybindingContext, KeybindingContribution } from '@theia/core/lib/common'
 import { DiagramKeybindingContext, DiagramKeybindingContribution } from './diagram-keybinding'
 
 export default new ContainerModule(bind => {
