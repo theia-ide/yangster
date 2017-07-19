@@ -1,20 +1,171 @@
-module mytestid {
+module mytest {
     yang-version 1.1;
     namespace "urn:example:system";
-    prefix "myerert";
+    prefix "myt";
 
-    container testcontainer {
-        container innerTestContainer {
-            leaf-list leafList {
-                type string;
+    import mytest2{
+        prefix "extmod";
+    }
+    
+    include mytest_sub;
+    
+    typedef my-type {
+       status deprecated;
+       type int32;
+     }
+
+     identity myid {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+     }
+
+    grouping endpoint {
+       description "A reusable endpoint group.";
+       leaf ip {
+         type string;
+       }
+       leaf port {
+         type string;
+       }
+     }
+
+     grouping anotherGroup {
+         description "Another group, yo!";
+         leaf anotherGroupLeaf {
+             type string;
+         }
+     }
+     
+     augment "/myt:testcontainer" {
+         leaf augmentLeaf {
+             type string;
+         }
+     }
+
+     augment "/myt:testcontainer" {
+         leaf augmentLeaf2 {
+             type string;
+         }
+     }
+
+     augment "/myt:testcontainer/myt:innerTestContainer" {
+         uses extmod:mytest2Group;
+     }
+
+     augment "/extmod:bla" {
+         leaf blaLeaf {
+             type string;
+         }
+     }
+
+     container testcontainer {
+            container innerTestContainer {
+                list innerTestList {
+                    key "keyLeaf";
+                    container listContainer {
+                        leaf meAlone {
+                            type string;
+                        }
+                    }
+                    leaf keyLeaf {
+                        type string;
+                    }
+                }
+                leaf-list leafList {
+                    type string;
+                }
+                leaf anotherLeaf {
+                    type string;
+                }
             }
-            leaf anotherLeaf {
+            leaf testleaf {
                 type string;
+                description "this is a simple test lea";
+            }
+          
+    }
+
+    container groupingTest {
+        uses anotherGroup;
+        choice really {
+            case yes {
+                container yesWeCan {
+                
+                }
+            }
+            case no {
+                uses endpoint;
             }
         }
-        leaf testleaf {
-            type string;
-            description "this is a simple test leaf!x";
-        }
+    }
+
+    container externalGroupingTest {
+        uses extmod:mytest2Group;
+        uses anotherGroup;
     }
 }

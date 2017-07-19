@@ -1,0 +1,20 @@
+module mytest2 {
+    yang-version 1.1;
+    namespace "urn:example2:system";
+    prefix "myt2";
+
+    grouping mytest2Group {
+        description "Group of mytest2, man!";
+        leaf mytest2GroupLeaf {
+            type string;
+        }
+     }
+
+    container bla {
+        leaf blubb {
+            type string;
+            description "ein test";
+        }
+    }
+
+}
