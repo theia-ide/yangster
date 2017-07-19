@@ -16,8 +16,10 @@
     fill: #9AB6B6;
 }
 
+.moduleNode .header .label,
+.moduleNode .header .tagBg,
 .moduleNode {
-    fill: #578B8B;
+    fill: #FFE9BE;
 }
 
 .augment,
