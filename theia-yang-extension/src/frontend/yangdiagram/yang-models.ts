@@ -6,7 +6,7 @@
  */
 
 import {
-    boundsFeature, fadeFeature, hoverFeedbackFeature, popupFeature, SCompartment, selectFeature,layoutFeature,
+    boundsFeature, fadeFeature, hoverFeedbackFeature, popupFeature, SCompartment, selectFeature, layoutFeature,
     SNode
 } from "sprotty/lib"
 
@@ -22,7 +22,7 @@ export class YangNode extends SNode {
 }
 
 export class ModuleNodeModel extends YangNode {
-title: string
+    title: string
 }
 
 

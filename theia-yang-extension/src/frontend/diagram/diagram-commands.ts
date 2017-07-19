@@ -5,12 +5,21 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { CenterAction, FitToScreenAction, RequestExportSvgAction, UndoAction, RedoAction, SelectAction } from 'sprotty/lib'
+import {
+    CenterAction,
+    FitToScreenAction,
+    RequestExportSvgAction,
+    UndoAction,
+    RedoAction,
+    SelectAction
+} from 'sprotty/lib'
 import { DiagramWidget } from './diagram-widget'
 import { DiagramManagerImpl } from './diagram-manager'
 import { injectable, inject } from 'inversify'
-import { MAIN_MENU_BAR, MenuContribution, MenuModelRegistry, CommandContribution,
-         CommandHandler, CommandRegistry, CommonCommands } from 'theia-core/lib/application/common'
+import {
+    MAIN_MENU_BAR, MenuContribution, MenuModelRegistry, CommandContribution,
+    CommandHandler, CommandRegistry, CommonCommands
+} from 'theia-core/lib/application/common'
 import { ApplicationShell, FrontendApplication, OpenerService } from 'theia-core/lib/application/browser'
 import { EDITOR_CONTEXT_MENU_ID, EditorManager } from "theia-core/lib/editor/browser"
 
@@ -71,7 +80,7 @@ export class OpenInDiagramHandler implements CommandHandler {
     }
 
     execute(...args: any[]) {
-        const editor = this.editorManager.currentEditor  
+        const editor = this.editorManager.currentEditor
         if (editor !== undefined) {
             const uri = editor.editor.uri
             const openers = this.openerService.getOpeners(uri)
