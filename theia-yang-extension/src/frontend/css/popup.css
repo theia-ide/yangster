@@ -5,23 +5,21 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-/* sprotty SVG export */
- 
-.edge {
-    fill: none;
-    stroke: #729A9A;
-    stroke-width: 2px;
+.sprotty-popup {
+    position: absolute;
+    background: #FFE9BE;
+    border-radius: 0px;
+    border: none;
+    max-width: initial;
+    min-width: initial;
 }
 
-.edge.composition {
-    fill: #729A9A;
+.infoRow {
+    display: flex;
+    font-size: small;
 }
 
-.edge.dashed {
-    stroke-dasharray: 5 5;
+.infoTitle {
+    width: 130px;
+    font-weight: bold;
 }
-
-
-
-
-

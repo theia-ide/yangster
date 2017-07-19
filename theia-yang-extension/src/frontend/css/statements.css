@@ -30,11 +30,11 @@
 }
 
 .choice,
-.case,
-.case .header .label,
-.case .header .tagBg {
+.case {
     fill: #E79292;
 }
+
+
 
 .identity,
 .identity .header .label,

@@ -36,19 +36,16 @@
     text-align: inherit;
 }
 
+.heading.label {
+    font-weight: bold;
+    font-size: 0.8em;
+
+}
+
 .missing {
     stroke-width: 1;
     stroke: #f00;
     fill: #f00;
     font-size: 14pt;
     text-anchor: middle;
-}
-
-.popup-title {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.popup-body > p {
-    margin-bottom: 2px;
 }
