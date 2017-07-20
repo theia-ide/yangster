@@ -16,12 +16,10 @@ import {
 import { DiagramWidget } from './diagram-widget'
 import { DiagramManagerImpl } from './diagram-manager'
 import { injectable, inject } from 'inversify'
-import {
-    MAIN_MENU_BAR, MenuContribution, MenuModelRegistry, CommandContribution,
-    CommandHandler, CommandRegistry, CommonCommands
-} from 'theia-core/lib/application/common'
-import { ApplicationShell, FrontendApplication, OpenerService } from 'theia-core/lib/application/browser'
-import { EDITOR_CONTEXT_MENU_ID, EditorManager } from "theia-core/lib/editor/browser"
+import { MAIN_MENU_BAR, MenuContribution, MenuModelRegistry, CommandContribution,
+         CommandHandler, CommandRegistry, CommonCommands } from '@theia/core/lib/common'
+import { ApplicationShell, FrontendApplication, OpenerService } from '@theia/core/lib/browser'
+import { EDITOR_CONTEXT_MENU_ID, EditorManager } from "@theia/editor/lib/browser"
 
 export namespace DiagramCommands {
     export const CENTER = 'diagram:center'

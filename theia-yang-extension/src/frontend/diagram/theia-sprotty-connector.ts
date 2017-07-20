@@ -8,7 +8,7 @@
 import { ActionMessage, ExportSvgAction } from 'sprotty/lib'
 import { TheiaDiagramServer } from './theia-diagram-server'
 import { NotificationType } from 'vscode-jsonrpc/lib/messages'
-import { LanguageClientContribution } from 'theia-core/lib/languages/browser'
+import { LanguageClientContribution } from '@theia/languages/lib/browser'
 import { TheiaFileSaver } from './theia-file-saver'
 
 const actionMessageType = new NotificationType<ActionMessage, void>('diagram/accept')

@@ -6,9 +6,9 @@
  */
 
 import { inject, injectable } from "inversify";
-import { CommandContribution, CommandRegistry, Command } from 'theia-core/lib/application/common';
-import { SHOW_REFERENCES } from "theia-core/lib/editor/browser";
-import { WorkspaceEdit, Workspace } from "theia-core/lib/languages/common";
+import { CommandContribution, CommandRegistry, Command } from '@theia/core/lib/common';
+import { SHOW_REFERENCES } from "@theia/editor/lib/browser";
+import { WorkspaceEdit, Workspace } from "@theia/languages/lib/common";
 
 /**
  * Show YANG references

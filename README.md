@@ -2,66 +2,40 @@
 
 A tool for working with the YANG language.
 
+## Prerequisite
 
-## Getting Started
+Install yarn.
+Clone and build yang-lsp.
 
-1) Get Theia, sprotty, the YANG-LSP and this repo from github
+## Clone and Build Yangster
+
 ```bash
-git clone https://github.com/theia-ide/theia.git
-git clone https://github.com/theia-ide/sprotty.git
-git clone https://github.com/yang-tools/yangster.git
-git clone https://github.com/yang-tools/yang-lsp.git
+git clone --recursive https://github.com/yang-tools/yangster.git && \
+cd yangster && \
+yarn install && \
+yarn run setup && \
+yarn run build
 ```
-2a) Build the sprotty server part
+
+For incremental development use 
 ```bash
-cd sprotty/server
-./gradlew install
+yarn run watch
 ```
-2b) Build the sprotty client part
+
+## Run Yangster
+
 ```bash
-cd ../client
-npm install
+cd yangster-app && \
+yarn run start
 ```
-3a) Built Theia
-```bash
-cd ../../theia
-npm install 
-```
-3b) Built the Theia generator
-```bash
-cd config/generator-theia
-npm install
-npm link
-npm install -g yo
-```
-3c) Built the Theia local dependency manager
-```bash
-cd ../local-dependency-manager
-npm install
-```
-4a) Build the YANG language server
-```bash
-cd ../../../yang-lsp/yang-lsp
-./gradlew installDist
-```
-4b) Build the YANG theia extension
-```bash
-cd ../../yangster/theia-yang-extension
-npm run bootstrap
-```
-4c) Build the YANG browser app
-```bash
-cd ../yangster-app
-yo theia:browser
-npm run start
-```
+
+Open browser on 'http://localhost:3000'.
 
 ## Connecting the LSP through a Socket
 For development it is better to connect to the running LSP through a socket.
 For that you need to start the yangster-app using
 ```bash
-npm run start:backend:socket
+yarn run start:backend:socket
 ```
-And connect to it through http://localhost:3000.
 
-It will try to connect to the language server that you now need to start from within Eclipse by launching `RunSocketServer`.
+It will try to connect to the yang-lsp server that you now need to start from within Eclipse by launching `RunSocketServer`.

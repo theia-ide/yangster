@@ -9,11 +9,11 @@ import { TheiaDiagramServer } from './theia-diagram-server'
 import { TheiaSprottyConnector } from './theia-sprotty-connector'
 import { DiagramConfigurationRegistry } from './diagram-configuration'
 import { injectable, inject } from "inversify"
-import { OpenerOptions, OpenHandler, FrontendApplication, FrontendApplicationContribution } from "theia-core/lib/application/browser"
-import URI from "theia-core/lib/application/common/uri"
+import { OpenerOptions, OpenHandler, FrontendApplication, FrontendApplicationContribution } from "@theia/core/lib/browser"
+import URI from "@theia/core/lib/common/uri"
 import { DiagramWidget } from "./diagram-widget"
 import { DiagramWidgetRegistry } from "./diagram-widget-registry"
-import { Emitter, Event, SelectionService } from 'theia-core/lib/application/common'
+import { Emitter, Event, SelectionService } from '@theia/core/lib/common'
 import { TYPES } from 'sprotty/lib'
 
 export const DiagramManagerProvider = Symbol('DiagramManagerProvider')
