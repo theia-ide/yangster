@@ -17,7 +17,7 @@
     "sprotty": "0.1.2"
   },
   "scripts": {
-    "copy-ls": "rm -rf ./build && mkdir build && cp -r ../../../yang-lsp/yang-lsp/io.typefox.yang.diagram/build/install/yang-language-server ./build",
+    "preinstall": "rm -rf ./build && mkdir build && cp -r ../../yang-lsp/yang-lsp/io.typefox.yang.diagram/build/install/yang-language-server ./build",
     "clean": "rimraf lib && rimraf node_modules",
     "lint": "tslint -c ../tslint.json --project ./tsconfig.json",
     "build": "tsc && npm run lint",
