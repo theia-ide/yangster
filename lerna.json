@@ -1,0 +1,11 @@
+{
+  "lerna": "2.0.0",
+  "npmClient": "yarn",
+  "packages": [
+    "sprotty/client",
+    "theia/packages/*",
+    "theia-yang-extension",
+    "yangster-app"
+  ],
+  "version": "independent"
+}

@@ -1,6 +1,6 @@
 {
   "name": "theia-yang-extension",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "An extension for Theia connection language support for the Yang DSL",
   "author": "typefox.io",
   "license": "Apache-2.0",
@@ -8,32 +8,36 @@
     "theia-extension"
   ],
   "dependencies": {
-    "monaco-editor": "^0.8.3",
-    "monaco-editor-core": "^0.8.2",
-    "monaco-languages": "^0.7.0",
-    "@theia/core": "^0.0.1-alpha.2",
-    "@theia/editor": "^0.0.1-alpha.2",
-    "@theia/languages": "^0.0.1-alpha.2",
-    "sprotty": "latest"
+    "@theia/core": "0.0.1-alpha.2",
+    "@theia/monaco": "0.0.1-alpha.1",
+    "@theia/languages": "0.0.1-alpha.1",
+    "@theia/filesystem": "0.0.1-alpha.1",
+    "@theia/editor": "0.0.1-alpha.1",
+    "@types/node": "^8.0.14",
+    "sprotty": "0.1.2"
   },
   "scripts": {
-    "prepublish": "npm run copy-ls && npm run build",
-    "copy-ls": "rm -rf ./build && mkdir build && cp -r ../../yang-lsp/yang-lsp/io.typefox.yang.diagram/build/install/yang-language-server ./build",
-    "clean": "rimraf lib",
+    "copy-ls": "rm -rf ./build && mkdir build && cp -r ../../../yang-lsp/yang-lsp/io.typefox.yang.diagram/build/install/yang-language-server ./build",
+    "clean": "rimraf lib && rimraf node_modules",
     "lint": "tslint -c ../tslint.json --project ./tsconfig.json",
     "build": "tsc && npm run lint",
     "watch": "tsc -w",
     "test": "mocha --opts ./mocha.opts"
   },
   "devDependencies": {
-    "tslint": "^5.5.0",
-    "ts-node": "^3.2.0",
-    "typescript": "^2.3.2",
     "@types/chai": "^4.0.1",
+    "@types/chai-as-promised": "0.0.31",
     "@types/mocha": "^2.2.41",
-    "@types/node": "^7.0.10",
     "chai": "^4.1.0",
-    "mocha": "^3.4.2"
+    "chai-as-promised": "^7.1.1",
+    "concurrently": "^3.5.0",
+    "electron-rebuild": "^1.5.11",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.3",
+    "rimraf": "^2.6.1",
+    "ts-node": "^3.2.0",
+    "tslint": "^4.5.1",
+    "typescript": "^2.4.1"
   },
   "files": [
     "lib",
