@@ -10,7 +10,7 @@ Clone and build yang-lsp.
 ## Clone and Build Yangster
 
 ```bash
-git clone https://github.com/yang-tools/yangster.git && \
+git clone --recursive https://github.com/yang-tools/yangster.git && \
 cd yangster && \
 yarn install && \
 yarn run setup && \
