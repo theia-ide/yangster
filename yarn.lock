@@ -4464,7 +4464,7 @@ monaco-editor-core@^0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/monaco-editor-core/-/monaco-editor-core-0.8.2.tgz#ad3b2275aa4a42a5abf467ad2cd7765852722824"
 
-monaco-editor@0.8.3, monaco-editor@^0.8.3:
+monaco-editor@^0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.8.3.tgz#523bdf2d1524db2c2dfc3cae0a7b6edc48d6dea6"
 
@@ -4476,7 +4476,7 @@ monaco-json@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/monaco-json/-/monaco-json-1.3.1.tgz#9649e2750c94561d28e76666c8e9e8e379de181e"
 
-monaco-languageclient@0.0.1-alpha.6:
+monaco-languageclient@^0.0.1-alpha.6:
   version "0.0.1-alpha.6"
   resolved "https://registry.yarnpkg.com/monaco-languageclient/-/monaco-languageclient-0.0.1-alpha.6.tgz#d572a40d6e506e74deee0984c333e8e0f6fac24b"
   dependencies:

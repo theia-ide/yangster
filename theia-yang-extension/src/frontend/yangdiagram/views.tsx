@@ -156,7 +156,7 @@ export class HeaderCompartmentView implements IView {
     render(model: SCompartment, context: RenderingContext): VNode {
         const translate = `translate(${model.bounds.x}, ${model.bounds.y})`
         const vnode = <g transform={translate} class-comp="{true}">
-            <rect class-classHeader={true} x={0} y={0} width={Math.max(0, model.bounds.width)} height={Math.max(0,model.bounds.height)}></rect> 
+            <rect class-classHeader={true} x={0} y={0} width={Math.max(0, model.bounds.width)} height={Math.max(0, model.bounds.height)}></rect> 
             {context.renderChildren(model)}
         </g>
         return vnode

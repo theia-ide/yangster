@@ -11,7 +11,9 @@
 		"refresh": "lerna clean --yes && npm run bootstrap",
 		"clean": "lerna run clean --parallel",
 		"build": "lerna run build --stream",
-		"watch": "lerna run watch --parallel"
+		"watch": "lerna run watch --parallel",
+
+		"update": "git submodule foreach git pull origin master"
 	},
 	"dependencies": {
 		"generator-theia": "file:theia/generator-theia"
