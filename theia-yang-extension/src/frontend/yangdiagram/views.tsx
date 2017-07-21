@@ -57,7 +57,6 @@ export class ModuleNodeView extends RectangularNodeView {
 
 export class ChoiceNodeView extends RectangularNodeView {
     render(model: YangNode, context: RenderingContext): VNode {
-
         const width = Math.max(0, model.size.width * 0.5)
         const height = Math.max(0, model.size.height * 0.5)
         const rhombStr = "M 0," + height + " l " + width + "," + height + " l " + width + ",-" + height + " l -" + width + ",-" + height + "z"
@@ -71,11 +70,9 @@ export class ChoiceNodeView extends RectangularNodeView {
 
 export class CaseNodeView extends RectangularNodeView {
     render(node: YangNode, context: RenderingContext): VNode {
-
         return <g class-comp="{true}" class-case={true}>
             <rect class-body={true} class-selected={node.selected}
-                  x={0} y={0} rx="30" ry="15"
-                  width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}/>
+                  x={0} y={0} width={node.size.width} height={node.size.height} rx={node.size.width * 0.5} ry={10}/>
             {context.renderChildren(node)}
         </g>
     }
