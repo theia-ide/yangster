@@ -8,7 +8,7 @@
 import { Container, ContainerModule, injectable } from "inversify"
 import {
     ClassNodeView, CompositionEdgeView, DashedEdgeView, ImportEdgeView, ModuleNodeView, NoteView,
-    ArrowEdgeView, YangClassHeaderView, ChoiceNodeView, CaseNodeView
+    ArrowEdgeView, ChoiceNodeView, CaseNodeView, TagView, HeaderCompartmentView
 } from "./views"
 import { YangDiagramFactory } from "./model-factory"
 import { popupModelFactory } from "./popup"
@@ -71,8 +71,10 @@ export class YangDiagramConfiguration implements DiagramConfiguration {
         viewRegistry.register('node:note', NoteView)
         viewRegistry.register('label:heading', SLabelView)
         viewRegistry.register('label:text', SLabelView)
+        viewRegistry.register('label:classHeader', SLabelView)
+        viewRegistry.register('label:classTag', TagView)
         viewRegistry.register('comp:comp', SCompartmentView)
-        viewRegistry.register('comp:classHeader', YangClassHeaderView)
+        viewRegistry.register('comp:classHeader', HeaderCompartmentView)
         viewRegistry.register('edge:straight', PolylineEdgeView)
         viewRegistry.register('edge:composition', CompositionEdgeView)
         viewRegistry.register('edge:dashed', DashedEdgeView)

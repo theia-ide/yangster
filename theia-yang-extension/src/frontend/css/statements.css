@@ -8,26 +8,26 @@
 /* sprotty SVG export */
 
 .list,
-.list .header .label,
-.list .header .tagBg,
+.list circle.tag,
+.list .comp text.classHeader,
 .container,
-.container .header .label,
-.container .header .tagBg{
+.container circle.tag,
+.container .comp text.classHeader {
     fill: #9AB6B6;
 }
 
-.moduleNode .header .label,
-.moduleNode .header .tagBg,
-.moduleNode {
+.moduleNode,
+.moduleNode circle.tag,
+.moduleNode .comp text.classHeader {
     fill: #FFE9BE;
 }
 
 .augment,
-.augment .header .label,
-.augment .header .tagBg,
+.augment circle.tag,
+.augment .comp text.classHeader,
 .grouping,
-.grouping .header .label,
-.grouping .header .tagBg {
+.grouping circle.tag,
+.grouping .comp text.classHeader {
     fill: #578B8B;
 }
 
@@ -36,20 +36,19 @@
     fill: #E79292;
 }
 
-
-
 .identity,
-.identity .header .label,
-.identity .header .tagBg {
+.identity circle.tag,
+.identity .comp text.classHeader {
     fill: #AD976B;
 }
 
 .typedef,
-.typedef .header .label {
+.typedef circle.tag,
+.typedef .comp text.classHeader {
     fill: #725A29;
 }
 
-.header .label{
+text.classHeader {
     font-size: 0.8em;
 }
 
@@ -57,15 +56,18 @@
     font-size: 0.6em;
 }
 
-.label, .headerBg, .header .tagLabel {
-    fill: #000000;
-}
-
-.tagBg, .tagLabel {
-    stroke: none;
-}
-
-.tagLabel {
+.tag {
+    font-size: 1.2em;
     font-weight: bold;
+    stroke: none;
+    text-anchor: middle;
+    dominant-baseline: central;
 }
 
+text.tag {
+    fill: black
+}
+
+.classHeader {
+    fill: black
+}

@@ -9,14 +9,15 @@ import {
     RenderingContext,
     RectangularNodeView,
     SEdge,
+    SCompartment,
     PolylineEdgeView,
     angle,
     Point,
-    toDegrees, IView, setAttr
+    toDegrees, IView, setAttr, SLabel
 } from "sprotty/lib"
 import { VNode } from "snabbdom/vnode"
-import * as snabbdom from "snabbdom-jsx"
-import { YangHeaderNode, YangNode } from "./yang-models"
+import * as snabbdom from 'snabbdom-jsx';
+import { YangNode } from "./yang-models"
 
 const JSX = {createElement: snabbdom.svg}
 
@@ -34,26 +35,6 @@ export class ClassNodeView extends RectangularNodeView {
         setAttr(vnode, 'class', node.cssClass)
 
         return vnode
-    }
-}
-
-export class YangClassHeaderView implements IView {
-    render(model: YangHeaderNode, context: RenderingContext): VNode {
-        const translate = `translate(${model.bounds.x}, ${model.bounds.y})`
-        const radius = 13
-        const headerHeight = radius * 3
-        const headerPosOffset = 30
-        const circlePosOffset = (headerHeight / 2 - radius) + headerPosOffset / 2 - 2
-
-        return <g transform={translate} class-comp="{true}" class-header={true}>
-            <rect width={model.size.width}
-                  height={headerHeight}
-                  class-headerBg={true}></rect>
-            <circle class-tagBg={true} r={radius} cx={circlePosOffset} cy={circlePosOffset}></circle>
-            <text class-tagLabel={true} x={headerPosOffset / 2 - 3}
-                  y={radius - 1 + headerPosOffset / 2}>{model.tag}</text>
-            <text class-label={true} x="42" y="26">{model.label}</text>
-        </g>
     }
 }
 
@@ -156,3 +137,28 @@ export class ArrowEdgeView extends PolylineEdgeView {
     }
 }
 
+export class TagView implements IView {
+    render(element: SLabel, context: RenderingContext): VNode {
+        const radius = this.getRadius()
+        return <g>
+            <circle class-tag={true} r={radius} cx={radius} cy={radius}></circle>
+            <text class-tag={true} x={radius} y={radius}>{element.text}</text>
+        </g>
+    }
+
+    getRadius() {
+        return 16
+    }
+}
+
+
+export class HeaderCompartmentView implements IView {
+    render(model: SCompartment, context: RenderingContext): VNode {
+        const translate = `translate(${model.bounds.x}, ${model.bounds.y})`
+        const vnode = <g transform={translate} class-comp="{true}">
+            <rect class-classHeader={true} x={0} y={0} width={model.bounds.width} height={model.bounds.height}></rect> 
+            {context.renderChildren(model)}
+        </g>
+        return vnode
+    }
+}

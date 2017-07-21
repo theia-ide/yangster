@@ -27,6 +27,4 @@ export class ModuleNodeModel extends YangNode {
 
 
 export class YangHeaderNode extends SCompartment {
-    tag: string
-    label: string
 }
