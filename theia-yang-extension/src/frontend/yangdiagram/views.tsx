@@ -27,8 +27,6 @@ export class ClassNodeView extends RectangularNodeView {
             <rect class-selected={node.selected} class-mouseover={node.hoverFeedback}
                   x={0} y={0}
                   width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}/>
-            {/*<rect x={0} y={0}  class-headerBg={true}*/}
-            {/*width={Math.max(0, node.bounds.width)} height='41'/>*/}
             {context.renderChildren(node)}
         </g>
 
@@ -38,15 +36,36 @@ export class ClassNodeView extends RectangularNodeView {
     }
 }
 
+export class HeaderCompartmentView implements IView {
+    render(model: SCompartment, context: RenderingContext): VNode {
+        const translate = `translate(${model.bounds.x}, ${model.bounds.y})`
+        const parentSize = (model.parent as any).size
+        const width = Math.max(0, parentSize.width)
+        const vnode = <g transform={translate} class-comp="{true}">
+            <rect class-classHeader={true} x={0} y={0} width={width} height={model.size.height}></rect> 
+            {context.renderChildren(model)}
+        </g>
+        return vnode
+    }
+}
+
+export class TagView implements IView {
+    render(element: SLabel, context: RenderingContext): VNode {
+        const radius = this.getRadius()
+        return <g>
+            <circle class-tag={true} r={radius} cx={radius} cy={radius}></circle>
+            <text class-tag={true} x={radius} y={radius}>{element.text}</text>
+        </g>
+    }
+
+    getRadius() {
+        return 12
+    }
+}
+
 export class ModuleNodeView extends RectangularNodeView {
     render(node: YangNode, context: RenderingContext): VNode {
-        // const titleHeight = 30
-        // const titleWidth = node.bounds.width * 0.4
-
         return <g class-node={true} class-module={true} class-mouseover={node.hoverFeedback}>
-            {/*<path class-title={true} stroke-miterlimit="3"*/}
-            {/*d={"m0,-" + titleHeight + " l" + titleWidth + ",0 " +*/}
-            {/*"l" + titleHeight + "," + titleHeight + " l-" + (titleHeight + titleWidth) + ",0 Z"}/>*/}
             <rect class-body={true} class-selected={node.selected}
                   x={0} y={0} rx="5" ry="5"
                   width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}/>
@@ -131,33 +150,5 @@ export class ArrowEdgeView extends PolylineEdgeView {
             <path class-edge={true} d="M 10,-4 L 0,0 L 10,4"
                   transform={`rotate(${toDegrees(angle(p2, p1))} ${p2.x} ${p2.y}) translate(${p2.x} ${p2.y})`}/>
         ]
-    }
-}
-
-export class TagView implements IView {
-    render(element: SLabel, context: RenderingContext): VNode {
-        const radius = this.getRadius()
-        return <g>
-            <circle class-tag={true} r={radius} cx={radius} cy={radius}></circle>
-            <text class-tag={true} x={radius} y={radius}>{element.text}</text>
-        </g>
-    }
-
-    getRadius() {
-        return 12
-    }
-}
-
-
-export class HeaderCompartmentView implements IView {
-    render(model: SCompartment, context: RenderingContext): VNode {
-        const translate = `translate(${model.bounds.x}, ${model.bounds.y})`
-        const parentSize = (model.parent as any).size
-        const width = Math.max(0, parentSize.width)
-        const vnode = <g transform={translate} class-comp="{true}">
-            <rect class-classHeader={true} x={0} y={0} width={width} height={model.size.height}></rect> 
-            {context.renderChildren(model)}
-        </g>
-        return vnode
     }
 }
