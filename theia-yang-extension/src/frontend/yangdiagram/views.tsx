@@ -144,7 +144,7 @@ export class TagView implements IView {
     }
 
     getRadius() {
-        return 16
+        return 12
     }
 }
 
