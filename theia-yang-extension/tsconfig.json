@@ -27,7 +27,7 @@
     "src"
   ],
   "files": [
-    "../node_modules/monaco-editor/monaco.d.ts",
+    "../theia/packages/monaco/src/typings/monaco/index.d.ts",
     "../node_modules/@types/node/index.d.ts"
   ]
 }
