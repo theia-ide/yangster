@@ -22,9 +22,9 @@
         "clean": "rimraf lib",
         "cold:start": "yarn run clean && yarn start",
         "start": "yarn run start:backend",
-        "start:backend": "node ./src-gen/backend/main.js --root-dir=../workspace | bunyan",
-        "start:backend:debug": "node ./src-gen/backend/main.js --root-dir=../workspace --loglevel=debug | bunyan",
-        "start:backend:socket": "node ./src-gen/backend/main.js --root-dir=../workspace --YANG_LSP=5007 --loglevel=debug | bunyan",
+        "start:backend": "node ./src-gen/backend/main.js --root-dir=../workspace --port=3000 | bunyan",
+        "start:backend:debug": "node ./src-gen/backend/main.js --root-dir=../workspace --port=3000 --loglevel=debug | bunyan",
+        "start:backend:socket": "node ./src-gen/backend/main.js --root-dir=../workspace --YANG_LSP=5007 --port=3000 --loglevel=debug | bunyan",
         "test:ui": "yarn run start & wdio --waitforTimeout 300000 wdio.conf.js",
         "watch": "webpack -w"
     }

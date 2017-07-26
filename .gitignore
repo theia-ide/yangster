@@ -1,4 +1,5 @@
 .idea
+.browser_modules
 node_modules
 build
 bin
@@ -7,5 +8,7 @@ lib
 yang-server.log
 yangster-app/package.json
 yangster-app/webpack.config.js
-yangster-app/src-gen
+src-gen
 lerna-debug.log
+yangster-app-electron/package.json
+yangster-app-electron/webpack.config.js

@@ -1,21 +1,23 @@
 {
-	"devDependencies": {
-		"lerna": "^2.0.0"
-	},
-	"scripts": {
-		"preinstall": "cd theia/generator-theia && yarn install && yarn run compile",
-		"setup": "yarn run generate && yarn run bootstrap",
-		"symlink:monaco": "mkdir -p theia/node_modules && cd theia/node_modules && ln -f -s ../../node_modules/monaco-editor-core monaco-editor-core && ln -f -s ../../node_modules/monaco-editor monaco-editor && cd ../..",
-		"generate": "node theia/scripts/generate.js && cd yangster-app && yo theia:browser && cd ..",
-		"bootstrap": "lerna bootstrap --hoist && yarn run symlink:monaco",
-		"refresh": "lerna clean --yes && yarn run bootstrap",
-		"clean": "lerna run clean --parallel",
-		"build": "lerna run build --stream",
-		"watch": "lerna run watch --parallel",
-
-		"update": "git submodule foreach git pull origin master"
-	},
-	"dependencies": {
-		"generator-theia": "file:theia/generator-theia"
-	}
+  "devDependencies": {
+    "lerna": "^2.0.0"
+  },
+  "scripts": {
+    "preinstall": "cd theia/generator-theia && yarn install && yarn run compile",
+    "setup": "yarn run generate && yarn run bootstrap",
+    "symlink:monaco": "mkdir -p theia/node_modules && cd theia/node_modules && ln -f -s ../../node_modules/monaco-editor-core monaco-editor-core && ln -f -s ../../node_modules/monaco-editor monaco-editor && cd ../..",
+    "generate": "node theia/scripts/generate.js && cd yangster-app && yo theia:browser && cd ..",
+    "bootstrap": "lerna bootstrap --hoist -- --no-optional && yarn run symlink:monaco",
+    "refresh": "lerna clean --yes && yarn run bootstrap",
+    "clean": "lerna run clean --parallel",
+    "build": "lerna run build --stream",
+    "watch": "lerna run watch --parallel",
+    "rebuild:browser": "node theia/scripts/rebuild.js --target=browser",
+    "rebuild:electron": "node theia/scripts/rebuild.js --target=electron",
+    "rebuild:electron:debug": "DEBUG=electron-rebuild && yarn run rebuild:electron",
+    "update": "git submodule foreach git pull origin master"
+  },
+  "dependencies": {
+    "generator-theia": "file:theia/generator-theia"
+  }
 }

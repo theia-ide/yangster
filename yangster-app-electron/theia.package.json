@@ -1,0 +1,18 @@
+{
+    "private": true,
+    "name": "yangster-app-electron",
+    "version": "0.0.1",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "@theia/core": "0.0.1-alpha.2",
+        "@theia/editor": "0.0.1-alpha.1",
+        "@theia/filesystem": "0.0.1-alpha.1",
+        "@theia/workspace": "0.0.1-alpha.1",
+        "@theia/navigator": "0.0.1-alpha.1",
+        "@theia/terminal": "0.0.1-alpha.1",
+        "@theia/preferences": "0.0.1-alpha.1",
+        "@theia/languages": "0.0.1-alpha.1",
+        "@theia/monaco": "0.0.1-alpha.1",
+        "theia-yang-extension": "0.0.1"
+    }
+}
