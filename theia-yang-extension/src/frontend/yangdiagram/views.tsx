@@ -133,11 +133,11 @@ export class DashedEdgeView extends PolylineEdgeView {
 
 export class ImportEdgeView extends DashedEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
-        const p1 = segments[segments.length - 2]
-        const p2 = segments[segments.length - 1]
+        const p1 = segments[0]
+        const p2 = segments[1]
         return [
             <path class-edge={true} d="M 10,-4 L 0,0 L 10,4"
-                  transform={`rotate(${toDegrees(angle(p2, p1))} ${p2.x} ${p2.y}) translate(${p2.x} ${p2.y})`}/>
+                  transform={`rotate(${toDegrees(angle(p1, p2))} ${p1.x} ${p1.y}) translate(${p1.x} ${p1.y})`}/>
         ]
     }
 }
