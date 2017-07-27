@@ -36,6 +36,10 @@
     fill: #E79292;
 }
 
+.uses {
+    fill: #9AB6B6;
+}
+
 .identity,
 .identity circle.tag,
 .identity .comp text.classHeader {

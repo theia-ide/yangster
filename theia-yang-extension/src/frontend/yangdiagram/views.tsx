@@ -89,9 +89,23 @@ export class ChoiceNodeView extends RectangularNodeView {
 
 export class CaseNodeView extends RectangularNodeView {
     render(node: YangNode, context: RenderingContext): VNode {
-        return <g class-comp="{true}" class-case={true}>
+        let vnode =  <g class-comp="{true}">
             <rect class-body={true} class-selected={node.selected}
                   x={0} y={0} width={node.size.width} height={node.size.height} rx={node.size.width * 0.5} ry={10}/>
+            {context.renderChildren(node)}
+        </g>
+
+        setAttr(vnode, 'class', 'case')
+
+        return vnode
+    }
+}
+
+export class UsesNodeView extends CaseNodeView {
+    render(node: YangNode, context: RenderingContext): VNode {
+        return  <g class-uses="{true}">
+            <rect class-body={true} class-selected={node.selected}
+                  x={0} y={0} width={node.size.width} height={node.size.height} rx={node.size.height * 0.5} ry={node.size.height * 0.5}/>
             {context.renderChildren(node)}
         </g>
     }
@@ -143,6 +157,17 @@ export class ImportEdgeView extends DashedEdgeView {
 }
 
 export class ArrowEdgeView extends PolylineEdgeView {
+    protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
+        const p1 = segments[segments.length - 2]
+        const p2 = segments[segments.length - 1]
+        return [
+            <path class-edge={true} d="M 10,-4 L 0,0 L 10,4"
+                  transform={`rotate(${toDegrees(angle(p2, p1))} ${p2.x} ${p2.y}) translate(${p2.x} ${p2.y})`}/>
+        ]
+    }
+}
+
+export class DashedArrowEdgeView extends DashedEdgeView {
     protected renderAdditionals(edge: SEdge, segments: Point[], context: RenderingContext): VNode[] {
         const p1 = segments[segments.length - 2]
         const p2 = segments[segments.length - 1]
