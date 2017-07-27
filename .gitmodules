@@ -1,6 +1,6 @@
 [submodule "theia"]
 	path = theia
-	url = git@github.com:theia-ide/theia.git
+	url = https://github.com/theia-ide/theia.git
 [submodule "sprotty"]
 	path = sprotty
-	url = git@github.com:theia-ide/sprotty.git
+	url = https://github.com/theia-ide/sprotty.git
