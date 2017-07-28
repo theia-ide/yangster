@@ -2712,7 +2712,7 @@ gaze@^0.5.1:
     globule "~0.1.0"
 
 "generator-theia@file:theia/generator-theia":
-  version "0.0.1-alpha.1"
+  version "0.1.0"
   dependencies:
     "@types/yeoman-generator" "^1.0.2"
     yeoman-generator "^1.1.1"
@@ -3787,6 +3787,10 @@ json3@3.3.2, json3@^3.3.2:
 json5@^0.5.0, json5@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/json5/-/json5-0.5.1.tgz#1eade7acc012034ad84e2396767ead9fa5495821"
+
+jsonc-parser@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jsonc-parser/-/jsonc-parser-1.0.0.tgz#ddcc864ae708e60a7a6dd36daea00172fa8d9272"
 
 jsonfile@^2.1.0:
   version "2.4.0"
