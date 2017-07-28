@@ -68,7 +68,7 @@ export class YangDiagramConfiguration implements DiagramConfiguration {
         viewRegistry.register('node:module', ModuleNodeView)
         viewRegistry.register('node:choice', ChoiceNodeView)
         viewRegistry.register('node:case', CaseNodeView)
-        viewRegistry.register('node:uses', UsesNodeView)
+        viewRegistry.register('node:pill', UsesNodeView)
         viewRegistry.register('node:note', NoteView)
         viewRegistry.register('label:heading', SLabelView)
         viewRegistry.register('label:text', SLabelView)

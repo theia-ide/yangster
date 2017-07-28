@@ -103,11 +103,13 @@ export class CaseNodeView extends RectangularNodeView {
 
 export class UsesNodeView extends CaseNodeView {
     render(node: YangNode, context: RenderingContext): VNode {
-        return  <g class-uses="{true}">
+        let vnode = <g >
             <rect class-body={true} class-selected={node.selected}
                   x={0} y={0} width={node.size.width} height={node.size.height} rx={node.size.height * 0.5} ry={node.size.height * 0.5}/>
             {context.renderChildren(node)}
         </g>
+        setAttr(vnode, 'class', node.cssClass)
+        return vnode
     }
 }
 
