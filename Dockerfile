@@ -27,7 +27,7 @@ RUN npm install -g yo
 
 WORKDIR /home/yangster
 
-RUN git clone --recursive -b docker https://github.com/yang-tools/yangster.git \
+RUN git clone --recursive https://github.com/yang-tools/yangster.git \
 	&& cd yangster \
 	&& yarn install \
 	&& yarn run setup \
