@@ -13,19 +13,18 @@ RUN echo 'deb http://httpredir.debian.org/debian/ jessie-backports main' >> /etc
   maven \
   && update-java-alternatives -s java-1.8.0-openjdk-amd64
 
-# TODO add -q to gradle
-RUN git clone https://github.com/TypeFox/xtext-jflex.git \
-	&& mvn -q -f ./xtext-jflex/jflex-fragment/pom.xml clean install \
-	&& git clone https://github.com/yang-tools/yang-lsp.git \
-	&& ./yang-lsp/yang-lsp/gradlew -q -p yang-lsp/yang-lsp installDist --refresh-dependencies
 
 # yeoman issue 282
 RUN chmod -R 777 /usr/local && useradd -ms /bin/bash yangster
 USER yangster
+WORKDIR /home/yangster
 
 RUN npm install -g yo
 
-WORKDIR /home/yangster
+RUN git clone https://github.com/TypeFox/xtext-jflex.git \
+	&& mvn -q -f ./xtext-jflex/jflex-fragment/pom.xml clean install \
+	&& git clone https://github.com/yang-tools/yang-lsp.git \
+	&& ./yang-lsp/yang-lsp/gradlew -q -p yang-lsp/yang-lsp installDist --refresh-dependencies
 
 RUN git clone --recursive https://github.com/yang-tools/yangster.git \
 	&& cd yangster \
