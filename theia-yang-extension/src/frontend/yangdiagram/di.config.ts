@@ -37,12 +37,14 @@ import {
 import { DiagramConfiguration } from "../diagram/diagram-configuration"
 import { TheiaDiagramServer } from "../diagram/theia-diagram-server"
 import { TheiaKeyTool } from '../diagram/theia-key-tool'
+import { YangsterScrollMouseListener } from "./scroll";
 
 const yangDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
     rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope()
     rebind(TYPES.LogLevel).toConstantValue(LogLevel.log)
     rebind(TYPES.IModelFactory).to(YangDiagramFactory).inSingletonScope()
     rebind(KeyTool).to(TheiaKeyTool).inSingletonScope()
+    bind(TYPES.MouseListener).to(YangsterScrollMouseListener)
     bind(TYPES.PopupModelFactory).toConstantValue(popupModelFactory)
 })
 
