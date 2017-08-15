@@ -8,11 +8,15 @@
 import { ActionMessage, ExportSvgAction } from 'sprotty/lib'
 import { TheiaDiagramServer } from './theia-diagram-server'
 import { NotificationType } from 'vscode-jsonrpc/lib/messages'
+import { Location } from 'vscode-languageserver-types/lib/main'
 import { LanguageClientContribution } from '@theia/languages/lib/browser'
+import { EditorManager } from '@theia/editor/lib/browser'
 import { TheiaFileSaver } from './theia-file-saver'
+import URI from "@theia/core/lib/common/uri"
 
-const actionMessageType = new NotificationType<ActionMessage, void>('diagram/accept')
+const acceptMessageType = new NotificationType<ActionMessage, void>('diagram/accept')
 const didCloseMessageType = new NotificationType<string, void>('diagram/didClose')
+const openInTextEditorMessageType = new NotificationType<string, void>('diagram/openInTextEditor')
 
 /**
  * Connects sprotty DiagramServers to a Theia LanguageClientContribution.
@@ -29,10 +33,12 @@ export class TheiaSprottyConnector {
     private servers: TheiaDiagramServer[] = []
 
     constructor(private languageClientContribution: LanguageClientContribution,
-                private fileSaver: TheiaFileSaver) {
+                private fileSaver: TheiaFileSaver,
+                private editorManager: EditorManager) {
         this.languageClientContribution.languageClient.then(
             lc => {
-                lc.onNotification(actionMessageType, this.receivedThroughLsp.bind(this))
+                lc.onNotification(acceptMessageType, this.receivedThroughLsp.bind(this))
+                lc.onNotification(openInTextEditorMessageType, this.openInTextEditor.bind(this))
             }
         ).catch(
             err => console.error(err)
@@ -56,8 +62,19 @@ export class TheiaSprottyConnector {
         this.fileSaver.save(uri, action)
     }
 
+    openInTextEditor(location: Location) {
+        const uri = new URI(location.uri)
+        this.editorManager.open(uri).then(
+            editorWidget => {
+                const editor = editorWidget.editor
+                editor.cursor = location.range.start
+                editor.revealRange(location.range)
+                editor.selection = location.range
+            })
+    }
+
     sendThroughLsp(message: ActionMessage) {
-        this.languageClientContribution.languageClient.then(lc => lc.sendNotification(actionMessageType, message))
+        this.languageClientContribution.languageClient.then(lc => lc.sendNotification(acceptMessageType, message))
     }
 
     receivedThroughLsp(message: ActionMessage) {
