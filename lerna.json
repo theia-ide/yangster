@@ -5,7 +5,8 @@
     "sprotty/client",
     "theia/packages/*",
     "theia-yang-extension",
-    "yangster-app"
+    "yangster-app",
+    "yangster-app-electron"
   ],
   "version": "independent"
 }

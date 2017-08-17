@@ -15,6 +15,7 @@ import {
     Workspace,
 } from '@theia/languages/lib/browser'
 import { DiagramManagerProvider, DiagramManager } from '../diagram/diagram-manager'
+import { KeybindingRegistry, CommandRegistry } from '@theia/core/lib/common';
 
 @injectable()
 export class YangLanguageClientContribution extends BaseLanguageClientContribution {
@@ -26,7 +27,9 @@ export class YangLanguageClientContribution extends BaseLanguageClientContributi
         @inject(Workspace) workspace: Workspace,
         @inject(Languages) languages: Languages,
         @inject(LanguageClientFactory) languageClientFactory: LanguageClientFactory,
-        @inject(DiagramManagerProvider)@named('yang-diagram') protected yangDiagramManagerProvider: DiagramManagerProvider
+        @inject(DiagramManagerProvider)@named('yang-diagram') protected yangDiagramManagerProvider: DiagramManagerProvider,
+        @inject(KeybindingRegistry) protected keybindingRegistry: KeybindingRegistry,
+        @inject(CommandRegistry) protected commandRegistry: CommandRegistry,
     ) {
         super(workspace, languages, languageClientFactory)
     }

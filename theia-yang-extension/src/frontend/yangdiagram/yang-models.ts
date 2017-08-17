@@ -32,6 +32,6 @@ export class YangHeaderNode extends SCompartment {
 export class YangLabel extends SLabel {
 
     hasFeature(feature: symbol) {
-        return super.hasFeature(feature) || feature === selectFeature
+        return super.hasFeature(feature) || feature === selectFeature
     }
 }
