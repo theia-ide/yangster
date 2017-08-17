@@ -42,7 +42,7 @@ export class HeaderCompartmentView implements IView {
         const parentSize = (model.parent as any).size
         const width = Math.max(0, parentSize.width)
         const vnode = <g transform={translate} class-comp="{true}">
-            <rect class-classHeader={true} x={0} y={0} width={width} height={model.size.height}></rect> 
+            <rect class-classHeader={true} x={0} y={0} width={width} height={model.size.height}></rect>
             {context.renderChildren(model)}
         </g>
         return vnode

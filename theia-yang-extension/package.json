@@ -8,11 +8,11 @@
     "theia-extension"
   ],
   "dependencies": {
-    "@theia/core": "0.1.0",
-    "@theia/monaco": "0.1.0",
-    "@theia/languages": "0.1.0",
-    "@theia/filesystem": "0.1.0",
-    "@theia/editor": "0.1.0",
+    "@theia/core": "0.1.1",
+    "@theia/monaco": "0.1.1",
+    "@theia/languages": "0.1.1",
+    "@theia/filesystem": "0.1.1",
+    "@theia/editor": "0.1.1",
     "@types/node": "^8.0.14",
     "sprotty": "0.1.2"
   },
@@ -36,7 +36,7 @@
     "nyc": "^11.0.3",
     "rimraf": "^2.6.1",
     "ts-node": "^3.2.0",
-    "tslint": "^4.5.1",
+    "tslint": "^5.5.0",
     "typescript": "^2.4.1"
   },
   "files": [

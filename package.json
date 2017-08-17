@@ -1,6 +1,8 @@
 {
   "devDependencies": {
-    "lerna": "^2.0.0"
+    "colors": "^1.1.2",
+    "lerna": "^2.0.0",
+    "yo": "^2.0.0"
   },
   "scripts": {
     "preinstall": "cd theia/generator-theia && yarn install && yarn run compile",
