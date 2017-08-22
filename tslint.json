@@ -3,7 +3,7 @@
     "class-name": true,
     "comment-format": [true, "check-space"],
     "curly": false,
-    "forin": true,
+    "forin": false,
     "indent": [true, "spaces"],
     "max-line-length": [true, 180],
     "no-trailing-whitespace": true,
