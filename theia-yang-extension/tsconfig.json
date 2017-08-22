@@ -17,14 +17,14 @@
       "dom"
     ],
     "typeRoots": [
-      "../node_modules/@types", "typings"
+      "../node_modules/@types", "./typings"
     ],
     "jsx": "react",
     "sourceMap": true,
     "reactNamespace": "JSX"
   },
   "include": [
-    "src"
+    "src", "./typings"
   ],
   "files": [
     "../theia/packages/monaco/src/typings/monaco/index.d.ts",

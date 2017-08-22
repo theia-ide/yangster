@@ -33,6 +33,8 @@ import {
     undoRedoModule,
     viewportModule,
     ViewRegistry,
+    expandModule,
+    fadeModule
 } from 'sprotty/lib'
 import { DiagramConfiguration } from "../diagram/diagram-configuration"
 import { TheiaDiagramServer } from "../diagram/theia-diagram-server"
@@ -55,7 +57,7 @@ export class YangDiagramConfiguration implements DiagramConfiguration {
     createContainer(widgetId: string): Container {
         const container = new Container()
         container.load(defaultModule, selectModule, moveModule, boundsModule, undoRedoModule, viewportModule,
-            hoverModule, exportModule, yangDiagramModule)
+            hoverModule,fadeModule, exportModule, expandModule, yangDiagramModule)
         container.bind(TYPES.ModelSource).to(TheiaDiagramServer).inSingletonScope()
         overrideViewerOptions(container, {
             needsClientLayout: true,

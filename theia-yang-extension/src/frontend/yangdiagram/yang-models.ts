@@ -7,7 +7,7 @@
 
 import {
     boundsFeature, fadeFeature, hoverFeedbackFeature, popupFeature, SCompartment, selectFeature, layoutFeature,
-    SNode, SLabel
+    SNode, SLabel, expandFeature, Expandable
 } from "sprotty/lib"
 
 export class YangNode extends SNode {
@@ -18,11 +18,15 @@ export class YangNode extends SNode {
             || feature === layoutFeature || feature === fadeFeature || feature === hoverFeedbackFeature
             || feature === popupFeature
     }
-
 }
 
-export class ModuleNodeModel extends YangNode {
+export class ModuleNodeModel extends YangNode implements Expandable {
     title: string
+    expanded = false
+
+    hasFeature(feature: symbol): boolean {
+        return feature === expandFeature || super.hasFeature(feature)
+    }
 }
 
 
