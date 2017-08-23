@@ -13,7 +13,7 @@ import {
     PolylineEdgeView,
     angle,
     Point,
-    toDegrees, IView, setAttr, SLabel
+    toDegrees, IView, setAttr, SLabel, ModuleNode
 } from "sprotty/lib"
 import { VNode } from "snabbdom/vnode"
 import * as snabbdom from 'snabbdom-jsx';
@@ -64,7 +64,7 @@ export class TagView implements IView {
 }
 
 export class ModuleNodeView extends RectangularNodeView {
-    render(node: YangNode, context: RenderingContext): VNode {
+    render(node: ModuleNode, context: RenderingContext): VNode {
         return <g class-node={true} class-module={true} class-mouseover={node.hoverFeedback}>
             <rect class-body={true} class-selected={node.selected}
                   x={0} y={0} rx="5" ry="5"
