@@ -14,9 +14,14 @@ import { EditorManager } from '@theia/editor/lib/browser'
 import { TheiaFileSaver } from './theia-file-saver'
 import URI from "@theia/core/lib/common/uri"
 
+export interface OpenInTextEditorMessage {
+    location: Location
+    forceOpen: boolean
+}
+
 const acceptMessageType = new NotificationType<ActionMessage, void>('diagram/accept')
 const didCloseMessageType = new NotificationType<string, void>('diagram/didClose')
-const openInTextEditorMessageType = new NotificationType<string, void>('diagram/openInTextEditor')
+const openInTextEditorMessageType = new NotificationType<OpenInTextEditorMessage, void>('diagram/openInTextEditor')
 
 /**
  * Connects sprotty DiagramServers to a Theia LanguageClientContribution.
@@ -62,15 +67,26 @@ export class TheiaSprottyConnector {
         this.fileSaver.save(uri, action)
     }
 
-    openInTextEditor(location: Location) {
-        const uri = new URI(location.uri)
-        this.editorManager.open(uri).then(
-            editorWidget => {
-                const editor = editorWidget.editor
-                editor.cursor = location.range.start
-                editor.revealRange(location.range)
-                editor.selection = location.range
+    openInTextEditor(message: OpenInTextEditorMessage) {
+        const uri = new URI(message.location.uri)
+        if (!message.forceOpen) {
+            this.editorManager.editors.forEach(editorWidget => {
+                const currentTextEditor = editorWidget.editor
+                if (editorWidget.isVisible && uri.toString() === currentTextEditor.uri.toString()) {
+                    currentTextEditor.cursor = message.location.range.start
+                    currentTextEditor.revealRange(message.location.range)
+                    currentTextEditor.selection = message.location.range
+                }
             })
+        } else {
+            this.editorManager.open(uri).then(
+                editorWidget => {
+                    const editor = editorWidget.editor
+                    editor.cursor = message.location.range.start
+                    editor.revealRange(message.location.range)
+                    editor.selection = message.location.range
+                })
+        }
     }
 
     sendThroughLsp(message: ActionMessage) {

@@ -1,3 +1,4 @@
+import { SModelElement } from '../../../../sprotty/client/lib';
 /*
  * Copyright (C) 2017 TypeFox and others.
  *
@@ -7,20 +8,21 @@
 
 import {
     boundsFeature, fadeFeature, hoverFeedbackFeature, popupFeature, SCompartment, selectFeature, layoutFeature,
-    SNode, SLabel, expandFeature, Expandable
+    SNode, SLabel, expandFeature, Expandable, openFeature
 } from "sprotty/lib"
 
 export class YangNode extends SNode {
     cssClass: string
+    trace: string | undefined
 
     hasFeature(feature: symbol): boolean {
         return feature === selectFeature || feature === boundsFeature
             || feature === layoutFeature || feature === fadeFeature || feature === hoverFeedbackFeature
-            || feature === popupFeature
+            || feature === popupFeature || (feature == openFeature && this.trace !== undefined)
     }
 }
 
-export class ModuleNodeModel extends YangNode implements Expandable {
+export class ModuleNode extends YangNode implements Expandable {
     title: string
     expanded = false
 
@@ -34,8 +36,12 @@ export class YangHeaderNode extends SCompartment {
 }
 
 export class YangLabel extends SLabel {
-
+    trace: string | undefined
+    
     hasFeature(feature: symbol) {
-        return super.hasFeature(feature) || feature === selectFeature
+        return super.hasFeature(feature) || feature === selectFeature || (feature == openFeature && this.trace !== undefined)
     }
+}
+
+export class ExpandButton extends SModelElement {
 }
