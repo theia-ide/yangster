@@ -6,11 +6,6 @@ submodule example-3-suba {
     prefix "ex3a";
   }
 
-  import ietf-inet-types {
-    prefix "inet";
-    revision-date 2013-07-15;
-  }
-
   revision 2016-07-21;
 
   /*
