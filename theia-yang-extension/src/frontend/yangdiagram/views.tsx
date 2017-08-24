@@ -23,15 +23,13 @@ const JSX = {createElement: snabbdom.svg}
 
 export class ClassNodeView extends RectangularNodeView {
     render(node: YangNode, context: RenderingContext): VNode {
-        let vnode = <g class-node={true}>
+        const vnode = <g class-node={true}>
             <rect class-selected={node.selected} class-mouseover={node.hoverFeedback}
                   x={0} y={0}
                   width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)}/>
             {context.renderChildren(node)}
         </g>
-
         setAttr(vnode, 'class', node.cssClass)
-
         return vnode
     }
 }
@@ -41,8 +39,9 @@ export class HeaderCompartmentView implements IView {
         const translate = `translate(${model.bounds.x}, ${model.bounds.y})`
         const parentSize = (model.parent as any).size
         const width = Math.max(0, parentSize.width)
+        const height = Math.max(0, model.size.height)
         const vnode = <g transform={translate} class-comp="{true}">
-            <rect class-classHeader={true} x={0} y={0} width={width} height={model.size.height}></rect>
+            <rect class-classHeader={true} x={0} y={0} width={width} height={height}></rect>
             {context.renderChildren(model)}
         </g>
         return vnode
@@ -89,23 +88,21 @@ export class ChoiceNodeView extends RectangularNodeView {
 
 export class CaseNodeView extends RectangularNodeView {
     render(node: YangNode, context: RenderingContext): VNode {
-        let vnode =  <g class-comp="{true}">
+        const vnode = <g class-comp="{true}">
             <rect class-body={true} class-selected={node.selected}
-                  x={0} y={0} width={node.size.width} height={node.size.height} rx={node.size.width * 0.5} ry={10}/>
+                  x={0} y={0} width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)} rx={node.size.width * 0.5} ry={10}/>
             {context.renderChildren(node)}
         </g>
-
         setAttr(vnode, 'class', 'case')
-
         return vnode
     }
 }
 
 export class UsesNodeView extends CaseNodeView {
     render(node: YangNode, context: RenderingContext): VNode {
-        let vnode = <g >
+        const vnode = <g>
             <rect class-body={true} class-selected={node.selected}
-                  x={0} y={0} width={node.size.width} height={node.size.height} rx={node.size.height * 0.5} ry={node.size.height * 0.5}/>
+                  x={0} y={0} width={Math.max(0, node.bounds.width)} height={Math.max(0, node.bounds.height)} rx={node.size.height * 0.5} ry={node.size.height * 0.5}/>
             {context.renderChildren(node)}
         </g>
         setAttr(vnode, 'class', node.cssClass)
