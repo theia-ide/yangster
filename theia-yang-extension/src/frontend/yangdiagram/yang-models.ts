@@ -1,4 +1,3 @@
-import { SModelElement } from '../../../../sprotty/client/lib';
 /*
  * Copyright (C) 2017 TypeFox and others.
  *
@@ -41,7 +40,4 @@ export class YangLabel extends SLabel {
     hasFeature(feature: symbol) {
         return super.hasFeature(feature) || feature === selectFeature || (feature == openFeature && this.trace !== undefined)
     }
-}
-
-export class ExpandButton extends SModelElement {
 }

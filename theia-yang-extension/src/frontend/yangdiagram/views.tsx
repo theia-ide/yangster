@@ -13,11 +13,11 @@ import {
     PolylineEdgeView,
     angle,
     Point,
-    toDegrees, IView, setAttr, SLabel, ModuleNode
+    toDegrees, IView, setAttr, SLabel
 } from "sprotty/lib"
 import { VNode } from "snabbdom/vnode"
 import * as snabbdom from 'snabbdom-jsx';
-import { YangNode } from "./yang-models"
+import { YangNode, ModuleNode } from "./yang-models"
 
 const JSX = {createElement: snabbdom.svg}
 

@@ -13,11 +13,15 @@
     stroke-width: 2;
 }
 
-.module > .label {
+.module > .comp > .label {
     font-weight: normal;
     fill: #fff;
     white-space: nowrap;
     font-size: medium;
+}
+
+.button {
+    stroke-width: 0;
 }
 
 .module .note, .module .note.mouseover {

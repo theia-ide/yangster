@@ -35,7 +35,9 @@ import {
     ViewRegistry,
     expandModule,
     fadeModule, 
-    openModule
+    openModule,
+    ExpandButtonHandler,
+    ExpandButtonView
 } from 'sprotty/lib'
 import { DiagramConfiguration } from "../diagram/diagram-configuration"
 import { TheiaDiagramServer } from "../diagram/theia-diagram-server"
@@ -90,7 +92,8 @@ export class YangDiagramConfiguration implements DiagramConfiguration {
         viewRegistry.register('edge:augments', ArrowEdgeView)
         viewRegistry.register('html', HtmlRootView)
         viewRegistry.register('pre-rendered', PreRenderedView)
-
+        viewRegistry.register(ExpandButtonHandler.TYPE, ExpandButtonView)
+        
         return container
     }
 
