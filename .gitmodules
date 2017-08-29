@@ -4,3 +4,6 @@
 [submodule "sprotty"]
 	path = sprotty
 	url = https://github.com/theia-ide/sprotty.git
+[submodule "yang-sprotty"]
+	path = yang-sprotty
+	url = git@github.com:yang-tools/yang-sprotty.git

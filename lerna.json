@@ -3,6 +3,7 @@
   "npmClient": "yarn",
   "packages": [
     "sprotty/client",
+    "yang-sprotty",
     "theia/packages/*",
     "theia-yang-extension",
     "yangster-app",
