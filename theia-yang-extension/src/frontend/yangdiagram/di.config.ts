@@ -7,9 +7,9 @@
 
 import { Container, injectable } from "inversify"
 import { KeyTool, TYPES } from 'sprotty/lib'
-import { DiagramConfiguration } from "../diagram/diagram-configuration"
-import { TheiaDiagramServer } from "../diagram/theia-diagram-server"
-import { TheiaKeyTool } from '../diagram/theia-key-tool'
+import { DiagramConfiguration } from "theia-sprotty/lib"
+import { TheiaDiagramServer } from "theia-sprotty/lib"
+import { TheiaKeyTool } from 'theia-sprotty/lib'
 import { createYangDiagramContainer } from 'yang-sprotty/lib'
 
 @injectable()

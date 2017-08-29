@@ -15,6 +15,7 @@
     "@theia/editor": "0.1.1",
     "@types/node": "^8.0.14",
     "sprotty": "0.1.2",
+    "theia-sprotty": "0.0.1",
     "yang-sprotty": "0.0.1"
   },
   "scripts": {
@@ -46,8 +47,6 @@
     "build"
   ],
   "theiaExtensions": [{
-      "frontend": "lib/frontend/diagram/diagram-module"
-    }, {
       "frontend": "lib/frontend/language/frontend-extension",
       "backend": "lib/backend/backend-extension"
     }

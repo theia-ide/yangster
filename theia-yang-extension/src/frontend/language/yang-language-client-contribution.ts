@@ -14,7 +14,7 @@ import {
     Languages,
     Workspace,
 } from '@theia/languages/lib/browser'
-import { DiagramManagerProvider, DiagramManager } from '../diagram/diagram-manager'
+import { DiagramManagerProvider, DiagramManager } from 'theia-sprotty/lib'
 import { KeybindingRegistry, CommandRegistry } from '@theia/core/lib/common';
 
 @injectable()

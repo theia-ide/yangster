@@ -5,13 +5,13 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { DiagramManagerImpl } from "../diagram/diagram-manager"
+import { DiagramManagerImpl } from "theia-sprotty/lib"
 import { inject, injectable } from 'inversify'
 import { LanguageClientContribution } from '@theia/languages/lib/browser'
 import { EditorManager } from '@theia/editor/lib/browser'
 import { YangLanguageClientContribution } from '../language/yang-language-client-contribution'
-import { TheiaSprottyConnector } from '../diagram/theia-sprotty-connector'
-import { TheiaFileSaver } from "../diagram/theia-file-saver"
+import { TheiaSprottyConnector } from 'theia-sprotty/lib'
+import { TheiaFileSaver } from "theia-sprotty/lib"
 
 @injectable()
 export class YangDiagramManager extends DiagramManagerImpl {

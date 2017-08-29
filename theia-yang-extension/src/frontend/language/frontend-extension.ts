@@ -10,20 +10,19 @@ import { CommandContribution } from '@theia/core/lib/common'
 import { LanguageClientContribution } from '@theia/languages/lib/browser'
 import { Commands } from '@theia/languages/lib/common';
 import { YangLanguageClientContribution } from './yang-language-client-contribution'
-import { DiagramConfiguration } from '../diagram/diagram-configuration'
+import { DiagramConfiguration } from 'theia-sprotty/lib'
 import { YangDiagramConfiguration } from '../yangdiagram/di.config'
-import { DiagramManager, DiagramManagerProvider } from '../diagram/diagram-manager'
+import { DiagramManager, DiagramManagerProvider } from 'theia-sprotty/lib'
 import { YangDiagramManager } from '../yangdiagram/yang-diagram-manager'
 import { FrontendApplicationContribution, OpenHandler } from '@theia/core/lib/browser'
 import { configuration, monarchLanguage } from './yang-monaco-language'
 import { YangCommandContribution } from './yang-commands'
 import { MonacoEditorProvider } from '@theia/monaco/lib/browser/monaco-editor-provider'
-import { YangMonacoEditorProvider } from "../monaco/yang-monaco-editor-provider";
-import 'sprotty/css/sprotty.css';
-import '../../../src/frontend/css/page.css';
-import '../../../src/frontend/css/theia.css';
-import '../../../src/frontend/css/diagram.css';
-import { ContextMenuCommands } from './dynamic-commands';
+import { YangMonacoEditorProvider } from "../monaco/yang-monaco-editor-provider"
+import 'sprotty/css/sprotty.css'
+import 'theia-sprotty/css/theia-sprotty.css'
+import 'yang-sprotty/css/diagram.css'
+import { ContextMenuCommands } from './dynamic-commands'
 
 export default new ContainerModule((bind: interfaces.Bind, unbind: interfaces.Unbind, isBound: interfaces.IsBound, rebind: interfaces.Rebind) => {
     monaco.languages.register({

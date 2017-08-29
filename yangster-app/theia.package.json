@@ -13,6 +13,7 @@
         "@theia/preferences": "0.1.1",
         "@theia/languages": "0.1.1",
         "@theia/monaco": "0.1.1",
+        "theia-sprotty": "0.0.1",
         "theia-yang-extension": "0.0.1"
     },
     "scripts": {

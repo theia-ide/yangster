@@ -5,6 +5,7 @@
     "sprotty/client",
     "yang-sprotty",
     "theia/packages/*",
+    "theia-sprotty",
     "theia-yang-extension",
     "yangster-app",
     "yangster-app-electron"
