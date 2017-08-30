@@ -1,16 +1,23 @@
 {
   "devDependencies": {
     "colors": "^1.1.2",
+    "electron-builder": "^19.24.1",
     "lerna": "^2.0.0",
     "yo": "^2.0.0"
+  },
+  "build": {
+    "appId": "io.typefox.yangster",
+    "productName": "Yangster",
+    "directories": {
+      "app": "./yangster-app-electron",
+      "output": "../yangster-dist/"
+    }
   },
   "scripts": {
     "preinstall": "cd theia/generator-theia && yarn install && yarn run compile",
     "setup": "yarn run generate && yarn run bootstrap",
     "symlink:monaco": "mkdir -p theia/node_modules && cd theia/node_modules && ln -f -s ../../node_modules/monaco-editor-core monaco-editor-core && ln -f -s ../../node_modules/monaco-editor monaco-editor && cd ../..",
-    "generate": "node theia/scripts/generate.js && yarn generate:browser && yarn generate:electron",
-    "generate:browser": "cd yangster-app && yo theia:browser && cd ..",
-    "generate:electron": "cd yangster-app-electron && yo theia:electron && cd ..",
+    "generate": "node theia/scripts/generate.js && cd yangster-app && yo theia:browser && cd .. && cd yangster-app-electron && yo theia:electron && cd ..",
     "bootstrap": "lerna bootstrap --hoist -- --no-optional && yarn run symlink:monaco",
     "refresh": "lerna clean --yes && yarn run bootstrap",
     "clean": "lerna run clean --parallel",
@@ -19,7 +26,10 @@
     "rebuild:browser": "node theia/scripts/rebuild.js --target=browser",
     "rebuild:electron": "node theia/scripts/rebuild.js --target=electron",
     "rebuild:electron:debug": "DEBUG=electron-rebuild && yarn run rebuild:electron",
-    "update": "git submodule foreach git pull origin master"
+    "update": "git submodule foreach git pull origin master",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "dependencies": {
     "generator-theia": "file:theia/generator-theia"
