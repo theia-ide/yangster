@@ -2,208 +2,94 @@
 # yarn lockfile v1
 
 
-"@phosphor/algorithm@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@phosphor/algorithm/-/algorithm-0.1.1.tgz#e26f6a4a29bfe3c18ffdae32286986139bee29d9"
+"@phosphor/algorithm@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@phosphor/algorithm/-/algorithm-1.1.2.tgz#fd1de9104c9a7f34e92864586ddf2e7f2e7779e8"
 
-"@phosphor/collections@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@phosphor/collections/-/collections-0.1.1.tgz#f4fd0a7cfde22136327ca063ffe1d4b70c1c4518"
+"@phosphor/collections@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@phosphor/collections/-/collections-1.1.2.tgz#c4c0b8b91129905fb36a9f243f2dbbde462dab8d"
   dependencies:
-    "@phosphor/algorithm" "^0.1.1"
+    "@phosphor/algorithm" "^1.1.2"
 
-"@phosphor/commands@^0.1.4":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@phosphor/commands/-/commands-0.1.5.tgz#bb62bbe40c43c84a27676e1743a997cabf435da7"
+"@phosphor/commands@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@phosphor/commands/-/commands-1.4.0.tgz#7e236a4c015daf37a9586fde29188c3dac20162f"
   dependencies:
-    "@phosphor/algorithm" "^0.1.1"
-    "@phosphor/coreutils" "^0.1.5"
-    "@phosphor/disposable" "^0.1.1"
-    "@phosphor/domutils" "^0.1.2"
-    "@phosphor/keyboard" "^0.1.1"
-    "@phosphor/signaling" "^0.1.2"
+    "@phosphor/algorithm" "^1.1.2"
+    "@phosphor/coreutils" "^1.3.0"
+    "@phosphor/disposable" "^1.1.2"
+    "@phosphor/domutils" "^1.1.2"
+    "@phosphor/keyboard" "^1.1.2"
+    "@phosphor/signaling" "^1.2.2"
 
-"@phosphor/coreutils@^0.1.4", "@phosphor/coreutils@^0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@phosphor/coreutils/-/coreutils-0.1.5.tgz#76c1203e7c078a7deee09ba3c18c5721f216ed79"
+"@phosphor/coreutils@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@phosphor/coreutils/-/coreutils-1.3.0.tgz#63292d381c012c5ab0d0196e83ced829b7e04a42"
 
-"@phosphor/disposable@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@phosphor/disposable/-/disposable-0.1.1.tgz#145062132f93b137cbc7ea3130fa7bba963e97b7"
+"@phosphor/disposable@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@phosphor/disposable/-/disposable-1.1.2.tgz#a192dd6a2e6c69d5d09d39ecf334dab93778060e"
   dependencies:
-    "@phosphor/algorithm" "^0.1.1"
+    "@phosphor/algorithm" "^1.1.2"
 
-"@phosphor/domutils@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@phosphor/domutils/-/domutils-0.1.2.tgz#cc0be4ab6c56423bf4b34ddb944715151ef78a8a"
+"@phosphor/domutils@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@phosphor/domutils/-/domutils-1.1.2.tgz#e2efeb052f398c42b93b89e9bab26af15cc00514"
 
-"@phosphor/dragdrop@^0.1.3":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@phosphor/dragdrop/-/dragdrop-0.1.4.tgz#28068107276d292c821cf76a4c37fa49d6205b00"
+"@phosphor/dragdrop@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@phosphor/dragdrop/-/dragdrop-1.3.0.tgz#7ce6ad39d6ca216d62a56f78104d02a77ae67307"
   dependencies:
-    "@phosphor/coreutils" "^0.1.5"
-    "@phosphor/disposable" "^0.1.1"
+    "@phosphor/coreutils" "^1.3.0"
+    "@phosphor/disposable" "^1.1.2"
 
-"@phosphor/keyboard@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@phosphor/keyboard/-/keyboard-0.1.1.tgz#31226d0f0a825e0b0c9c673fadad8c3a47176d8c"
+"@phosphor/keyboard@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@phosphor/keyboard/-/keyboard-1.1.2.tgz#3e32234451764240a98e148034d5a8797422dd1f"
 
-"@phosphor/messaging@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@phosphor/messaging/-/messaging-0.1.2.tgz#7e13ef555a06db18518b39fdf9ca05312beffbc9"
+"@phosphor/messaging@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@phosphor/messaging/-/messaging-1.2.2.tgz#7d896ddd3797b94a347708ded13da5783db75c14"
   dependencies:
-    "@phosphor/algorithm" "^0.1.1"
-    "@phosphor/collections" "^0.1.1"
+    "@phosphor/algorithm" "^1.1.2"
+    "@phosphor/collections" "^1.1.2"
 
-"@phosphor/properties@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@phosphor/properties/-/properties-0.1.1.tgz#f89973b99efa9f1b4f30787387f189c0708279a3"
+"@phosphor/properties@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@phosphor/properties/-/properties-1.1.2.tgz#78cc77eff452839da02255de48e814946cc09a28"
 
-"@phosphor/signaling@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@phosphor/signaling/-/signaling-0.1.2.tgz#b99cd28b64c8e19596d50c0ffef45994672f33da"
+"@phosphor/signaling@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@phosphor/signaling/-/signaling-1.2.2.tgz#3fcf97ca88e38bfb357fe8fe6bf7513347a514a9"
   dependencies:
-    "@phosphor/algorithm" "^0.1.1"
+    "@phosphor/algorithm" "^1.1.2"
 
-"@phosphor/virtualdom@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@phosphor/virtualdom/-/virtualdom-0.1.1.tgz#dacd0216270dd4653d173608ed398b44bcd0571b"
+"@phosphor/virtualdom@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@phosphor/virtualdom/-/virtualdom-1.1.2.tgz#ce55c86eef31e5d0e26b1dc96ea32bd684458f41"
   dependencies:
-    "@phosphor/algorithm" "^0.1.1"
+    "@phosphor/algorithm" "^1.1.2"
 
-"@phosphor/widgets@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@phosphor/widgets/-/widgets-0.1.7.tgz#49c4479ff5f58176f1d068f0c8e768845c10ef47"
+"@phosphor/widgets@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@phosphor/widgets/-/widgets-1.5.0.tgz#5f998e86f5fde78d8aa44d7dc147686ca661681e"
   dependencies:
-    "@phosphor/algorithm" "^0.1.1"
-    "@phosphor/commands" "^0.1.4"
-    "@phosphor/coreutils" "^0.1.4"
-    "@phosphor/disposable" "^0.1.1"
-    "@phosphor/domutils" "^0.1.2"
-    "@phosphor/dragdrop" "^0.1.3"
-    "@phosphor/keyboard" "^0.1.1"
-    "@phosphor/messaging" "^0.1.2"
-    "@phosphor/properties" "^0.1.1"
-    "@phosphor/signaling" "^0.1.2"
-    "@phosphor/virtualdom" "^0.1.1"
+    "@phosphor/algorithm" "^1.1.2"
+    "@phosphor/commands" "^1.4.0"
+    "@phosphor/coreutils" "^1.3.0"
+    "@phosphor/disposable" "^1.1.2"
+    "@phosphor/domutils" "^1.1.2"
+    "@phosphor/dragdrop" "^1.3.0"
+    "@phosphor/keyboard" "^1.1.2"
+    "@phosphor/messaging" "^1.2.2"
+    "@phosphor/properties" "^1.1.2"
+    "@phosphor/signaling" "^1.2.2"
+    "@phosphor/virtualdom" "^1.1.2"
 
 "@sindresorhus/df@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@sindresorhus/df/-/df-1.0.1.tgz#c69b66f52f6fcdd287c807df210305dbaf78500d"
-
-"@theia/core@0.1.1", "@theia/core@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@theia/core/-/core-0.1.1.tgz#e42622d6a23c630acf09fdba2e92d0db6b5ad6a0"
-  dependencies:
-    "@phosphor/widgets" "^0.1.7"
-    "@types/body-parser" "^1.16.4"
-    "@types/bunyan" "^1.8.0"
-    "@types/express" "^4.0.36"
-    "@types/ws" "^3.0.2"
-    "@types/yargs" "^8.0.1"
-    body-parser "^1.17.2"
-    bunyan "^1.8.10"
-    electron "^1.6.11"
-    express "^4.15.3"
-    font-awesome "^4.7.0"
-    inversify "^4.2.0"
-    reconnecting-websocket "^3.0.7"
-    reflect-metadata "^0.1.10"
-    requirejs "^2.3.3"
-    vscode-uri "^1.0.1"
-    vscode-ws-jsonrpc "0.0.1-alpha.4"
-    ws "^3.0.0"
-    yargs "^8.0.2"
-
-"@theia/editor@0.1.1", "@theia/editor@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@theia/editor/-/editor-0.1.1.tgz#6240cafe68fdbf82ac296a3690053ff5b83591e0"
-  dependencies:
-    "@theia/core" "^0.1.1"
-    "@theia/preferences" "^0.1.1"
-    vscode-languageserver-types "^3.3.0"
-
-"@theia/filesystem@0.1.1", "@theia/filesystem@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@theia/filesystem/-/filesystem-0.1.1.tgz#374ce3fdfb324b5c1507e0116a3599d347335ef6"
-  dependencies:
-    "@theia/core" "^0.1.1"
-    "@theia/preferences-api" "^0.1.1"
-    "@types/chokidar" "^1.7.0"
-    "@types/fs-extra" "^3.0.3"
-    "@types/touch" "0.0.1"
-    chokidar "^1.7.0"
-    fs-extra "^3.0.1"
-    mv "^2.1.1"
-    touch "^3.1.0"
-    trash "^4.0.1"
-
-"@theia/languages@0.1.1", "@theia/languages@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@theia/languages/-/languages-0.1.1.tgz#6e53555769302ef4e4026ea5564cb365346e2a71"
-  dependencies:
-    "@theia/core" "^0.1.1"
-    vscode-base-languageclient "^0.0.1-alpha.2"
-    vscode-languageserver "^3.3.0"
-
-"@theia/monaco@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@theia/monaco/-/monaco-0.1.1.tgz#36c53c662b1d77980776f77488bd254ad964a3ab"
-  dependencies:
-    "@theia/core" "^0.1.1"
-    "@theia/editor" "^0.1.1"
-    "@theia/filesystem" "^0.1.1"
-    "@theia/languages" "^0.1.1"
-    "@theia/preferences" "^0.1.1"
-    "@theia/workspace" "^0.1.1"
-    monaco-css "^1.3.2"
-    monaco-html "^1.3.1"
-    monaco-json "^1.3.1"
-    monaco-languageclient "^0.0.1-alpha.6"
-    monaco-languages "^0.8.0"
-    monaco-typescript "^2.2.0"
-
-"@theia/navigator@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@theia/navigator/-/navigator-0.1.1.tgz#51266333a4d42d7a0e8157651be67aa631d0d3bb"
-  dependencies:
-    "@theia/core" "^0.1.1"
-    "@theia/filesystem" "^0.1.1"
-    "@theia/workspace" "^0.1.1"
-
-"@theia/preferences-api@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@theia/preferences-api/-/preferences-api-0.1.1.tgz#21389fc583a16d141c85dc701ad3efee49e6b2c1"
-  dependencies:
-    "@theia/core" "^0.1.1"
-
-"@theia/preferences@0.1.1", "@theia/preferences@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@theia/preferences/-/preferences-0.1.1.tgz#7ef2019901f4661911af1f94371d8585019d4c53"
-  dependencies:
-    "@theia/core" "^0.1.1"
-    "@theia/filesystem" "^0.1.1"
-    "@theia/preferences-api" "^0.1.1"
-    "@theia/workspace" "^0.1.1"
-    jsonc-parser "^1.0.0"
-
-"@theia/terminal@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@theia/terminal/-/terminal-0.1.1.tgz#eb2c2fc8356aa255280d5d3e6d5fdfc2a75a2f7d"
-  dependencies:
-    "@theia/core" "^0.1.1"
-    "@theia/filesystem" "^0.1.1"
-    "@theia/workspace" "^0.1.1"
-    "@types/xterm" "^2.0.3"
-    node-pty "^0.6.10"
-    xterm "^2.8.1"
-
-"@theia/workspace@0.1.1", "@theia/workspace@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@theia/workspace/-/workspace-0.1.1.tgz#52f33e283a7b4b04476d28b72c51d780954cdf1f"
-  dependencies:
-    "@theia/core" "^0.1.1"
-    "@theia/filesystem" "^0.1.1"
 
 "@types/body-parser@^1.16.4":
   version "1.16.4"
@@ -247,14 +133,27 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
-"@types/file-saver@https://registry.npmjs.org/@types/file-saver/-/file-saver-0.0.1.tgz":
+"@types/file-saver@0.0.1":
   version "0.0.1"
-  resolved "https://registry.npmjs.org/@types/file-saver/-/file-saver-0.0.1.tgz#3a3a37884b840e2c4c55770c9fa75a3e11784ef8"
+  resolved "https://registry.yarnpkg.com/@types/file-saver/-/file-saver-0.0.1.tgz#3a3a37884b840e2c4c55770c9fa75a3e11784ef8"
 
 "@types/fs-extra@^3.0.3":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-3.0.3.tgz#1d66eb670ebf657e57c0fda014df340c19d8aa0c"
   dependencies:
+    "@types/node" "*"
+
+"@types/fs-extra@^4.0.0":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-4.0.2.tgz#7b9b1bbf85962cbe029b5a83c9b530d7c75af3ba"
+  dependencies:
+    "@types/node" "*"
+
+"@types/glob@*":
+  version "5.0.32"
+  resolved "https://registry.yarnpkg.com/@types/glob/-/glob-5.0.32.tgz#aec5cfe987c72f099fdb1184452986aa506d5e8f"
+  dependencies:
+    "@types/minimatch" "*"
     "@types/node" "*"
 
 "@types/glob@^5.0.30":
@@ -264,12 +163,28 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
+"@types/handlebars@^4.0.31":
+  version "4.0.36"
+  resolved "https://registry.yarnpkg.com/@types/handlebars/-/handlebars-4.0.36.tgz#ff57c77fa1ab6713bb446534ddc4d979707a3a79"
+
+"@types/highlight.js@^9.1.8":
+  version "9.1.10"
+  resolved "https://registry.yarnpkg.com/@types/highlight.js/-/highlight.js-9.1.10.tgz#b621f809cd9573b80992b90cffc5788208e3069c"
+
 "@types/inquirer@*":
   version "0.0.35"
   resolved "https://registry.yarnpkg.com/@types/inquirer/-/inquirer-0.0.35.tgz#e054657cf2d10963823957d4d06ec244f05c65be"
   dependencies:
     "@types/rx" "*"
     "@types/through" "*"
+
+"@types/lodash@^4.14.37":
+  version "4.14.74"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.74.tgz#ac3bd8db988e7f7038e5d22bd76a7ba13f876168"
+
+"@types/marked@0.0.28":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-0.0.28.tgz#44ba754e9fa51432583e8eb30a7c4dd249b52faa"
 
 "@types/mime@*":
   version "1.3.1"
@@ -278,6 +193,10 @@
 "@types/minimatch@*":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.0.tgz#a8b68c324817169b6004b432a598478a5d8f025a"
+
+"@types/minimatch@^2.0.29":
+  version "2.0.29"
+  resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-2.0.29.tgz#5002e14f75e2d71e564281df0431c8c1b4a2a36a"
 
 "@types/mocha@^2.2.41":
   version "2.2.41"
@@ -386,6 +305,13 @@
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
 
+"@types/shelljs@^0.7.0":
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/@types/shelljs/-/shelljs-0.7.4.tgz#137b5f31306eaff4de120ffe5b9d74b297809cfc"
+  dependencies:
+    "@types/glob" "*"
+    "@types/node" "*"
+
 "@types/temp@^0.8.29":
   version "0.8.29"
   resolved "https://registry.yarnpkg.com/@types/temp/-/temp-0.8.29.tgz#c3cdc113e3c138f90e5e970d51e41b0b7f62678d"
@@ -491,6 +417,15 @@ ajv@^4.7.0, ajv@^4.9.1:
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.8.tgz#82ffb02b29e662ae53bdc20af15947706739c536"
   dependencies:
     co "^4.6.0"
+    json-stable-stringify "^1.0.1"
+
+ajv@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.2.2.tgz#47c68d69e86f5d953103b0074a9430dc63da5e39"
+  dependencies:
+    co "^4.6.0"
+    fast-deep-equal "^1.0.0"
+    json-schema-traverse "^0.3.0"
     json-stable-stringify "^1.0.1"
 
 align-text@^0.1.1, align-text@^0.1.3:
@@ -736,7 +671,7 @@ aws4@^1.2.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
-babel-code-frame@^6.11.0, babel-code-frame@^6.20.0, babel-code-frame@^6.26.0:
+babel-code-frame@^6.11.0, babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-code-frame/-/babel-code-frame-6.26.0.tgz#63fd43f7dc1e3bb7ce35947db8fe369a3f58c74b"
   dependencies:
@@ -2140,7 +2075,7 @@ diff@^2.1.2:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/diff/-/diff-2.2.3.tgz#60eafd0d28ee906e4e8ff0a52c1229521033bf99"
 
-diff@^3.0.1, diff@^3.1.0, diff@^3.2.0:
+diff@^3.1.0, diff@^3.2.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.3.0.tgz#056695150d7aa93237ca7e378ac3b1682b7963b9"
 
@@ -2346,6 +2281,10 @@ error@^7.0.2:
   dependencies:
     string-template "~0.2.1"
     xtend "~4.0.0"
+
+es6-object-assign@^1.0.3:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/es6-object-assign/-/es6-object-assign-1.1.0.tgz#c2c3582656247c39ea107cb1e6652b6f9f24523c"
 
 es6-promise@^4.0.5:
   version "4.1.1"
@@ -2570,6 +2509,10 @@ fancy-log@^1.1.0:
     chalk "^1.1.1"
     time-stamp "^1.0.0"
 
+fast-deep-equal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-1.0.0.tgz#96256a3bc975595eb36d82e9929d060d893439ff"
+
 fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
@@ -2699,12 +2642,6 @@ findup-sync@^0.4.2:
     is-glob "^2.0.1"
     micromatch "^2.3.7"
     resolve-dir "^0.1.0"
-
-findup-sync@~0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/findup-sync/-/findup-sync-0.3.0.tgz#37930aa5d816b777c03445e1966cc6790a4c0b16"
-  dependencies:
-    glob "~5.0.0"
 
 fined@^1.0.1:
   version "1.1.0"
@@ -2837,6 +2774,14 @@ fs-extra@^3.0.1:
     jsonfile "^3.0.0"
     universalify "^0.1.0"
 
+fs-extra@^4.0.0:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.1.tgz#7fc0c6c8957f983f57f306a24e5b9ddd8d0dd880"
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^3.0.0"
+    universalify "^0.1.0"
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -2911,7 +2856,7 @@ gaze@^0.5.1:
     globule "~0.1.0"
 
 "generator-theia@file:theia/generator-theia":
-  version "0.1.0"
+  version "0.1.1"
   dependencies:
     "@types/yeoman-generator" "^1.0.2"
     yeoman-generator "^1.1.1"
@@ -3094,16 +3039,6 @@ glob@~3.1.21:
     graceful-fs "~1.2.0"
     inherits "1"
     minimatch "~0.2.11"
-
-glob@~5.0.0:
-  version "5.0.15"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-5.0.15.tgz#1bc936b9e02f4a603fcc222ecf7633d30b8b93b1"
-  dependencies:
-    inflight "^1.0.4"
-    inherits "2"
-    minimatch "2 || 3"
-    once "^1.3.0"
-    path-is-absolute "^1.0.0"
 
 global-modules@^0.2.3:
   version "0.2.3"
@@ -3293,7 +3228,7 @@ handle-thing@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-1.2.5.tgz#fd7aad726bf1a5fd16dfc29b2f7a6601d27139c4"
 
-handlebars@^4.0.2, handlebars@^4.0.3:
+handlebars@^4.0.2, handlebars@^4.0.3, handlebars@^4.0.6:
   version "4.0.10"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.0.10.tgz#3d30c718b09a3d96f23ea4cc1f403c4d3ba9ff4f"
   dependencies:
@@ -3371,6 +3306,10 @@ hawk@~3.1.3:
     cryptiles "2.x.x"
     hoek "2.x.x"
     sntp "1.x.x"
+
+highlight.js@^9.0.0:
+  version "9.12.0"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -3483,6 +3422,10 @@ https-proxy-agent@^1.0.0:
     agent-base "2"
     debug "2"
     extend "3"
+
+humane-js@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/humane-js/-/humane-js-3.2.2.tgz#b762af5f8b246f3fd6f455eb131c252bd5c00a8c"
 
 humanize-string@^1.0.0:
   version "1.0.1"
@@ -4049,6 +3992,10 @@ json-loader@^0.5.4:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/json-loader/-/json-loader-0.5.7.tgz#dca14a70235ff82f0ac9a3abeb60d337a365185d"
 
+json-schema-traverse@^0.3.0:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.3.1.tgz#349a6d44c53a51de89b40805c5d5e59b417d3340"
+
 json-schema@0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/json-schema/-/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"
@@ -4468,7 +4415,7 @@ lodash@^3.3.1:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.1.0, lodash@^4.11.1, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.5.1:
+lodash@^4.0.0, lodash@^4.1.0, lodash@^4.11.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.5.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -4556,6 +4503,10 @@ map-obj@^1.0.0, map-obj@^1.0.1:
 map-stream@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/map-stream/-/map-stream-0.1.0.tgz#e56aa94c4c8055a16404a0674b78f215f7c8e194"
+
+marked@^0.3.5:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.6.tgz#b2c6c618fccece4ef86c4fc6cb8a7cbf5aeda8d7"
 
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
@@ -5243,7 +5194,7 @@ opn@4.0.2, opn@^4.0.2:
     object-assign "^4.0.1"
     pinkie-promise "^2.0.0"
 
-optimist@^0.6.1, optimist@~0.6.0:
+optimist@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
   dependencies:
@@ -5917,6 +5868,10 @@ progress-stream@^1.1.0:
     speedometer "~0.1.2"
     through2 "~0.2.3"
 
+progress@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
+
 promise-finally@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/promise-finally/-/promise-finally-3.0.0.tgz#ddd5d0f895432b1206ceb8da1275064d18e7aa23"
@@ -6299,7 +6254,7 @@ resolve-from@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-2.0.0.tgz#9480ab20e94ffa1d9e80a804c7ea147611966b57"
 
-resolve@^1.1.6, resolve@^1.1.7:
+resolve@^1.1.6, resolve@^1.1.7, resolve@^1.3.2:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.4.0.tgz#a75be01c53da25d934a98ebd0e4c4a7312f92a86"
   dependencies:
@@ -6544,13 +6499,21 @@ shell-escape@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/shell-escape/-/shell-escape-0.2.0.tgz#68fd025eb0490b4f567a027f0bf22480b5f84133"
 
-shelljs@^0.7.0, shelljs@^0.7.5:
+shelljs@^0.7.0, shelljs@^0.7.3, shelljs@^0.7.5:
   version "0.7.8"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.7.8.tgz#decbcf874b0d1e5fb72e14b164a9683048e9acb3"
   dependencies:
     glob "^7.0.0"
     interpret "^1.0.0"
     rechoir "^0.6.2"
+
+shx@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/shx/-/shx-0.2.2.tgz#0a304d020b0edf1306ad81570e80f0346df58a39"
+  dependencies:
+    es6-object-assign "^1.0.3"
+    minimist "^1.2.0"
+    shelljs "^0.7.3"
 
 sigmund@~1.0.0:
   version "1.0.1"
@@ -7335,6 +7298,10 @@ tsconfig@^6.0.0:
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
+tslib@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.7.1.tgz#bc8004164691923a79fe8378bbeb3da2017538ec"
+
 tslint-loader@^3.4.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/tslint-loader/-/tslint-loader-3.5.3.tgz#343f74122d94f356b689457d3f59f64a69ab606f"
@@ -7345,23 +7312,26 @@ tslint-loader@^3.4.3:
     rimraf "^2.4.4"
     semver "^5.3.0"
 
-tslint@^4.5.1:
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/tslint/-/tslint-4.5.1.tgz#05356871bef23a434906734006fc188336ba824b"
+tslint@^5.5.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.7.0.tgz#c25e0d0c92fa1201c2bc30e844e08e682b4f3552"
   dependencies:
-    babel-code-frame "^6.20.0"
+    babel-code-frame "^6.22.0"
     colors "^1.1.2"
-    diff "^3.0.1"
-    findup-sync "~0.3.0"
+    commander "^2.9.0"
+    diff "^3.2.0"
     glob "^7.1.1"
-    optimist "~0.6.0"
-    resolve "^1.1.7"
-    tsutils "^1.1.0"
-    update-notifier "^2.0.0"
+    minimatch "^3.0.4"
+    resolve "^1.3.2"
+    semver "^5.3.0"
+    tslib "^1.7.1"
+    tsutils "^2.8.1"
 
-tsutils@^1.1.0:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-1.9.1.tgz#b9f9ab44e55af9681831d5f28d0aeeaf5c750cb0"
+tsutils@^2.8.1:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.8.2.tgz#2c1486ba431260845b0ac6f902afd9d708a8ea6a"
+  dependencies:
+    tslib "^1.7.1"
 
 tty-browserify@0.0.0:
   version "0.0.0"
@@ -7409,9 +7379,39 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
+typedoc-default-themes@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/typedoc-default-themes/-/typedoc-default-themes-0.5.0.tgz#6dc2433e78ed8bea8e887a3acde2f31785bd6227"
+
+typedoc@^0.8:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.8.0.tgz#d7172bc6a29964f451b7609c005beadadefe2361"
+  dependencies:
+    "@types/fs-extra" "^4.0.0"
+    "@types/handlebars" "^4.0.31"
+    "@types/highlight.js" "^9.1.8"
+    "@types/lodash" "^4.14.37"
+    "@types/marked" "0.0.28"
+    "@types/minimatch" "^2.0.29"
+    "@types/shelljs" "^0.7.0"
+    fs-extra "^4.0.0"
+    handlebars "^4.0.6"
+    highlight.js "^9.0.0"
+    lodash "^4.13.1"
+    marked "^0.3.5"
+    minimatch "^3.0.0"
+    progress "^2.0.0"
+    shelljs "^0.7.0"
+    typedoc-default-themes "^0.5.0"
+    typescript "2.4.1"
+
 typescript@*, typescript@^2.1.4, typescript@^2.4.1:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.4.2.tgz#f8395f85d459276067c988aa41837a8f82870844"
+
+typescript@2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.4.1.tgz#c3ccb16ddaa0b2314de031e7e6fee89e5ba346bc"
 
 typings-core@^2.3.3:
   version "2.3.3"
@@ -7761,11 +7761,11 @@ vscode-uri@^1.0.0, vscode-uri@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/vscode-uri/-/vscode-uri-1.0.1.tgz#11a86befeac3c4aa3ec08623651a3c81a6d0bbc8"
 
-vscode-ws-jsonrpc@0.0.1-alpha.4:
-  version "0.0.1-alpha.4"
-  resolved "https://registry.yarnpkg.com/vscode-ws-jsonrpc/-/vscode-ws-jsonrpc-0.0.1-alpha.4.tgz#3c4cdc5d34e5ffa741dfb9b3596a7ddc45e519c9"
+vscode-ws-jsonrpc@0.0.1-alpha.5:
+  version "0.0.1-alpha.5"
+  resolved "https://registry.yarnpkg.com/vscode-ws-jsonrpc/-/vscode-ws-jsonrpc-0.0.1-alpha.5.tgz#1ca66667940b5b19730a6a1d6150be506a808c61"
   dependencies:
-    vscode-jsonrpc "^3.2.0"
+    vscode-jsonrpc "^3.3.0"
 
 walk@2.3.x:
   version "2.3.9"
