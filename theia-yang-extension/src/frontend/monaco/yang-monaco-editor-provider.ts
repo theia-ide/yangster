@@ -16,6 +16,8 @@ import { MonacoModelResolver } from "@theia/monaco/lib/browser/monaco-model-reso
 import { MonacoContextMenuService } from "@theia/monaco/lib/browser/monaco-context-menu";
 import { MonacoWorkspace } from "@theia/monaco/lib/browser/monaco-workspace";
 import { MonacoCommandServiceFactory } from "@theia/monaco/lib/browser/monaco-command-service";
+import { MonacoQuickOpenService } from '@theia/monaco/lib/browser/monaco-quick-open-service';
+import { QuickOpenService } from '@theia/core/lib/browser/quick-open/quick-open-service';
 
 @injectable()
 export class YangMonacoEditorProvider extends MonacoEditorProvider {
@@ -29,8 +31,9 @@ export class YangMonacoEditorProvider extends MonacoEditorProvider {
         @inject(MonacoWorkspace) protected readonly workspace: MonacoWorkspace,
         @inject(MonacoCommandServiceFactory) protected readonly commandServiceFactory: MonacoCommandServiceFactory,
         @inject(EditorPreferences) protected readonly editorPreferences: EditorPreferences,
+        @inject(QuickOpenService) protected readonly quickOpenService: MonacoQuickOpenService
     ) {
-        super(editorService, monacoModelResolver, contextMenuService, m2p, p2m, workspace, commandServiceFactory, editorPreferences);
+        super(editorService, monacoModelResolver, contextMenuService, m2p, p2m, workspace, commandServiceFactory, editorPreferences, quickOpenService);
     }
 
     protected getEditorOptions(model: MonacoEditorModel): MonacoEditor.IOptions | undefined {
