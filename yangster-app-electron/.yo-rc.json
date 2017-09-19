@@ -12,6 +12,7 @@
       "@theia/editor": "../theia/packages/editor",
       "@theia/languages": "../theia/packages/languages",
       "@theia/monaco": "../theia/packages/monaco",
+      "@theia/markers": "../theia/packages/markers",
       "theia-sprotty": "../theia-sprotty",
       "theia-yang-extension": "../theia-yang-extension"
     },

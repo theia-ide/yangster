@@ -12,7 +12,7 @@ import { MonacoEditorProvider } from "@theia/monaco/lib/browser/monaco-editor-pr
 import { MonacoEditorService } from "@theia/monaco/lib/browser/monaco-editor-service";
 import { MonacoToProtocolConverter, ProtocolToMonacoConverter } from 'monaco-languageclient';
 import { EditorPreferences } from "@theia/editor/lib/browser";
-import { MonacoModelResolver } from "@theia/monaco/lib/browser/monaco-model-resolver";
+import { MonacoTextModelService } from "@theia/monaco/lib/browser/monaco-text-model-service";
 import { MonacoContextMenuService } from "@theia/monaco/lib/browser/monaco-context-menu";
 import { MonacoWorkspace } from "@theia/monaco/lib/browser/monaco-workspace";
 import { MonacoCommandServiceFactory } from "@theia/monaco/lib/browser/monaco-command-service";
@@ -24,7 +24,7 @@ export class YangMonacoEditorProvider extends MonacoEditorProvider {
 
     constructor(
         @inject(MonacoEditorService) protected readonly editorService: MonacoEditorService,
-        @inject(MonacoModelResolver) protected readonly monacoModelResolver: MonacoModelResolver,
+        @inject(MonacoTextModelService) protected readonly monacoModelResolver: MonacoTextModelService,
         @inject(MonacoContextMenuService) protected readonly contextMenuService: MonacoContextMenuService,
         @inject(MonacoToProtocolConverter) protected readonly m2p: MonacoToProtocolConverter,
         @inject(ProtocolToMonacoConverter) protected readonly p2m: ProtocolToMonacoConverter,
