@@ -21,7 +21,6 @@ import { MonacoEditorProvider } from '@theia/monaco/lib/browser/monaco-editor-pr
 import { YangMonacoEditorProvider } from "../monaco/yang-monaco-editor-provider"
 import 'sprotty/css/sprotty.css'
 import 'theia-sprotty/css/theia-sprotty.css'
-import 'yang-sprotty/css/diagram.css'
 import { ContextMenuCommands } from './dynamic-commands'
 
 export default new ContainerModule((bind: interfaces.Bind, unbind: interfaces.Unbind, isBound: interfaces.IsBound, rebind: interfaces.Rebind) => {
