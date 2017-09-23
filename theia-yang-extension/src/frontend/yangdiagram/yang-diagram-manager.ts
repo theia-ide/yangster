@@ -5,13 +5,11 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { DiagramManagerImpl } from "theia-sprotty/lib"
 import { inject, injectable } from 'inversify'
 import { LanguageClientContribution } from '@theia/languages/lib/browser'
 import { EditorManager } from '@theia/editor/lib/browser'
 import { YangLanguageClientContribution } from '../language/yang-language-client-contribution'
-import { TheiaSprottyConnector } from 'theia-sprotty/lib'
-import { TheiaFileSaver } from "theia-sprotty/lib"
+import { TheiaSprottyConnector, TheiaFileSaver, DiagramManagerImpl, DiagramWidgetRegistry } from 'theia-sprotty/lib'
 
 @injectable()
 export class YangDiagramManager extends DiagramManagerImpl {
@@ -23,9 +21,10 @@ export class YangDiagramManager extends DiagramManagerImpl {
 
     constructor(@inject(YangLanguageClientContribution) languageClientContribution: LanguageClientContribution,
                 @inject(TheiaFileSaver) theiaFileSaver: TheiaFileSaver,
-                @inject(EditorManager) editorManager: EditorManager) {
+                @inject(EditorManager) editorManager: EditorManager,
+                @inject(DiagramWidgetRegistry) diagramWidgetRegistry: DiagramWidgetRegistry) {
         super()
-        this.diagramConnector = new TheiaSprottyConnector(languageClientContribution, theiaFileSaver, editorManager)
+        this.diagramConnector = new TheiaSprottyConnector(languageClientContribution, theiaFileSaver, editorManager, diagramWidgetRegistry)
     }
 
     get label() {
