@@ -23,10 +23,10 @@ RUN npm install -g yo
 
 RUN git clone https://github.com/TypeFox/xtext-jflex.git \
 	&& mvn -q -f ./xtext-jflex/jflex-fragment/pom.xml clean install \
-	&& git clone https://github.com/yang-tools/yang-lsp.git \
+	&& git clone https://github.com/theia-ide/yang-lsp.git \
 	&& ./yang-lsp/yang-lsp/gradlew -q -p yang-lsp/yang-lsp installDist --refresh-dependencies
 
-RUN git clone --recursive https://github.com/yang-tools/yangster.git \
+RUN git clone --recursive https://github.com/theia-ide/yangster.git \
 	&& cd yangster \
 	&& yarn install \
 	&& yarn run setup \
