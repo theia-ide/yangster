@@ -12,7 +12,7 @@ Clone and build yang-lsp.
 Requirements: Yeoman, Python 3, Java 8
 
 ```bash
-git clone --recursive https://github.com/yang-tools/yangster.git && \
+git clone --recursive https://github.com/theia-ide/yangster.git && \
 cd yangster && \
 yarn install && \
 yarn run setup && \
@@ -26,9 +26,9 @@ yarn run watch
 
 Here is the complete script that also clones yang-lsp.
 ```bash
-git clone https://github.com/yang-tools/yang-lsp.git \
+git clone https://github.com/theia-ide/yang-lsp.git \
 && ./yang-lsp/yang-lsp/gradlew -p yang-lsp/yang-lsp installDist --refresh-dependencies \
-&& git clone --recursive https://github.com/yang-tools/yangster.git \
+&& git clone --recursive https://github.com/theia-ide/yangster.git \
 && cd yangster \
 && yarn install \
 && yarn run setup \
