@@ -2,7 +2,7 @@
   "name": "theia-yang-extension",
   "version": "0.0.1",
   "description": "An extension for Theia connection language support for the Yang DSL",
-  "author": "typefox.io",
+  "author": "Project Theia",
   "license": "Apache-2.0",
   "keywords": [
     "theia-extension"
@@ -19,10 +19,11 @@
     "yang-sprotty": "0.0.1"
   },
   "scripts": {
-    "preinstall": "rm -rf ./build && mkdir build && cp -r ../../yang-lsp/yang-lsp/io.typefox.yang.diagram/build/install/yang-language-server ./build || echo 'Could not copy yang-lsp, make sure it sits next to the yangster repo, and that you executed `./gradlew installDist`.'",
-    "clean": "rimraf lib && rimraf node_modules",
+    "prepare": "yarn run clean && yarn run copy:languageserver && yarn run build",
+    "copy:languageserver": "rm -rf ./build && mkdir build && cp -r ../../yang-lsp/yang-lsp/io.typefox.yang.diagram/build/install/yang-language-server ./build || echo 'Could not copy yang-lsp, make sure it sits next to the yangster repo, and that you executed `./gradlew installDist`.'",
+    "clean": "rimraf lib",
     "lint": "tslint -c ../tslint.json --project ./tsconfig.json",
-    "build": "tsc && yarn run lint",
+    "build": "tsc && yarn lint",
     "watch": "tsc -w",
     "test": "mocha --opts ./mocha.opts"
   },
@@ -32,14 +33,12 @@
     "@types/mocha": "^2.2.41",
     "chai": "^4.1.0",
     "chai-as-promised": "^7.1.1",
-    "concurrently": "^3.5.0",
-    "electron-rebuild": "^1.5.11",
     "mocha": "^3.4.2",
     "nyc": "^11.0.3",
     "rimraf": "^2.6.1",
     "ts-node": "^3.2.0",
     "tslint": "^5.5.0",
-    "typescript": "^2.4.1"
+    "typescript": "^2.5.2"
   },
   "files": [
     "lib",

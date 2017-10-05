@@ -11,7 +11,7 @@ import { BaseLanguageServerContribution, IConnection, LanguageServerContribution
 import { createSocketConnection } from 'vscode-ws-jsonrpc/lib/server'
 import * as net from 'net'
 
-const EXECUTABLE = './node_modules/theia-yang-extension/build/yang-language-server/bin/yang-language-server'
+const EXECUTABLE = '../node_modules/theia-yang-extension/build/yang-language-server/bin/yang-language-server'
 
 function getPort(): number|undefined {
     let arg = process.argv.filter(arg => arg.startsWith("--YANG_LSP="))[0]

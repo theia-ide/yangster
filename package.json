@@ -1,27 +1,51 @@
 {
-  "devDependencies": {
-    "colors": "^1.1.2",
-    "lerna": "^2.0.0",
-    "yo": "^2.0.0"
-  },
+  "private": true,
   "scripts": {
-    "preinstall": "cd theia/generator-theia && yarn install && yarn run compile",
-    "setup": "yarn run generate && yarn run bootstrap",
+    "prepare": "yarn run symlink:monaco && lerna run prepare",
     "symlink:monaco": "mkdir -p theia/node_modules && cd theia/node_modules && ln -f -s ../../node_modules/monaco-editor-core monaco-editor-core && ln -f -s ../../node_modules/monaco-editor monaco-editor && cd ../..",
-    "generate": "node theia/scripts/generate.js && yarn generate:browser && yarn generate:electron",
-    "generate:browser": "cd yangster-app && yo theia:browser && cd ..",
-    "generate:electron": "cd yangster-app-electron && yo theia:electron && cd ..",
-    "bootstrap": "lerna bootstrap --hoist -- --no-optional && yarn run symlink:monaco",
-    "refresh": "lerna clean --yes && yarn run bootstrap",
-    "clean": "lerna run clean --parallel",
-    "build": "lerna run build --stream",
-    "watch": "lerna run watch --parallel",
-    "rebuild:browser": "node theia/scripts/rebuild.js --target=browser",
-    "rebuild:electron": "node theia/scripts/rebuild.js --target=electron",
-    "rebuild:electron:debug": "DEBUG=electron-rebuild && yarn run rebuild:electron",
-    "update": "git submodule foreach git pull origin master"
+    "rebuild:browser": "theia rebuild --target=browser",
+    "rebuild:electron": "theia rebuild --target=electron"
   },
-  "dependencies": {
-    "generator-theia": "file:theia/generator-theia"
-  }
+    "devDependencies": {
+    "@types/chai": "^4.0.1",
+    "@types/chai-as-promised": "0.0.31",
+    "@types/mocha": "^2.2.41",
+    "@types/sinon": "^2.3.5",
+    "@types/temp": "^0.8.29",
+    "@types/webdriverio": "^4.7.0",
+    "chai": "^4.1.0",
+    "chai-as-promised": "^7.1.1",
+    "concurrently": "^3.5.0",
+    "electron-mocha": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "istanbul-instrumenter-loader": "^3.0.0",
+    "lerna": "^2.3.1",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.3",
+    "remap-istanbul": "^0.9.5",
+    "rimraf": "^2.6.1",
+    "selenium-standalone": "^6.2.0",
+    "sinon": "^3.3.0",
+    "temp": "^0.8.3",
+    "ts-node": "^3.2.0",
+    "tslint": "^5.7.0",
+    "typedoc": "^0.8",
+    "typescript": "^2.5.2",
+    "uuid": "^3.1.0",
+    "wdio-mocha-framework": "^0.5.9",
+    "wdio-phantomjs-service": "^0.2.2",
+    "wdio-selenium-standalone-service": "0.0.8",
+    "wdio-spec-reporter": "^0.1.0",
+    "webdriverio": "^4.6.2"
+  },
+  "workspaces": [
+    "theia/dev-packages/*",
+    "theia/packages/*",
+    "sprotty/client",
+    "theia-sprotty",
+    "yang-sprotty",
+    "theia-yang-extension",
+    "yangster-app",
+    "yangster-app-electron"
+  ]
 }

@@ -1,14 +1,11 @@
 {
-  "lerna": "2.0.0",
+  "lerna": "2.3.1",
+  "version": "independent",
+  "useWorkspaces": true,
   "npmClient": "yarn",
-  "packages": [
-    "sprotty/client",
-    "yang-sprotty",
-    "theia/packages/*",
-    "theia-sprotty",
-    "theia-yang-extension",
-    "yangster-app",
-    "yangster-app-electron"
-  ],
-  "version": "independent"
+  "command": {
+    "run": {
+      "stream": true
+    }
+  }
 }
