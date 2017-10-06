@@ -6,9 +6,7 @@ bin
 lib
 .DS_Store
 yang-server.log
-yangster-app/package.json
 yangster-app/webpack.config.js
 src-gen
 lerna-debug.log
-yangster-app-electron/package.json
 yangster-app-electron/webpack.config.js

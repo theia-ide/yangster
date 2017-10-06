@@ -1,0 +1,30 @@
+{
+    "private": true,
+    "name": "yangster-app-eclectron",
+    "version": "0.0.1",
+    "license": "Apache-2.0",
+    "dependencies": {
+      "@theia/core": "0.1.1",
+      "@theia/filesystem": "0.1.1",
+      "@theia/workspace": "0.1.1",
+      "@theia/preferences": "0.1.1",
+      "@theia/navigator": "0.1.1",
+      "@theia/process": "0.1.1",
+      "@theia/terminal": "0.1.1",
+      "@theia/editor": "0.1.1",
+      "@theia/languages": "0.1.1",
+      "@theia/monaco": "0.1.1",
+      "@theia/typescript": "0.1.1",
+      "@theia/markers": "0.1.1",
+      "theia-sprotty": "0.0.1",
+      "theia-yang-extension": "0.0.1"
+  },
+    "devDependencies": {
+      "@theia/cli": "0.1.1"
+    },
+    "scripts": {
+        "prepare": "theia generate --target=electron && theia build",
+        "start": "theia electron --root-dir=../workspace",
+        "watch": "theia build --watch"
+    }
+}
