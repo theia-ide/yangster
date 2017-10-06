@@ -28,7 +28,7 @@ git clone https://github.com/theia-ide/yang-lsp.git \
 && ./yang-lsp/yang-lsp/gradlew -p yang-lsp/yang-lsp installDist --refresh-dependencies \
 && git clone --recursive https://github.com/theia-ide/yangster.git \
 && cd yangster \
-&& yarn 
+&& yarn \
 && cd yangster-app \
 && yarn run start
 ```
