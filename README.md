@@ -30,7 +30,7 @@ git clone https://github.com/theia-ide/yang-lsp.git \
 && cd yangster \
 && yarn \
 && cd yangster-app \
-&& yarn run start
+&& yarn start
 ```
 
 ## Run Yangster
@@ -38,15 +38,17 @@ git clone https://github.com/theia-ide/yang-lsp.git \
 The browser version:
 Run 
 ```bash
+yarn rebuild:browser && \
 cd yangster-app && \
-yarn run start
+yarn start
 ```
 Then point your browser to `http://localhost:3000`.
 
 The Electron version:
 ```bash
-cd yangster-app && \
-yarn run start
+yarn rebuild:electron && \
+cd yangster-app-electron && \
+yarn start
 ```
 
 ## Connecting the LSP through a Socket
