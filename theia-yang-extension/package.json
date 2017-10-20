@@ -14,7 +14,7 @@
     "@theia/filesystem": "0.1.1",
     "@theia/editor": "0.1.1",
     "@types/node": "^8.0.14",
-    "sprotty": "0.1.2",
+    "sprotty": "0.3.0",
     "theia-sprotty": "0.1.0",
     "yang-sprotty": "0.1.0"
   },
