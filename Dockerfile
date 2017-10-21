@@ -1,4 +1,4 @@
-FROM node:7.10
+FROM node:8.7
 MAINTAINER "TypeFox"
 
 LABEL name="yangster"
@@ -10,27 +10,19 @@ RUN echo 'deb http://httpredir.debian.org/debian/ jessie-backports main' >> /etc
   openjdk-8-jre-headless \
   ca-certificates-java \
   openjdk-8-jdk \
-  maven \
+  unzip \
   && update-java-alternatives -s java-1.8.0-openjdk-amd64
 
+RUN npm install -g yarn@1.0.2
 
 # yeoman issue 282
 RUN chmod -R 777 /usr/local && useradd -ms /bin/bash yangster
 USER yangster
 WORKDIR /home/yangster
 
-RUN npm install -g yo
-
-RUN git clone https://github.com/TypeFox/xtext-jflex.git \
-	&& mvn -q -f ./xtext-jflex/jflex-fragment/pom.xml clean install \
-	&& git clone https://github.com/theia-ide/yang-lsp.git \
-	&& ./yang-lsp/yang-lsp/gradlew -q -p yang-lsp/yang-lsp installDist --refresh-dependencies
-
-RUN git clone --recursive https://github.com/theia-ide/yangster.git \
-	&& cd yangster \
-	&& yarn install \
-	&& yarn run setup \
-	&& yarn run build
+RUN git clone --recursive https://github.com/theia-ide/yangster.git && \
+  cd yangster && \
+  yarn 
 	
 EXPOSE 3000
-CMD cd yangster/yangster-app && yarn run start
+CMD cd yangster/yangster-app && yarn start
