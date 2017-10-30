@@ -39,8 +39,6 @@
     "webdriverio": "^4.6.2"
   },
   "workspaces": [
-    "theia/dev-packages/*",
-    "theia/packages/*",
     "sprotty/client",
     "theia-sprotty",
     "yang-sprotty",

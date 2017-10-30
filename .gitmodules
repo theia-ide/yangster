@@ -1,6 +1,3 @@
-[submodule "theia"]
-	path = theia
-	url = https://github.com/theia-ide/theia.git
 [submodule "sprotty"]
 	path = sprotty
 	url = https://github.com/theia-ide/sprotty.git
