@@ -9,12 +9,12 @@
   ],
   "dependencies": {
     "@theia/core": "next",
-    "@theia/monaco": "next",
-    "@theia/languages": "next",
-    "@theia/filesystem": "next",
     "@theia/editor": "next",
+    "@theia/filesystem": "next",
+    "@theia/languages": "next",
+    "@theia/monaco": "next",
     "@types/node": "^8.0.14",
-    "sprotty": "0.3.0",
+    "sprotty": "0.2.0",
     "theia-sprotty": "0.1.0",
     "yang-sprotty": "0.1.0"
   },
@@ -46,7 +46,8 @@
     "src",
     "build"
   ],
-  "theiaExtensions": [{
+  "theiaExtensions": [
+    {
       "frontend": "lib/frontend/language/frontend-extension",
       "backend": "lib/backend/backend-extension"
     }

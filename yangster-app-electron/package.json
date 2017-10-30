@@ -5,17 +5,17 @@
     "license": "Apache-2.0",
     "dependencies": {
         "@theia/core": "next",
+        "@theia/editor": "next",
         "@theia/filesystem": "next",
-        "@theia/workspace": "next",
-        "@theia/preferences": "next",
+        "@theia/languages": "next",
+        "@theia/markers": "next",
+        "@theia/monaco": "next",
         "@theia/navigator": "next",
+        "@theia/preferences": "next",
         "@theia/process": "next",
         "@theia/terminal": "next",
-        "@theia/editor": "next",
-        "@theia/languages": "next",
-        "@theia/monaco": "next",
         "@theia/typescript": "next",
-        "@theia/markers": "next",
+        "@theia/workspace": "next",
         "theia-yang-extension": "0.1.0"
     },
     "devDependencies": {
