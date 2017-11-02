@@ -6,20 +6,21 @@
  */
 
 import { join, resolve } from 'path'
-import { injectable, ContainerModule } from "inversify"
-import { BaseLanguageServerContribution, IConnection, LanguageServerContribution } from "@theia/languages/lib/node"
-
+import { injectable, ContainerModule } from 'inversify'
+import { BaseLanguageServerContribution, IConnection, LanguageServerContribution } from '@theia/languages/lib/node'
+import { isWindows } from '@theia/core/lib/common/os'
 import { createSocketConnection } from 'vscode-ws-jsonrpc/lib/server'
 import * as net from 'net'
 
-const EXECUTABLE_PATH = resolve(join(__dirname, '..', '..', 'build', 'yang-language-server', 'bin', 'yang-language-server'))
+const EXECUTABLE_NAME = isWindows ? 'yang-language-server.bat' : 'yang-language-server'
+const EXECUTABLE_PATH = resolve(join(__dirname, '..', '..', 'build', 'yang-language-server', 'bin', EXECUTABLE_NAME))
 
 function getPort(): number | undefined {
-    let arg = process.argv.filter(arg => arg.startsWith("--YANG_LSP="))[0]
+    let arg = process.argv.filter(arg => arg.startsWith('--YANG_LSP='))[0]
     if (!arg) {
         return undefined
     } else {
-        return Number.parseInt(arg.substring("--YANG_LSP=".length))
+        return Number.parseInt(arg.substring('--YANG_LSP='.length))
     }
 }
 
