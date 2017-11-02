@@ -17,6 +17,36 @@
                 "${workspaceRoot}/node_modules/electron-rebuild/**/*.js",
                 "${workspaceRoot}/theia/scripts/rebuild.js"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Electron",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            "windows": {
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+            },
+            "program": "${workspaceRoot}/yangster-app-electron/src-gen/frontend/electron-main.js",
+            "protocol": "inspector",
+            "args": [
+                "--loglevel=debug",
+                "--hostname=localhost",
+                "--no-cluster",
+                "--app-project-path=${workspaceRoot}",
+                "--no-app-auto-install"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "sourceMaps": true,
+            "outFiles": [
+                "${workspaceRoot}/yangster-app-electron/src-gen/frontend/electron-main.js",
+                "${workspaceRoot}/yangster-app-electron/src-gen/backend/main.js",
+                "${workspaceRoot}/yangster-app-electron/lib/**/*.js"
+            ],
+            "smartStep": true,
+            "internalConsoleOptions": "openOnSessionStart",
+            "outputCapture": "std"
         }
     ]
 }
