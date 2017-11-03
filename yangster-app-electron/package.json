@@ -4,22 +4,22 @@
     "version": "0.1.2",
     "license": "Apache-2.0",
     "dependencies": {
-        "@theia/core": "next",
-        "@theia/editor": "next",
-        "@theia/filesystem": "next",
-        "@theia/languages": "next",
-        "@theia/markers": "next",
-        "@theia/monaco": "next",
-        "@theia/navigator": "next",
-        "@theia/preferences": "next",
-        "@theia/process": "next",
-        "@theia/terminal": "next",
-        "@theia/typescript": "next",
-        "@theia/workspace": "next",
+        "@theia/core": "latest",
+        "@theia/editor": "latest",
+        "@theia/filesystem": "latest",
+        "@theia/languages": "latest",
+        "@theia/markers": "latest",
+        "@theia/monaco": "latest",
+        "@theia/navigator": "latest",
+        "@theia/preferences": "latest",
+        "@theia/process": "latest",
+        "@theia/terminal": "latest",
+        "@theia/typescript": "latest",
+        "@theia/workspace": "latest",
         "theia-yang-extension": "0.1.2"
     },
     "devDependencies": {
-        "@theia/cli": "next"
+        "@theia/cli": "latest"
     },
     "scripts": {
         "prepare": "theia build",
