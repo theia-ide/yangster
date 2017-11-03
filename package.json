@@ -3,7 +3,9 @@
   "scripts": {
     "prepare": "lerna run prepare",
     "rebuild:browser": "theia rebuild:browser",
-    "rebuild:electron": "theia rebuild:electron"
+    "rebuild:electron": "theia rebuild:electron",
+    "publish": "lerna publish --registry=https://registry.npmjs.org/ --exact --skip-git",
+    "update": "git pull origin master && git submodule foreach git pull origin master"
   },
   "devDependencies": {
     "@types/chai": "^4.0.1",
