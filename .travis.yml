@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+    - docker
+
+install:
+    - docker build -t theia/yangster .
+    - docker run --net=host --name yangster -d -p 127.0.0.1:3000:3000 theia/yangster
+
+script:
+    - ./docker-test.sh
