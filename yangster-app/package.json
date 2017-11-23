@@ -6,6 +6,7 @@
     "dependencies": {
         "@theia/core": "latest",
         "@theia/editor": "latest",
+	"@theia/git": "latest",
         "@theia/filesystem": "latest",
         "@theia/languages": "latest",
         "@theia/markers": "latest",
