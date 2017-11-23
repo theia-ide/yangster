@@ -36,7 +36,7 @@ export class YangMonacoEditorProvider extends MonacoEditorProvider {
         super(editorService, monacoModelResolver, contextMenuService, m2p, p2m, workspace, commandServiceFactory, editorPreferences, quickOpenService);
     }
 
-    protected getEditorOptions(model: MonacoEditorModel): MonacoEditor.IOptions | undefined {
+    protected getEditorOptions(model: MonacoEditorModel): MonacoEditor.IOptions {
         const editorOptions = super.getEditorOptions(model);
         return {
             ...editorOptions,
