@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "yangster-app",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "license": "Apache-2.0",
     "dependencies": {
         "@theia/core": "latest",
@@ -17,7 +17,7 @@
         "@theia/terminal": "latest",
         "@theia/typescript": "latest",
         "@theia/workspace": "latest",
-        "theia-yang-extension": "0.1.4"
+        "theia-yang-extension": "0.1.5"
     },
     "devDependencies": {
         "@theia/cli": "latest"
