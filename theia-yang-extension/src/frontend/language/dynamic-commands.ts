@@ -1,6 +1,6 @@
 import { inject } from 'inversify';
-import { CommandRegistry, MenuModelRegistry, SelectionService, Disposable } from '@theia/core/lib/common';
-import { EDITOR_CONTEXT_MENU, TextEditorSelection } from '@theia/editor/lib/browser';
+import { CommandRegistry, MenuModelRegistry, Disposable } from '@theia/core/lib/common';
+import { EDITOR_CONTEXT_MENU, EditorManager, EditorWidget } from '@theia/editor/lib/browser';
 import { DefaultCommands } from '@theia/languages/lib/common';
 
 
@@ -9,8 +9,8 @@ import { DefaultCommands } from '@theia/languages/lib/common';
 export class ContextMenuCommands extends DefaultCommands {
 
     constructor(@inject(MenuModelRegistry) protected menuRegistry: MenuModelRegistry,
-    @inject(CommandRegistry) commandRegistry: CommandRegistry,
-    @inject(SelectionService) protected selectionProvider: SelectionService) {
+                @inject(CommandRegistry) commandRegistry: CommandRegistry,
+                @inject(EditorManager) protected editorManager: EditorManager) {
         super(commandRegistry);
     }
 
@@ -18,12 +18,12 @@ export class ContextMenuCommands extends DefaultCommands {
         const execute = callback.bind(thisArg);
         const removeCommand = this.registry.registerCommand({ id: id }, {
             execute: () => {
-                const selection = this.selectionProvider.selection
-                if (TextEditorSelection.is(selection)) {
-                    execute(selection.uri.toString())
+                const currentEditor = this.editorManager.currentEditor
+                if (this.isYangEditor(currentEditor)) {
+                    execute(currentEditor.editor.document.uri)
                 }
             },
-            isVisible: () => this.isYangEditor()
+            isVisible: () => this.isYangEditor(this.editorManager.currentEditor)
         });
         const removeMenu = this.menuRegistry.registerMenuAction(EDITOR_CONTEXT_MENU.concat("2_yang"), {
             commandId: id,
@@ -37,7 +37,10 @@ export class ContextMenuCommands extends DefaultCommands {
         }
     }
 
-    private isYangEditor(): boolean {
-        return true;
+    private isYangEditor(widget: EditorWidget | undefined): widget is EditorWidget {
+        if (widget)
+            return widget.editor.document.languageId === 'yang';
+        else
+            return false;
     }
 }
