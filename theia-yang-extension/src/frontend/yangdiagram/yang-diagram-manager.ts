@@ -10,6 +10,7 @@ import { LanguageClientContribution } from '@theia/languages/lib/browser'
 import { EditorManager } from '@theia/editor/lib/browser'
 import { YangLanguageClientContribution } from '../language/yang-language-client-contribution'
 import { TheiaSprottyConnector, TheiaFileSaver, DiagramManagerImpl, DiagramWidgetRegistry } from 'theia-sprotty/lib'
+import { ThemeManager } from './theme-manager';
 
 @injectable()
 export class YangDiagramManager extends DiagramManagerImpl {
@@ -22,10 +23,13 @@ export class YangDiagramManager extends DiagramManagerImpl {
     constructor(@inject(YangLanguageClientContribution) languageClientContribution: LanguageClientContribution,
                 @inject(TheiaFileSaver) theiaFileSaver: TheiaFileSaver,
                 @inject(EditorManager) editorManager: EditorManager,
-                @inject(DiagramWidgetRegistry) diagramWidgetRegistry: DiagramWidgetRegistry) {
+                @inject(DiagramWidgetRegistry) diagramWidgetRegistry: DiagramWidgetRegistry,
+                @inject(ThemeManager) themeManager: ThemeManager) {
         super()
+        themeManager.initialize()
         this.diagramConnector = new TheiaSprottyConnector(languageClientContribution, theiaFileSaver, editorManager, diagramWidgetRegistry)
     }
+
 
     get label() {
         return 'Yang diagram'

@@ -11,7 +11,6 @@ import { DiagramConfiguration } from "theia-sprotty/lib"
 import { TheiaDiagramServer } from "theia-sprotty/lib"
 import { TheiaKeyTool } from 'theia-sprotty/lib'
 import { createYangDiagramContainer } from 'yang-sprotty/lib'
-import 'yang-sprotty/css/dark/diagram.css'
 
 @injectable()
 export class YangDiagramConfiguration implements DiagramConfiguration {

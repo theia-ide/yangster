@@ -22,6 +22,7 @@ import { YangMonacoEditorProvider } from "../monaco/yang-monaco-editor-provider"
 import 'sprotty/css/sprotty.css'
 import 'theia-sprotty/css/theia-sprotty.css'
 import { ContextMenuCommands } from './dynamic-commands'
+import { ThemeManager } from '../yangdiagram/theme-manager';
 
 export default new ContainerModule((bind: interfaces.Bind, unbind: interfaces.Unbind, isBound: interfaces.IsBound, rebind: interfaces.Rebind) => {
     monaco.languages.register({
@@ -52,4 +53,5 @@ export default new ContainerModule((bind: interfaces.Bind, unbind: interfaces.Un
         unbind(Commands);
     bind(Commands).to(ContextMenuCommands).inSingletonScope()
     rebind(MonacoEditorProvider).to(YangMonacoEditorProvider).inSingletonScope()
+    bind(ThemeManager).toSelf().inSingletonScope()
 })
