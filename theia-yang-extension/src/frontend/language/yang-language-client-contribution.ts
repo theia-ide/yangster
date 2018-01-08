@@ -15,7 +15,8 @@ import {
     Workspace,
 } from '@theia/languages/lib/browser'
 import { DiagramManagerProvider, DiagramManager } from 'theia-sprotty/lib'
-import { KeybindingRegistry, CommandRegistry } from '@theia/core/lib/common';
+import { KeybindingRegistry, CommandRegistry, Disposable } from '@theia/core/lib/common';
+import { ContextMenuCommands } from './dynamic-commands';
 
 @injectable()
 export class YangLanguageClientContribution extends BaseLanguageClientContribution {
@@ -30,6 +31,7 @@ export class YangLanguageClientContribution extends BaseLanguageClientContributi
         @inject(DiagramManagerProvider)@named('yang-diagram') protected yangDiagramManagerProvider: DiagramManagerProvider,
         @inject(KeybindingRegistry) protected keybindingRegistry: KeybindingRegistry,
         @inject(CommandRegistry) protected commandRegistry: CommandRegistry,
+        @inject(ContextMenuCommands) protected commands: ContextMenuCommands
     ) {
         super(workspace, languages, languageClientFactory)
     }
@@ -56,5 +58,9 @@ export class YangLanguageClientContribution extends BaseLanguageClientContributi
                 })
             })
         })
+    }
+
+    registerCommand(id: string, callback: (...args: any[]) => any, thisArg?: any): Disposable {
+        return this.commands.registerCommand(id, callback, thisArg)
     }
 }

@@ -8,7 +8,6 @@
 import { ContainerModule, interfaces } from 'inversify'
 import { CommandContribution } from '@theia/core/lib/common'
 import { LanguageClientContribution } from '@theia/languages/lib/browser'
-import { Commands } from '@theia/languages/lib/common';
 import { YangLanguageClientContribution } from './yang-language-client-contribution'
 import { DiagramConfiguration } from 'theia-sprotty/lib'
 import { YangDiagramConfiguration } from '../yangdiagram/di.config'
@@ -49,9 +48,7 @@ export default new ContainerModule((bind: interfaces.Bind, unbind: interfaces.Un
     bind(YangDiagramManager).toSelf().inSingletonScope()
     bind(FrontendApplicationContribution).toDynamicValue(context => context.container.get(YangDiagramManager))
     bind(OpenHandler).toDynamicValue(context => context.container.get(YangDiagramManager))
-    if (isBound(Commands))
-        unbind(Commands);
-    bind(Commands).to(ContextMenuCommands).inSingletonScope()
+    bind(ContextMenuCommands).to(ContextMenuCommands).inSingletonScope()
     rebind(MonacoEditorProvider).to(YangMonacoEditorProvider).inSingletonScope()
     bind(ThemeManager).toSelf().inSingletonScope()
 })
