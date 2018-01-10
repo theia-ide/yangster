@@ -1,6 +1,6 @@
 {
   "name": "theia-yang-extension",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "An extension for Theia connection language support for the Yang DSL",
   "author": "Project Theia",
   "license": "Apache-2.0",
