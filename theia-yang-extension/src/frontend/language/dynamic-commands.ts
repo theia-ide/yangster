@@ -1,17 +1,12 @@
 import { inject } from 'inversify';
 import { CommandRegistry, MenuModelRegistry, Disposable } from '@theia/core/lib/common';
 import { EDITOR_CONTEXT_MENU, EditorManager, EditorWidget } from '@theia/editor/lib/browser';
-import { DefaultCommands } from '@theia/languages/lib/common';
 
-
-
-
-export class ContextMenuCommands extends DefaultCommands {
+export class ContextMenuCommands {
 
     constructor(@inject(MenuModelRegistry) protected menuRegistry: MenuModelRegistry,
-                @inject(CommandRegistry) commandRegistry: CommandRegistry,
+                @inject(CommandRegistry) protected registry: CommandRegistry,
                 @inject(EditorManager) protected editorManager: EditorManager) {
-        super(commandRegistry);
     }
 
     registerCommand(id: string, callback: (...args: any[]) => any, thisArg?: any): Disposable {

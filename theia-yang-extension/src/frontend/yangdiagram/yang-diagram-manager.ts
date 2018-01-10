@@ -18,7 +18,7 @@ export class YangDiagramManager extends DiagramManagerImpl {
     readonly diagramType = 'yang-diagram'
     readonly iconClass = 'fa fa-microchip'
 
-    readonly diagramConnector: TheiaSprottyConnector
+    _diagramConnector: TheiaSprottyConnector
 
     constructor(@inject(YangLanguageClientContribution) languageClientContribution: LanguageClientContribution,
                 @inject(TheiaFileSaver) theiaFileSaver: TheiaFileSaver,
@@ -27,9 +27,12 @@ export class YangDiagramManager extends DiagramManagerImpl {
                 @inject(ThemeManager) themeManager: ThemeManager) {
         super()
         themeManager.initialize()
-        this.diagramConnector = new TheiaSprottyConnector(languageClientContribution, theiaFileSaver, editorManager, diagramWidgetRegistry)
+        this._diagramConnector = new TheiaSprottyConnector(languageClientContribution, theiaFileSaver, editorManager, diagramWidgetRegistry)
     }
 
+    get diagramConnector() {
+        return this._diagramConnector
+    }
 
     get label() {
         return 'Yang diagram'
