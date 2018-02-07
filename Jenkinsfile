@@ -4,6 +4,9 @@ node {
 		properties([
 			[$class: 'BuildDiscarderProperty', strategy: [$class: 'LogRotator', numToKeepStr: '15']]
 		])
+		environment {
+			NPM_AUTH_TOKEN = credentials('NPM_AUTH_TOKEN')
+		}
 		
 		stage 'Checkout' 
 		checkout scm
@@ -16,6 +19,7 @@ node {
 		sh 'yarn'
 		
 		stage 'Publish build results'
+		sh echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" > ~/.npmrc 
 		sh 'yarn publish:next'
 
 		if (currentBuild.result == 'UNSTABLE') {
