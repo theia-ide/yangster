@@ -13,10 +13,8 @@ node {
 		sh 'ls -la'
 		sh 'yarn'
 		
-		stage 'Publish build results' {
-			environment {
-				NPM_AUTH_TOKEN = credentials('NPM_AUTH_TOKEN')
-			}
+		stage 'Publish build results' 
+		withCredentials([string(credentialsId: 'NPM_AUTH_TOKEN', variable: 'NPM_AUTH_TOKEN')]) {
 			sh "echo //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN > ~/.npmrc"
 			sh 'yarn publish:next'
 		}
