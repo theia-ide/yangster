@@ -8,11 +8,11 @@
     "theia-extension"
   ],
   "dependencies": {
-    "@theia/core": "latest",
-    "@theia/editor": "latest",
-    "@theia/filesystem": "latest",
-    "@theia/languages": "latest",
-    "@theia/monaco": "latest",
+    "@theia/core": "next",
+    "@theia/editor": "next",
+    "@theia/filesystem": "next",
+    "@theia/languages": "next",
+    "@theia/monaco": "next",
     "@types/node": "^8.0.14",
     "sprotty": "0.2.1",
     "theia-sprotty": "0.1.10",
