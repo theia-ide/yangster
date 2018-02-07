@@ -11,14 +11,12 @@ node {
 		
 		
 		stage 'Build the YANGSTER app' 
-		dir ('diagram') {
-			sh 'yarn config set workspaces-experimental true'
-			sh 'ls -la'
-			sh 'yarn'
-		}
+		sh 'yarn config set workspaces-experimental true'
+		sh 'ls -la'
+		sh 'yarn'
 		
-		// stage 'Archive build results'
-		// archiveArtifacts artifacts: '**/target/**', fingerprint: true
+		stage 'Publish build results'
+		sh 'yarn publish:next'
 
 		if (currentBuild.result == 'UNSTABLE') {
 			slackSend color: 'warning', message: "Build Unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"

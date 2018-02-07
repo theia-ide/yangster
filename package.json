@@ -4,7 +4,8 @@
     "prepare": "lerna run prepare",
     "rebuild:browser": "theia rebuild:browser",
     "rebuild:electron": "theia rebuild:electron",
-    "publish": "lerna publish --registry=https://registry.npmjs.org/ --exact --skip-git",
+    "publish:latest": "lerna publish --registry=https://registry.npmjs.org/ --exact --skip-git",
+    "publish:next": "lerna publish --registry=https://registry.npmjs.org/ --exact --canary=next --npm-tag=next --force-publish --skip-git --yes",
     "update": "git pull origin master && git submodule foreach git pull origin master"
   },
   "devDependencies": {
