@@ -17,7 +17,7 @@ node {
 		sh 'yarn'
 		
 		stage 'Publish build results'
-		sh "echo //registry.npmjs.org/:_authToken=${env.NPM_AUTH_TOKEN} > ~/.npmrc"
+		sh "echo //registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN} > ~/.npmrc"
 		sh 'yarn publish:next'
 
 		if (currentBuild.result == 'UNSTABLE') {
