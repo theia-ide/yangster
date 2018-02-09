@@ -36,8 +36,8 @@ export class YangMonacoEditorProvider extends MonacoEditorProvider {
         super(editorService, monacoModelResolver, contextMenuService, m2p, p2m, workspace, commandServiceFactory, editorPreferences, quickOpenService);
     }
 
-    protected getEditorOptions(model: MonacoEditorModel): MonacoEditor.IOptions {
-        const editorOptions = super.getEditorOptions(model);
+    protected createMonacoEditorOptions(model: MonacoEditorModel): MonacoEditor.IOptions {
+        const editorOptions = super.createMonacoEditorOptions(model);
         return {
             ...editorOptions,
             snippetSuggestions: 'inline'
