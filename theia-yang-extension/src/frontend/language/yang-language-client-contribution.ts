@@ -6,7 +6,7 @@
  */
 
 import { inject, injectable, named } from 'inversify'
-import { FrontendApplication } from '@theia/core/lib/browser'
+import { FrontendApplication, KeybindingRegistry } from '@theia/core/lib/browser'
 import URI from '@theia/core/lib/common/uri'
 import {
     BaseLanguageClientContribution,
@@ -15,7 +15,7 @@ import {
     Workspace,
 } from '@theia/languages/lib/browser'
 import { DiagramManagerProvider, DiagramManager } from 'theia-sprotty/lib'
-import { KeybindingRegistry, CommandRegistry, Disposable } from '@theia/core/lib/common';
+import { CommandRegistry, Disposable } from '@theia/core/lib/common';
 import { ContextMenuCommands } from './dynamic-commands';
 
 @injectable()
