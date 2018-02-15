@@ -60,3 +60,23 @@ yarn run start:backend:socket
 ```
 
 It will try to connect to the yang-lsp server that you now need to start from within Eclipse by launching `RunSocketServer`.
+
+# Publishing Yangster
+
+Each change on master triggers a build on [Jenkins](http://services.typefox.io/open-source/jenkins/job/yangster/) against Theia `next`.
+The resulting package is automatically published to [npm](http://www.npmjs.org) with the `next` tag.
+
+For a release (or when Theia releases a new major), we have to build against Theia `latest`. 
+To achieve that
+
+	rm yarn.lock               # make sure to re-install deps
+	sh theia-version.sh latest # set all dependencies to Theia to 'latest'
+	yarn                       # rebuild (don't forget!)
+	yarn run publish:latest    # publish
+	rm yarn.lock               # make sure to re-install deps
+	sh theia-version.sh next   # reset Theia dependencies to 'next'
+	yarn                       # make sure yarn-lock is reset to 'next'
+	git add -A
+	git commit -m 'Bumped version number'
+
+	
