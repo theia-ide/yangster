@@ -9,7 +9,7 @@ Clone and build yang-lsp.
 
 ## Clone and Build Yangster
 
-Requirements: Python 2, Java 8, node 8, yarn 1.0.2
+Requirements: Python 2.x, Java 8.x, node 8.x, yarn >1.0.2, a C++ compiler, curl, unzip.
 
 ```bash
 git clone --recursive https://github.com/theia-ide/yangster.git && \
@@ -32,6 +32,16 @@ git clone https://github.com/theia-ide/yang-lsp.git \
 && cd yangster-app \
 && yarn start
 ```
+
+### Build on Windows
+
+If you build on Windows, we recommend to install windows build tools, which includes Python and th VS C++ compiler.
+
+```bash
+npm install --global --production windows-build-tools
+```
+
+UNIX like shells like [git-bash](https://gitforwindows.org/) or [Cygwin](https://www.cygwin.com/)  alsoe include `curl` and `unzip` as command line tools.
 
 ## Run Yangster
 
