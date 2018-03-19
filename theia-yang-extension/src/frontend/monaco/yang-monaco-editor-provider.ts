@@ -18,7 +18,7 @@ import { MonacoWorkspace } from "@theia/monaco/lib/browser/monaco-workspace";
 import { MonacoCommandServiceFactory } from "@theia/monaco/lib/browser/monaco-command-service";
 import { MonacoQuickOpenService } from '@theia/monaco/lib/browser/monaco-quick-open-service';
 import { QuickOpenService } from '@theia/core/lib/browser/quick-open/quick-open-service';
-import { MonacoDiffNavigatorFactory } from '@theia/monaco/lib/browser/monaco-diff-nagivator-factory';
+import { MonacoDiffNavigatorFactory } from '@theia/monaco/lib/browser/monaco-diff-navigator-factory';
 
 @injectable()
 export class YangMonacoEditorProvider extends MonacoEditorProvider {
