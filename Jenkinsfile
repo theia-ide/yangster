@@ -13,12 +13,14 @@ node {
 		sh 'ls -la'
 		sh 'yarn'
 		
-		stage 'Publish build results' 
-		withCredentials([string(credentialsId: 'NPM_AUTH_TOKEN', variable: 'NPM_AUTH_TOKEN')]) {
-			sh "echo //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN > ~/.npmrc"
-			sh 'yarn publish:next'
+		if(env.BRANCH_NAME == 'master') {
+			stage 'Publish build results' 
+			withCredentials([string(credentialsId: 'NPM_AUTH_TOKEN', variable: 'NPM_AUTH_TOKEN')]) {
+				sh "echo //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN > ~/.npmrc"
+				sh 'yarn publish:next'
+			}
 		}
-
+		
 		if (currentBuild.result == 'UNSTABLE') {
 			slackSend color: 'warning', message: "Build Unstable - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
 //		} else {
