@@ -11,3 +11,4 @@ src-gen
 lerna-debug.log
 yangster-app-electron/webpack.config.js
 yang-language-server.zip
+**/*.log
