@@ -1,6 +1,6 @@
 {
   "name": "theia-yang-extension",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "An extension for Theia connection language support for the Yang DSL",
   "author": "Project Theia",
   "license": "Apache-2.0",
@@ -15,7 +15,7 @@
     "@theia/monaco": "next",
     "@types/node": "^8.0.14",
     "sprotty": "0.3.0",
-    "theia-sprotty": "0.1.14",
+    "theia-sprotty": "0.1.15",
     "yang-sprotty": "0.1.5"
   },
   "scripts": {
