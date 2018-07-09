@@ -12,8 +12,10 @@ export class ThemeManager implements Disposable {
 
     initialize() {
         const themeService = ThemeService.get()
-        this.switchTheme(undefined, themeService.getCurrentTheme())
-        this.disposable = themeService.onThemeChange(event => this.switchTheme(event.oldTheme, event.newTheme))
+        if (themeService instanceof ThemeService) {
+            this.switchTheme(undefined, themeService.getCurrentTheme())
+            this.disposable = themeService.onThemeChange(event => this.switchTheme(event.oldTheme, event.newTheme))
+        }
     }
 
     private switchTheme(oldTheme: Theme | undefined , newTheme: Theme): void {

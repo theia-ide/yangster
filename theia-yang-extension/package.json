@@ -14,7 +14,7 @@
     "@theia/languages": "next",
     "@theia/monaco": "next",
     "@types/node": "^8.0.14",
-    "sprotty": "0.3.0",
+    "sprotty": "^0.4.0",
     "theia-sprotty": "0.1.15",
     "yang-sprotty": "0.1.5"
   },

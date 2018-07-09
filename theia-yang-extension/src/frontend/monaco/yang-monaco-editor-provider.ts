@@ -11,13 +11,12 @@ import { MonacoEditorModel } from '@theia/monaco/lib/browser/monaco-editor-model
 import { MonacoEditorProvider } from "@theia/monaco/lib/browser/monaco-editor-provider";
 import { MonacoEditorService } from "@theia/monaco/lib/browser/monaco-editor-service";
 import { MonacoToProtocolConverter, ProtocolToMonacoConverter } from 'monaco-languageclient';
-import { EditorPreferences, EditorDecorationsService } from "@theia/editor/lib/browser";
+import { EditorPreferences } from "@theia/editor/lib/browser";
 import { MonacoTextModelService } from "@theia/monaco/lib/browser/monaco-text-model-service";
 import { MonacoContextMenuService } from "@theia/monaco/lib/browser/monaco-context-menu";
 import { MonacoWorkspace } from "@theia/monaco/lib/browser/monaco-workspace";
 import { MonacoCommandServiceFactory } from "@theia/monaco/lib/browser/monaco-command-service";
 import { MonacoQuickOpenService } from '@theia/monaco/lib/browser/monaco-quick-open-service';
-import { QuickOpenService } from '@theia/core/lib/browser/quick-open/quick-open-service';
 import { MonacoDiffNavigatorFactory } from '@theia/monaco/lib/browser/monaco-diff-navigator-factory';
 
 @injectable()
@@ -32,12 +31,11 @@ export class YangMonacoEditorProvider extends MonacoEditorProvider {
         @inject(MonacoWorkspace) protected readonly workspace: MonacoWorkspace,
         @inject(MonacoCommandServiceFactory) protected readonly commandServiceFactory: MonacoCommandServiceFactory,
         @inject(EditorPreferences) protected readonly editorPreferences: EditorPreferences,
-        @inject(QuickOpenService) protected readonly quickOpenService: MonacoQuickOpenService,
-        @inject(EditorDecorationsService) protected readonly decorationsService: EditorDecorationsService,
+        @inject(MonacoQuickOpenService) protected readonly quickOpenService: MonacoQuickOpenService,
         @inject(MonacoDiffNavigatorFactory) protected readonly diffNavigatorFactory: MonacoDiffNavigatorFactory
     ) {
         super(editorService, monacoModelResolver, contextMenuService, m2p, p2m,
-            workspace, commandServiceFactory, editorPreferences, quickOpenService, decorationsService,
+            workspace, commandServiceFactory, editorPreferences, quickOpenService,
             diffNavigatorFactory);
     }
 
