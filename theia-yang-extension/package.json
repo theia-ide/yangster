@@ -22,24 +22,14 @@
     "prepare": "yarn run clean && yarn install:languageserver && yarn run build",
     "install:languageserver": "rimraf -rf ./build && mkdir build && yarn download:languageserver",
     "download:languageserver": "curl -o yang-language-server.zip http://services.typefox.io/open-source/jenkins/job/yang-lsp/job/master/lastSuccessfulBuild/artifact/yang-lsp/build/yang-language-server_diagram-extension_0.1.0-SNAPSHOT.zip && unzip yang-language-server.zip -d build/ && mv build/yang-language-server-0.1.0-SNAPSHOT build/yang-language-server",
-    "clean": "rimraf lib \"node_modules/!(rimraf|.bin)\"",
-    "lint": "tslint -c ../tslint.json --project ./tsconfig.json",
+    "clean": "rimraf lib",
+    "lint": "tslint -c ./tslint.json --project ./tsconfig.json",
     "build": "tsc && yarn lint",
-    "watch": "tsc -w",
-    "test": "mocha --opts ./mocha.opts"
+    "watch": "tsc -w"
   },
   "devDependencies": {
-    "@types/chai": "^4.0.1",
-    "@types/chai-as-promised": "0.0.31",
-    "@types/mocha": "^2.2.41",
-    "chai": "^4.1.0",
-    "chai-as-promised": "^7.1.1",
-    "mocha": "^3.4.2",
-    "nyc": "^11.0.3",
     "rimraf": "^2.6.1",
-    "ts-node": "^3.2.0",
-    "tslint": "^5.5.0",
-    "typescript": "^2.5.2"
+    "tslint": "^5.5.0"
   },
   "files": [
     "lib",
