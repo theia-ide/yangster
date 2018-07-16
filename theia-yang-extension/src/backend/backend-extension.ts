@@ -20,7 +20,7 @@ function getPort(): number | undefined {
     if (!arg) {
         return undefined
     } else {
-        return Number.parseInt(arg.substring('--YANG_LSP='.length))
+        return Number.parseInt(arg.substring('--YANG_LSP='.length), 10)
     }
 }
 
