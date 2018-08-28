@@ -1,0 +1,173 @@
+{
+    "name": "Yang",
+    "scopeName": "source.yang",
+    "fileTypes": [
+        "yang"
+    ],
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#comments-inline"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "name": "keyword.yang",
+            "match": "\\b(?<!\\-)(action|anydata|anyxml|argument|augment|base|belongs-to|bit|case|choice|config|contact|container|default|description|deviate|deviation|enum|error-app-tag|error-message|extension|feature|fraction-digits|grouping|identity|if-feature|import|include|input|key|leaf|leaf-list|length|list|mandatory|max-elements|min-elements|module|must|namespace|notification|ordered-by|organization|output|path|pattern|prefix|presence|range|reference|refine|require-instance|revision|revision-date|rpc|status|submodule|type|typedef|units|unique|uses|when|yang-version|yin-element)\\b(?!-)"
+        },
+        {
+            "name": "string.quoted.single.yang",
+            "begin": "'",
+            "end": "'"
+        }
+    ],
+    "repository": 
+        {
+            "numbers": {
+                "patterns": [
+                    {
+                        "name": "constant.numeric.hex.yang",
+                        "match": "\\b(?<!\\$)0(x|X)[0-9a-fA-F][0-9a-fA-F_]*\\b(?!\\$)"
+                    },
+                    {
+                        "name": "constant.numeric.binary.yang",
+                        "match": "\\b(?<!\\$)0(b|B)[01][01_]*\\b(?!\\$)"
+                    },
+                    {
+                        "name": "constant.numeric.octal.yang",
+                        "match": "\\b(?<!\\$)0(o|O)?[0-7][0-7_]*\\b(?!\\$)"
+                    },
+                    {
+                        "match": "(?x)\n(?<!\\$)(?:\n  (?:\\b[0-9][0-9_]*(\\.)[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*\\b)| # 1.1E+3\n  (?:\\b[0-9][0-9_]*(\\.)[eE][+-]?[0-9][0-9_]*\\b)|             # 1.E+3\n  (?:\\B(\\.)[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*\\b)|             # .1E+3\n  (?:\\b[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*\\b)|                 # 1E+3\n  (?:\\b[0-9][0-9_]*(\\.)[0-9][0-9_]*\\b)|                      # 1.1\n  (?:\\b[0-9][0-9_]*(\\.)\\B)|                                  # 1.\n  (?:\\B(\\.)[0-9][0-9_]*\\b)|                                  # .1\n  (?:\\b[0-9][0-9_]*\\b(?!\\.))                                 # 1\n)(?!\\$)",
+                        "captures": {
+                            "0": {
+                                "name": "constant.numeric.decimal.yang"
+                            },
+                            "1": {
+                                "name": "meta.delimiter.decimal.period.yang"
+                            },
+                            "2": {
+                                "name": "meta.delimiter.decimal.period.yang"
+                            },
+                            "3": {
+                                "name": "meta.delimiter.decimal.period.yang"
+                            },
+                            "4": {
+                                "name": "meta.delimiter.decimal.period.yang"
+                            },
+                            "5": {
+                                "name": "meta.delimiter.decimal.period.yang"
+                            },
+                            "6": {
+                                "name": "meta.delimiter.decimal.period.yang"
+                            }
+                        }
+                    }
+                ]
+            },
+            "strings": {
+                "patterns": [
+                    {
+                        "begin": "\"",
+                        "beginCaptures": {
+                            "0": {
+                                "name": "punctuation.definition.string.begin.yang"
+                            }
+                        },
+                        "end": "\"",
+                        "endCaptures": {
+                            "0": {
+                                "name": "punctuation.definition.string.end.yang"
+                            }
+                        },
+                        "name": "string.quoted.double.yang",
+                        "patterns": [
+                            {
+                                "match": "\\\\.",
+                                "name": "constant.character.escape.yang"
+                            }
+                        ]
+                    },
+                    {
+                        "begin": "'",
+                        "beginCaptures": {
+                            "0": {
+                                "name": "punctuation.definition.string.begin.yang"
+                            }
+                        },
+                        "end": "'",
+                        "endCaptures": {
+                            "0": {
+                                "name": "punctuation.definition.string.end.yang"
+                            }
+                        },
+                        "name": "string.quoted.single.yang",
+                        "patterns": [
+                            {
+                                "match": "\\\\.",
+                                "name": "constant.character.escape.yang"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "comments": {
+                "patterns": [
+                    {
+                        "captures": {
+                            "0": {
+                                "name": "punctuation.definition.comment.yang"
+                            }
+                        },
+                        "match": "/\\*\\*/",
+                        "name": "comment.block.empty.yang"
+                    },
+                    {
+                        "include": "#comments-inline"
+                    }
+                ]
+            },
+            "comments-inline": {
+                "patterns": [
+                    {
+                        "begin": "/\\*",
+                        "captures": {
+                            "0": {
+                                "name": "punctuation.definition.comment.yang"
+                            }
+                        },
+                        "end": "\\*/",
+                        "name": "comment.block.yang"
+                    },
+                    {
+                        "begin": "(^[ \\t]+)?(?=//)",
+                        "beginCaptures": {
+                            "1": {
+                                "name": "punctuation.whitespace.comment.leading.yang"
+                            }
+                        },
+                        "end": "(?!\\G)",
+                        "patterns": [
+                            {
+                                "begin": "//",
+                                "beginCaptures": {
+                                    "0": {
+                                        "name": "punctuation.definition.comment.yang"
+                                    }
+                                },
+                                "end": "\\n",
+                                "name": "comment.line.double-slash.yang"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    
+}

@@ -14,7 +14,7 @@ import { YangDiagramConfiguration } from '../yangdiagram/di.config'
 import { DiagramManager, DiagramManagerProvider } from 'theia-sprotty/lib'
 import { YangDiagramManager } from '../yangdiagram/yang-diagram-manager'
 import { FrontendApplicationContribution, OpenHandler } from '@theia/core/lib/browser'
-import { configuration, monarchLanguage } from './yang-monaco-language'
+import { configuration } from './yang-monaco-language'
 import { YangCommandContribution } from './yang-commands'
 import { MonacoEditorProvider } from '@theia/monaco/lib/browser/monaco-editor-provider'
 import { YangMonacoEditorProvider } from "../monaco/yang-monaco-editor-provider"
@@ -22,6 +22,8 @@ import 'sprotty/css/sprotty.css'
 import 'theia-sprotty/css/theia-sprotty.css'
 import { ContextMenuCommands } from './dynamic-commands'
 import { ThemeManager } from '../yangdiagram/theme-manager';
+import { LanguageGrammarDefinitionContribution } from '@theia/monaco/lib/browser/textmate/textmate-contribution'
+import { YangTextmateContribution } from './yang-textmate-contribution'
 
 export default new ContainerModule((bind: interfaces.Bind, unbind: interfaces.Unbind, isBound: interfaces.IsBound, rebind: interfaces.Rebind) => {
     monaco.languages.register({
@@ -32,7 +34,6 @@ export default new ContainerModule((bind: interfaces.Bind, unbind: interfaces.Un
     })
     monaco.languages.onLanguage('yang', () => {
         monaco.languages.setLanguageConfiguration('yang', configuration)
-        monaco.languages.setMonarchTokensProvider('yang', monarchLanguage)
     });
     bind(CommandContribution).to(YangCommandContribution).inSingletonScope();
     bind(YangLanguageClientContribution).toSelf().inSingletonScope()
@@ -51,4 +52,5 @@ export default new ContainerModule((bind: interfaces.Bind, unbind: interfaces.Un
     bind(ContextMenuCommands).to(ContextMenuCommands).inSingletonScope()
     rebind(MonacoEditorProvider).to(YangMonacoEditorProvider).inSingletonScope()
     bind(ThemeManager).toSelf().inSingletonScope()
+    bind(LanguageGrammarDefinitionContribution).to(YangTextmateContribution).inSingletonScope()
 })
