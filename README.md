@@ -22,17 +22,6 @@ For incremental development use
 yarn watch
 ```
 
-Here is the complete script that also clones yang-lsp:
-```bash
-git clone https://github.com/theia-ide/yang-lsp.git \
-&& ./yang-lsp/yang-lsp/gradlew -p yang-lsp/yang-lsp installDist --refresh-dependencies \
-&& git clone --recursive https://github.com/theia-ide/yangster.git \
-&& cd yangster \
-&& yarn \
-&& cd yangster-app \
-&& yarn start
-```
-
 ### Build on Windows
 
 If you build on Windows, we recommend to install windows build tools, which includes Python and th VS C++ compiler.
