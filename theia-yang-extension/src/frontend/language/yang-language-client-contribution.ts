@@ -13,9 +13,12 @@ import {
     LanguageClientFactory,
     Languages,
     Workspace,
+    ILanguageClient
 } from '@theia/languages/lib/browser'
+import { MessageConnection } from 'vscode-jsonrpc';
 import { DiagramManagerProvider, DiagramManager } from 'theia-sprotty/lib'
 import { CommandRegistry, Disposable } from '@theia/core/lib/common';
+import { SemanticHighlightingService } from '@theia/editor/lib/browser/semantic-highlight/semantic-highlighting-service';
 import { ContextMenuCommands } from './dynamic-commands';
 
 @injectable()
@@ -31,7 +34,8 @@ export class YangLanguageClientContribution extends BaseLanguageClientContributi
         @inject(DiagramManagerProvider)@named('yang-diagram') protected yangDiagramManagerProvider: DiagramManagerProvider,
         @inject(KeybindingRegistry) protected keybindingRegistry: KeybindingRegistry,
         @inject(CommandRegistry) protected commandRegistry: CommandRegistry,
-        @inject(ContextMenuCommands) protected commands: ContextMenuCommands
+        @inject(ContextMenuCommands) protected commands: ContextMenuCommands,
+        @inject(SemanticHighlightingService) protected readonly semanticHighlightingService: SemanticHighlightingService
     ) {
         super(workspace, languages, languageClientFactory)
     }
@@ -49,10 +53,16 @@ export class YangLanguageClientContribution extends BaseLanguageClientContributi
         ])
     }
 
+    createLanguageClient(connection: MessageConnection): ILanguageClient {
+        const client: ILanguageClient & Readonly<{ languageId: string }> = Object.assign(super.createLanguageClient(connection), { languageId: this.id });
+        client.registerFeature(SemanticHighlightingService.createNewFeature(this.semanticHighlightingService, client));
+        return client;
+    }
+
     protected waitForOpenDiagrams(diagramManagerProvider: Promise<DiagramManager>): Promise<any> {
         return diagramManagerProvider.then(diagramManager => {
             return new Promise<URI>((resolve) => {
-                const disposable = diagramManager.onDiagramOpened(uri => {
+                const disposable = diagramManager.onDiagramOpened((uri: URI) => {
                     disposable.dispose()
                     resolve(uri)
                 })

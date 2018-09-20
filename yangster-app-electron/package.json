@@ -6,6 +6,7 @@
     "dependencies": {
         "@theia/core": "next",
         "@theia/editor": "next",
+        "@theia/file-search": "next",
         "@theia/filesystem": "next",
         "@theia/git": "next",
         "@theia/languages": "next",
@@ -15,6 +16,7 @@
         "@theia/preferences": "next",
         "@theia/process": "next",
         "@theia/terminal": "next",
+        "@theia/search-in-workspace": "next",
         "@theia/typescript": "next",
         "@theia/workspace": "next",
         "theia-yang-extension": "0.1.21"
@@ -23,9 +25,9 @@
         "@theia/cli": "next"
     },
     "scripts": {
-        "prepare": "theia build",
+        "prepare": "theia build --mode development",
         "start": "theia start --root-dir=../workspace",
-        "watch": "theia build --watch"
+        "watch": "theia build --watch --mode development"
     },
     "theia": {
         "target": "electron"
