@@ -30,6 +30,11 @@
         "watch": "theia build --watch --mode development"
     },
     "theia": {
-        "target": "electron"
+        "target": "electron",
+        "backend": {
+            "config": {
+                "startupTimeout": -1
+            }
+        }
     }
 }
