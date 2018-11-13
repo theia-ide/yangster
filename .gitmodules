@@ -1,9 +1,3 @@
-[submodule "sprotty"]
-	path = sprotty
-	url = https://github.com/theia-ide/sprotty.git
 [submodule "yang-sprotty"]
 	path = yang-sprotty
 	url = https://github.com/theia-ide/yang-sprotty.git
-[submodule "theia-sprotty"]
-	path = theia-sprotty
-	url = https://github.com/theia-ide/theia-sprotty.git

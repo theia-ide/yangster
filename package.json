@@ -12,8 +12,6 @@
     "lerna": "^2.4.0"
   },
   "workspaces": [
-    "sprotty/client",
-    "theia-sprotty",
     "yang-sprotty",
     "theia-yang-extension",
     "yangster-app",
