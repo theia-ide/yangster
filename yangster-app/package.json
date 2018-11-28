@@ -1,28 +1,28 @@
 {
     "private": true,
     "name": "yangster-app",
-    "version": "0.1.22",
+    "version": "0.1.23",
     "license": "Apache-2.0",
     "dependencies": {
-        "@theia/core": "latest",
-        "@theia/editor": "latest",
-        "@theia/file-search": "latest",
-        "@theia/filesystem": "latest",
-        "@theia/git": "latest",
-        "@theia/languages": "latest",
-        "@theia/markers": "latest",
-        "@theia/monaco": "latest",
-        "@theia/navigator": "latest",
-        "@theia/preferences": "latest",
-        "@theia/process": "latest",
-        "@theia/search-in-workspace": "latest",
-        "@theia/terminal": "latest",
-        "@theia/typescript": "latest",
-        "@theia/workspace": "latest",
-        "theia-yang-extension": "0.1.22"
+        "@theia/core": "next",
+        "@theia/editor": "next",
+        "@theia/file-search": "next",
+        "@theia/filesystem": "next",
+        "@theia/git": "next",
+        "@theia/languages": "next",
+        "@theia/markers": "next",
+        "@theia/monaco": "next",
+        "@theia/navigator": "next",
+        "@theia/preferences": "next",
+        "@theia/process": "next",
+        "@theia/search-in-workspace": "next",
+        "@theia/terminal": "next",
+        "@theia/typescript": "next",
+        "@theia/workspace": "next",
+        "theia-yang-extension": "0.1.23"
     },
     "devDependencies": {
-        "@theia/cli": "latest"
+        "@theia/cli": "next"
     },
     "scripts": {
         "prepare": "theia build --mode development",
