@@ -71,13 +71,13 @@ The resulting package is automatically published to [npm](http://www.npmjs.org) 
 For a release (or when Theia releases a new major), we have to build against Theia `latest`.
 To achieve that
 
-	rm yarn.lock               # make sure to re-install deps
-	sh theia-version.sh latest # set all dependencies to Theia to 'latest'
-	yarn                       # rebuild (don't forget!)
-	yarn run publish:latest    # publish
-	rm yarn.lock               # make sure to re-install deps
-	sh theia-version.sh next   # reset Theia dependencies to 'next'
-	yarn                       # make sure yarn-lock is reset to 'next'
+	rm yarn.lock                 # make sure to re-install deps
+	node theia-version.js latest # set all dependencies to Theia to 'latest'
+	yarn                         # rebuild (don't forget!)
+	yarn run publish:latest      # publish
+	rm yarn.lock                 # make sure to re-install deps
+	node theia-version.sh next   # reset Theia dependencies to 'next'
+	yarn                         # make sure yarn-lock is reset to 'next'
 	git add -A
 	git commit -m 'Bumped version number'
 

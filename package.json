@@ -9,7 +9,8 @@
     "update": "git pull origin master && git submodule foreach git pull origin master"
   },
   "devDependencies": {
-    "lerna": "^2.4.0"
+    "lerna": "^2.4.0",
+    "shelljs": "^0.8.3"
   },
   "workspaces": [
     "yang-sprotty",
