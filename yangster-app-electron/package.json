@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "yangster-app-electron",
-    "version": "0.1.24",
+    "version": "0.1.25",
     "license": "Apache-2.0",
     "dependencies": {
         "@theia/core": "next",
@@ -19,7 +19,7 @@
         "@theia/terminal": "next",
         "@theia/typescript": "next",
         "@theia/workspace": "next",
-        "theia-yang-extension": "0.1.24"
+        "theia-yang-extension": "0.1.25"
     },
     "devDependencies": {
         "@theia/cli": "next"
