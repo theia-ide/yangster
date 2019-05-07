@@ -9,7 +9,7 @@ function setTheiaVersion(pkgJsonFile, version) {
 		const content = fs.readFileSync(pkgJsonFile).toString()
 		const newContent = content
 			.replace(/("@theia\/[^"]*":)\s*"(latest|next)"/g, `$1 "${version}"`)
-			.replace(/("theia-sprotty":)\s*"(latest|next)"/g, `$1 "${version}"`)
+			.replace(/("sprotty-theia":)\s*"(latest|next)"/g, `$1 "${version}"`)
 		fs.writeFileSync(pkgJsonFile, newContent)
 	}
 } 
