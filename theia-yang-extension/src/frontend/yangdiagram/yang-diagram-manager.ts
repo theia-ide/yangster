@@ -7,10 +7,11 @@
 
 import { inject, injectable } from 'inversify'
 import { EditorManager } from '@theia/editor/lib/browser'
-import { Workspace } from '@theia/languages/lib/browser';
 import { QuickPickService, WidgetManager } from '@theia/core/lib/browser';
 import { YangDiagramLanguageClient } from './yang-diagram-language-client'
 import { LSTheiaSprottyConnector, TheiaSprottyConnector, TheiaFileSaver, DiagramManager } from 'sprotty-theia/lib'
+import { MonacoWorkspace } from '@theia/monaco/lib/browser/monaco-workspace';
+import { ThemeManager } from './theme-manager';
 
 @injectable()
 export class YangDiagramManager extends DiagramManager {
@@ -24,9 +25,11 @@ export class YangDiagramManager extends DiagramManager {
                 @inject(TheiaFileSaver) fileSaver: TheiaFileSaver,
                 @inject(WidgetManager) widgetManager: WidgetManager,
                 @inject(EditorManager) editorManager: EditorManager,
-                @inject(Workspace) workspace: Workspace,
-                @inject(QuickPickService) quickPickService: QuickPickService) {
+                @inject(MonacoWorkspace) workspace: MonacoWorkspace,
+                @inject(QuickPickService) quickPickService: QuickPickService,
+                @inject(ThemeManager) themeManager: ThemeManager) {
         super()
+        themeManager.initialize();
         this._diagramConnector = new LSTheiaSprottyConnector(
             { diagramLanguageClient, fileSaver, editorManager, widgetManager, workspace, quickPickService, diagramManager: this }
         )
