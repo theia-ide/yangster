@@ -9,13 +9,9 @@
   ],
   "dependencies": {
     "@theia/core": "next",
-    "@theia/editor": "next",
-    "@theia/filesystem": "next",
-    "@theia/languages": "next",
-    "@theia/monaco": "next",
-    "@types/node": "^8.0.14",
-    "theia-sprotty": "next",
-    "yang-sprotty": "0.1.9"
+    "sprotty": "next",
+    "sprotty-theia": "next",
+    "yang-sprotty": "0.2.0"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn install:languageserver && yarn run build",

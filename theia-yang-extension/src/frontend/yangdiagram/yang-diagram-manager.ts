@@ -6,28 +6,30 @@
  */
 
 import { inject, injectable } from 'inversify'
-import { LanguageClientContribution } from '@theia/languages/lib/browser'
 import { EditorManager } from '@theia/editor/lib/browser'
-import { YangLanguageClientContribution } from '../language/yang-language-client-contribution'
-import { TheiaSprottyConnector, TheiaFileSaver, DiagramManagerImpl, DiagramWidgetRegistry } from 'theia-sprotty/lib'
-import { ThemeManager } from './theme-manager';
+import { Workspace } from '@theia/languages/lib/browser';
+import { QuickPickService, WidgetManager } from '@theia/core/lib/browser';
+import { YangDiagramLanguageClient } from './yang-diagram-language-client'
+import { LSTheiaSprottyConnector, TheiaSprottyConnector, TheiaFileSaver, DiagramManager } from 'sprotty-theia/lib'
 
 @injectable()
-export class YangDiagramManager extends DiagramManagerImpl {
+export class YangDiagramManager extends DiagramManager {
 
     readonly diagramType = 'yang-diagram'
     readonly iconClass = 'fa fa-microchip'
 
     _diagramConnector: TheiaSprottyConnector
 
-    constructor(@inject(YangLanguageClientContribution) languageClientContribution: LanguageClientContribution,
-                @inject(TheiaFileSaver) theiaFileSaver: TheiaFileSaver,
+    constructor(@inject(YangDiagramLanguageClient) diagramLanguageClient: YangDiagramLanguageClient,
+                @inject(TheiaFileSaver) fileSaver: TheiaFileSaver,
+                @inject(WidgetManager) widgetManager: WidgetManager,
                 @inject(EditorManager) editorManager: EditorManager,
-                @inject(DiagramWidgetRegistry) diagramWidgetRegistry: DiagramWidgetRegistry,
-                @inject(ThemeManager) themeManager: ThemeManager) {
+                @inject(Workspace) workspace: Workspace,
+                @inject(QuickPickService) quickPickService: QuickPickService) {
         super()
-        themeManager.initialize()
-        this._diagramConnector = new TheiaSprottyConnector(languageClientContribution, theiaFileSaver, editorManager, diagramWidgetRegistry)
+        this._diagramConnector = new LSTheiaSprottyConnector(
+            { diagramLanguageClient, fileSaver, editorManager, widgetManager, workspace, quickPickService, diagramManager: this }
+        )
     }
 
     get diagramConnector() {
