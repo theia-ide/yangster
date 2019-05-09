@@ -8,9 +8,6 @@ node {
 		stage 'Checkout' 
 		checkout scm
 		
-		stage 'Update yang-sprotty'
-		sh 'cd yang-sprotty && git log -n 1 && cat src/di.config.ts && cd ..'
-		
 		stage 'Build the YANGSTER app' 
 		sh 'yarn config set workspaces-experimental true'
 		sh 'ls -la'
