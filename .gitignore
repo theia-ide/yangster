@@ -5,7 +5,6 @@ build
 bin
 lib
 .DS_Store
-yang-server.log
 yangster-app/webpack.config.js
 src-gen
 lerna-debug.log
