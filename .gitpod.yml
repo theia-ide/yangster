@@ -2,6 +2,4 @@ ports:
 - port: 3000
 tasks:
 - init: yarn
-  command: >
-    cd yangster-app && \
-    yarn start
+  command: yarn --cwd yangster-app start
