@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "lerna": "^2.4.0",
-    "shelljs": "^0.8.3"
+    "shelljs": "^0.8.3",
+    "ncp": "^2.0.0"
   },
   "workspaces": [
     "yang-sprotty",
