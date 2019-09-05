@@ -6,8 +6,10 @@
  */
 
 import { inject, injectable, multiInject } from 'inversify'
-import { LanguageClientFactory, Languages, Workspace } from '@theia/languages/lib/browser'
+import { LanguageClientFactory, Languages, Workspace, ILanguageClient } from '@theia/languages/lib/browser'
 import { DiagramLanguageClientContribution, DiagramManagerProvider } from 'sprotty-theia/lib'
+import { MessageConnection } from 'vscode-jsonrpc';
+import { SemanticHighlightingService } from '@theia/editor/lib/browser/semantic-highlight/semantic-highlighting-service';
 
 @injectable()
 export class YangLanguageClientContribution extends DiagramLanguageClientContribution {
@@ -19,8 +21,16 @@ export class YangLanguageClientContribution extends DiagramLanguageClientContrib
         @inject(Workspace) protected readonly workspace: Workspace,
         @inject(Languages) protected readonly languages: Languages,
         @inject(LanguageClientFactory) protected readonly languageClientFactory: LanguageClientFactory,
-        @multiInject(DiagramManagerProvider) protected diagramManagerProviders: DiagramManagerProvider[]) {
+        @multiInject(DiagramManagerProvider) protected diagramManagerProviders: DiagramManagerProvider[],
+        @inject(SemanticHighlightingService) protected readonly semanticHighlightingService: SemanticHighlightingService
+        ) {
         super(workspace, languages, languageClientFactory, diagramManagerProviders)
+    }
+
+    createLanguageClient(connection: MessageConnection): ILanguageClient {
+        const client: ILanguageClient & Readonly<{ languageId: string }> = Object.assign(super.createLanguageClient(connection), { languageId: this.id });
+        client.registerFeature(SemanticHighlightingService.createNewFeature(this.semanticHighlightingService, client));
+        return client;
     }
 
     protected get globPatterns() {
