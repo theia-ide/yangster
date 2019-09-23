@@ -121,6 +121,7 @@ var MonacoSemanticHighlightingService = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.decorations = new Map();
         _this.toDisposeOnEditorClose = new Map();
+        _this.toDisposeOnUnregister = new Map();
         // laguage id -> (scope index -> decoration type)
         _this.decorationTypes = new Map();
         _this.lastDecorationTypeId = 0;
@@ -163,26 +164,61 @@ var MonacoSemanticHighlightingService = /** @class */ (function (_super) {
             finally { if (e_1) throw e_1.error; }
         }
     };
+    MonacoSemanticHighlightingService.prototype.refreshDecorationTypesForLanguage = function (languageId) {
+        var e_2, _a;
+        var decorationTypes = this.decorationTypes.get(languageId);
+        var scopes = this.scopes.get(languageId);
+        if (!decorationTypes || !scopes) {
+            this.logger.warn("No decoration types are registered for language: " + languageId);
+            return;
+        }
+        try {
+            for (var decorationTypes_2 = __values(decorationTypes), decorationTypes_2_1 = decorationTypes_2.next(); !decorationTypes_2_1.done; decorationTypes_2_1 = decorationTypes_2.next()) {
+                var _b = __read(decorationTypes_2_1.value, 2), scope = _b[0], decorationType = _b[1];
+                // Pass in the existing key to associate the new color with the same
+                // decoration type, thereby reusing it.
+                var newDecorationType = this.toDecorationType(scopes[scope], decorationType.key);
+                if (newDecorationType) {
+                    decorationType.options = newDecorationType.options;
+                }
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (decorationTypes_2_1 && !decorationTypes_2_1.done && (_a = decorationTypes_2.return)) _a.call(decorationTypes_2);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+    };
     MonacoSemanticHighlightingService.prototype.register = function (languageId, scopes) {
         var _this = this;
         var result = _super.prototype.register.call(this, languageId, scopes);
         this.registerDecorationTypesForLanguage(languageId);
-        this.themeService().onThemeChange(function () {
-            // When the theme changes, remove the decoration types for the old
-            // colors and create new ones for the new colors.
-            _this.removeDecorationTypesForLanguage(languageId);
-            _this.registerDecorationTypesForLanguage(languageId);
+        var disposable = this.themeService().onThemeChange(function () {
+            // When the theme changes, refresh the decoration types to reflect
+            // the colors for the old theme.
+            // Note that we do not remove the old decoration types and add new ones.
+            // The new ones would have different class names, and we'd have to
+            // update all open editors to use the new class names.
+            _this.refreshDecorationTypesForLanguage(languageId);
         });
+        this.toDisposeOnUnregister.set(languageId, disposable);
         return result;
     };
     MonacoSemanticHighlightingService.prototype.unregister = function (languageId) {
         _super.prototype.unregister.call(this, languageId);
         this.removeDecorationTypesForLanguage(languageId);
+        var disposable = this.toDisposeOnUnregister.get(languageId);
+        if (disposable) {
+            disposable.dispose();
+        }
         this.decorationTypes.delete(languageId);
+        this.toDisposeOnUnregister.delete(languageId);
     };
-    MonacoSemanticHighlightingService.prototype.toDecorationType = function (scopes) {
-        var e_2, _a;
-        var key = this.nextDecorationTypeKey();
+    MonacoSemanticHighlightingService.prototype.toDecorationType = function (scopes, reuseKey) {
+        var e_3, _a;
+        var key = reuseKey || this.nextDecorationTypeKey();
         try {
             // TODO: why for-of? How to pick the right scope? Is it fine to get the first element (with the narrowest scope)?
             for (var scopes_1 = __values(scopes), scopes_1_1 = scopes_1.next(); !scopes_1_1.done; scopes_1_1 = scopes_1.next()) {
@@ -210,12 +246,12 @@ var MonacoSemanticHighlightingService = /** @class */ (function (_super) {
                 };
             }
         }
-        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
         finally {
             try {
                 if (scopes_1_1 && !scopes_1_1.done && (_a = scopes_1.return)) _a.call(scopes_1);
             }
-            finally { if (e_2) throw e_2.error; }
+            finally { if (e_3) throw e_3.error; }
         }
         return undefined;
     };
@@ -280,7 +316,7 @@ var MonacoSemanticHighlightingService = /** @class */ (function (_super) {
                     case 1:
                         editor = _a.sent();
                         if (editor) {
-                            return [2 /*return*/, editor.getControl().getModel()];
+                            return [2 /*return*/, editor.getControl().getModel() || undefined];
                         }
                         return [2 /*return*/, undefined];
                 }
@@ -324,13 +360,13 @@ var MonacoSemanticHighlightingService = /** @class */ (function (_super) {
         };
     };
     MonacoSemanticHighlightingService.prototype.toOptions = function (languageId, scope) {
-        if (scope) {
+        if (scope !== undefined) {
             var decorationTypes = this.decorationTypes.get(languageId);
             if (decorationTypes) {
                 var decoration = decorationTypes.get(scope);
                 if (decoration) {
                     return {
-                        inlineClassName: decoration.options.inlineClassName
+                        inlineClassName: decoration.options.inlineClassName || undefined
                     };
                 }
             }
