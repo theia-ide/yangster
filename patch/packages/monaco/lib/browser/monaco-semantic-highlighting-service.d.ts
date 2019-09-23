@@ -36,14 +36,16 @@ export declare class MonacoSemanticHighlightingService extends SemanticHighlight
     protected readonly monacoEditorService: MonacoEditorService;
     protected readonly decorations: Map<string, Set<string>>;
     protected readonly toDisposeOnEditorClose: Map<string, Disposable>;
+    protected readonly toDisposeOnUnregister: Map<string, Disposable>;
     protected readonly decorationTypes: Map<string, Map<number, DecorationTypeInfo>>;
     private lastDecorationTypeId;
     private nextDecorationTypeKey;
     protected registerDecorationTypesForLanguage(languageId: string): void;
     protected removeDecorationTypesForLanguage(languageId: string): void;
+    protected refreshDecorationTypesForLanguage(languageId: string): void;
     register(languageId: string, scopes: string[][] | undefined): Disposable;
     protected unregister(languageId: string): void;
-    protected toDecorationType(scopes: string[]): DecorationTypeInfo | undefined;
+    protected toDecorationType(scopes: string[], reuseKey?: string): DecorationTypeInfo | undefined;
     decorate(languageId: string, uri: URI, ranges: SemanticHighlightingRange[]): Promise<void>;
     dispose(): void;
     protected decorationIds(uri: string | URI): Set<string>;

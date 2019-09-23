@@ -47,6 +47,7 @@ export class MonacoSemanticHighlightingService extends SemanticHighlightingServi
 
     protected readonly decorations = new Map<string, Set<string>>();
     protected readonly toDisposeOnEditorClose = new Map<string, Disposable>();
+    protected readonly toDisposeOnUnregister = new Map<string, Disposable>();
 
     // laguage id -> (scope index -> decoration type)
     protected readonly decorationTypes = new Map<string, Map<number, DecorationTypeInfo>>();
@@ -82,26 +83,51 @@ export class MonacoSemanticHighlightingService extends SemanticHighlightingServi
         }
     }
 
+    protected refreshDecorationTypesForLanguage(languageId: string): void {
+        const decorationTypes = this.decorationTypes.get(languageId);
+        const scopes = this.scopes.get(languageId);
+        if (!decorationTypes || !scopes) {
+            this.logger.warn(`No decoration types are registered for language: ${languageId}`);
+            return;
+        }
+        for (const [scope, decorationType] of decorationTypes) {
+            // Pass in the existing key to associate the new color with the same
+            // decoration type, thereby reusing it.
+            const newDecorationType = this.toDecorationType(scopes[scope], decorationType.key);
+            if (newDecorationType) {
+                decorationType.options = newDecorationType.options;
+            }
+        }
+    }
+
     register(languageId: string, scopes: string[][] | undefined): Disposable {
         const result = super.register(languageId, scopes);
         this.registerDecorationTypesForLanguage(languageId);
-        this.themeService().onThemeChange(() => {
-            // When the theme changes, remove the decoration types for the old
-            // colors and create new ones for the new colors.
-            this.removeDecorationTypesForLanguage(languageId);
-            this.registerDecorationTypesForLanguage(languageId);
+        const disposable = this.themeService().onThemeChange(() => {
+            // When the theme changes, refresh the decoration types to reflect
+            // the colors for the old theme.
+            // Note that we do not remove the old decoration types and add new ones.
+            // The new ones would have different class names, and we'd have to
+            // update all open editors to use the new class names.
+            this.refreshDecorationTypesForLanguage(languageId);
         });
+        this.toDisposeOnUnregister.set(languageId, disposable);
         return result;
     }
 
     protected unregister(languageId: string): void {
         super.unregister(languageId);
         this.removeDecorationTypesForLanguage(languageId);
+        const disposable = this.toDisposeOnUnregister.get(languageId);
+        if (disposable) {
+            disposable.dispose();
+        }
         this.decorationTypes.delete(languageId);
+        this.toDisposeOnUnregister.delete(languageId);
     }
 
-    protected toDecorationType(scopes: string[]): DecorationTypeInfo | undefined {
-        const key = this.nextDecorationTypeKey();
+    protected toDecorationType(scopes: string[], reuseKey?: string): DecorationTypeInfo | undefined {
+        const key = reuseKey || this.nextDecorationTypeKey();
         // TODO: why for-of? How to pick the right scope? Is it fine to get the first element (with the narrowest scope)?
         for (const scope of scopes) {
             const tokenTheme = this.tokenTheme();
@@ -173,7 +199,7 @@ export class MonacoSemanticHighlightingService extends SemanticHighlightingServi
     protected async model(uri: string | URI): Promise<monaco.editor.ITextModel | undefined> {
         const editor = await this.editor(uri);
         if (editor) {
-            return editor.getControl().getModel();
+            return editor.getControl().getModel() || undefined;
         }
         return undefined;
     }
@@ -218,13 +244,13 @@ export class MonacoSemanticHighlightingService extends SemanticHighlightingServi
     }
 
     protected toOptions(languageId: string, scope: number | undefined): EditorDecorationOptions {
-        if (scope) {
+        if (scope !== undefined) {
             const decorationTypes = this.decorationTypes.get(languageId);
             if (decorationTypes) {
                 const decoration = decorationTypes.get(scope);
                 if (decoration) {
                     return {
-                        inlineClassName: decoration.options.inlineClassName
+                        inlineClassName: decoration.options.inlineClassName || undefined
                     };
                 }
             }
