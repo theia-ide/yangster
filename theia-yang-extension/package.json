@@ -8,7 +8,7 @@
     "theia-extension"
   ],
   "dependencies": {
-    "@theia/core": "next",
+    "@theia/core": "0.7.0-next.e147cf39",
     "sprotty": "next",
     "sprotty-theia": "next",
     "yang-sprotty": "0.2.0"
