@@ -5,11 +5,11 @@
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  */
 
-import { inject, injectable, multiInject } from 'inversify'
-import { LanguageClientFactory, Languages, Workspace, ILanguageClient } from '@theia/languages/lib/browser'
-import { DiagramLanguageClientContribution, DiagramManagerProvider } from 'sprotty-theia/lib'
+import { injectable, inject } from 'inversify';
 import { MessageConnection } from 'vscode-jsonrpc';
+import {  ILanguageClient } from '@theia/languages/lib/browser'
 import { SemanticHighlightingService } from '@theia/editor/lib/browser/semantic-highlight/semantic-highlighting-service';
+import { DiagramLanguageClientContribution } from 'sprotty-theia/lib'
 
 @injectable()
 export class YangLanguageClientContribution extends DiagramLanguageClientContribution {
@@ -17,15 +17,7 @@ export class YangLanguageClientContribution extends DiagramLanguageClientContrib
     readonly id = 'yang'
     readonly name = 'Yang'
 
-    constructor(
-        @inject(Workspace) protected readonly workspace: Workspace,
-        @inject(Languages) protected readonly languages: Languages,
-        @inject(LanguageClientFactory) protected readonly languageClientFactory: LanguageClientFactory,
-        @multiInject(DiagramManagerProvider) protected diagramManagerProviders: DiagramManagerProvider[],
-        @inject(SemanticHighlightingService) protected readonly semanticHighlightingService: SemanticHighlightingService
-        ) {
-        super(workspace, languages, languageClientFactory, diagramManagerProviders)
-    }
+    @inject(SemanticHighlightingService) protected readonly semanticHighlightingService: SemanticHighlightingService;
 
     createLanguageClient(connection: MessageConnection): ILanguageClient {
         const client: ILanguageClient & Readonly<{ languageId: string }> = Object.assign(super.createLanguageClient(connection), { languageId: this.id });

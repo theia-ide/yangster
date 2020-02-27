@@ -8,9 +8,9 @@
     "theia-extension"
   ],
   "dependencies": {
-    "@theia/core": "0.7.0-next.e147cf39",
-    "sprotty": "next",
-    "sprotty-theia": "next",
+    "@theia/core": "^0.11.0",
+    "sprotty": "^0.7.0",
+    "sprotty-theia": "^0.7.0",
     "yang-sprotty": "0.2.0"
   },
   "scripts": {
@@ -23,9 +23,9 @@
     "watch": "tsc -w"
   },
   "devDependencies": {
-    "rimraf": "^2.6.1",
-    "tslint": "^5.5.0",
-    "typescript": "2.9.1"
+    "rimraf": "^3.0.2",
+    "tslint": "^6.0.0",
+    "typescript": "^3.8.2"
   },
   "files": [
     "lib",
