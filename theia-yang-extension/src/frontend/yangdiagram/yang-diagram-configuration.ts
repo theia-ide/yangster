@@ -10,7 +10,6 @@ import { KeyTool, TYPES } from 'sprotty/lib'
 import { DiagramConfiguration, EditDiagramLocker } from "sprotty-theia/lib"
 import { LSTheiaDiagramServer, LSTheiaDiagramServerProvider, TheiaDiagramServer, TheiaKeyTool } from 'sprotty-theia/lib'
 import { createYangDiagramContainer } from 'yang-sprotty/lib'
-import { YangDiagramServer } from "./yang-diagram-server"
 import 'sprotty-theia/css/theia-sprotty.css'
 
 @injectable()
@@ -19,9 +18,8 @@ export class YangDiagramConfiguration implements DiagramConfiguration {
 
     createContainer(widgetId: string): Container {
         const container = createYangDiagramContainer(widgetId)
-        container.bind(YangDiagramServer).toSelf().inSingletonScope();
-        container.bind(TheiaDiagramServer).toService(YangDiagramServer);
-        container.bind(LSTheiaDiagramServer).toService(YangDiagramServer);
+        container.bind(LSTheiaDiagramServer).toSelf().inSingletonScope();
+        container.bind(TheiaDiagramServer).toService(LSTheiaDiagramServer);
         container.bind(TYPES.ModelSource).toService(TheiaDiagramServer);
         container.bind(EditDiagramLocker).toSelf().inSingletonScope()
         container.rebind(KeyTool).to(TheiaKeyTool).inSingletonScope();
