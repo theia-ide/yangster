@@ -8,15 +8,14 @@
     "theia-extension"
   ],
   "dependencies": {
-    "@theia/core": "^0.11.0",
-    "sprotty": "^0.7.0",
-    "sprotty-theia": "^0.7.0",
-    "yang-sprotty": "0.2.0"
+    "@theia/core": "^1.0.0",
+    "sprotty-theia": "^0.8.0",
+    "yang-sprotty": "0.2.1"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn install:languageserver && yarn run build",
     "install:languageserver": "rimraf -rf ./build && mkdir build && yarn download:languageserver",
-    "download:languageserver": "curl -o yang-language-server.zip http://services.typefox.io/open-source/jenkins/job/yang-lsp/job/master/lastSuccessfulBuild/artifact/yang-lsp/build/yang-language-server_diagram-extension_0.1.0-SNAPSHOT.zip && unzip yang-language-server.zip -d build/ && mv build/yang-language-server-0.1.0-SNAPSHOT build/yang-language-server",
+    "download:languageserver": "curl -L -o yang-language-server.zip https://github.com/theia-ide/yang-lsp/releases/download/v0.1.0/yang-language-server_diagram-extension_0.1.0.zip && unzip yang-language-server.zip -d build/ && mv build/yang-language-server-0.1.0 build/yang-language-server",
     "clean": "rimraf lib",
     "lint": "tslint -c ./tslint.json --project ./tsconfig.json",
     "build": "tsc && yarn lint",
