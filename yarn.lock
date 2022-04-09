@@ -8705,9 +8705,9 @@ modify-values@^1.0.0:
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
 
 moment@^2.21.0:
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
-  integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
+  version "2.29.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.2.tgz#00910c60b20843bcba52d37d58c628b47b1f20e4"
+  integrity sha512-UgzG4rvxYpN15jgCmVJwac49h9ly9NurikMWGPdVxm8GZD6XjkKPxDTjQQ43gtGgnV3X0cAyWDdP2Wexoquifg==
 
 monaco-css@^2.5.0:
   version "2.7.0"
@@ -12985,6 +12985,13 @@ yallist@^3.0.0, yallist@^3.0.2, yallist@^3.0.3:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.1.1.tgz#dbb7daf9bfd8bac9ab45ebf602b8cbad0d5d08fd"
   integrity sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==
+
+yang-sprotty@0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/yang-sprotty/-/yang-sprotty-0.2.1.tgz#cceea399f833c6b2ef46c6682d7d9f9097f643e5"
+  integrity sha512-rthtiq75bFTfG0JPlrFew519GDZdm94XJ5EnXjObf+270vcPt6XFB/fFxX4UBVoBdvLlcy1V9W/fRCzKpY1g5A==
+  dependencies:
+    sprotty "^0.8.0"
 
 yargs-parser@13.1.2, yargs-parser@^13.1.2:
   version "13.1.2"
