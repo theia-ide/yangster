@@ -9,13 +9,13 @@
   ],
   "dependencies": {
     "@theia/core": "^1.0.0",
-    "sprotty-theia": "^0.8.0",
-    "yang-sprotty": "0.2.1"
+    "sprotty-theia": "^0.12.0",
+    "yang-sprotty": "^0.3.0"
   },
   "scripts": {
     "prepare": "yarn run clean && yarn install:languageserver && yarn run build",
     "install:languageserver": "rimraf -rf ./build && mkdir build && yarn download:languageserver",
-    "download:languageserver": "curl -L -o yang-language-server.zip https://github.com/theia-ide/yang-lsp/releases/download/v0.1.0/yang-language-server_diagram-extension_0.1.0.zip && unzip yang-language-server.zip -d build/ && mv build/yang-language-server-0.1.0 build/yang-language-server",
+    "download:languageserver": "curl -L -o yang-language-server.zip https://github.com/theia-ide/yang-lsp/releases/download/v0.6.0/yang-language-server_diagram-extension_0.5.0.zip && unzip yang-language-server.zip -d build/ && mv build/yang-language-server-0.6.0 build/yang-language-server",
     "clean": "rimraf lib",
     "lint": "tslint -c ./tslint.json --project ./tsconfig.json",
     "build": "tsc && yarn lint",
