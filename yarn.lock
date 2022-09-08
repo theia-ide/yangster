@@ -7798,9 +7798,9 @@ jsprim@^1.2.2:
     verror "1.10.0"
 
 jszip@^2.4.0:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/jszip/-/jszip-2.6.1.tgz#b88f3a7b2e67a2a048152982c7a3756d9c4828f0"
-  integrity sha1-uI86ey5noqBIFSmCx6N1bZxIKPA=
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/jszip/-/jszip-2.7.0.tgz#c420b1e1aa800490724a0dd277e8cca950bc2c41"
+  integrity sha512-JIsRKRVC3gTRo2vM4Wy9WBC3TRcfnIZU8k65Phi3izkvPH975FowRYtKGT6PxevA0XnJ/yO8b0QwV0ydVyQwfw==
   dependencies:
     pako "~1.0.2"
 
@@ -12985,6 +12985,13 @@ yallist@^3.0.0, yallist@^3.0.2, yallist@^3.0.3:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.1.1.tgz#dbb7daf9bfd8bac9ab45ebf602b8cbad0d5d08fd"
   integrity sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==
+
+yang-sprotty@0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/yang-sprotty/-/yang-sprotty-0.2.1.tgz#cceea399f833c6b2ef46c6682d7d9f9097f643e5"
+  integrity sha512-rthtiq75bFTfG0JPlrFew519GDZdm94XJ5EnXjObf+270vcPt6XFB/fFxX4UBVoBdvLlcy1V9W/fRCzKpY1g5A==
+  dependencies:
+    sprotty "^0.8.0"
 
 yargs-parser@13.1.2, yargs-parser@^13.1.2:
   version "13.1.2"
